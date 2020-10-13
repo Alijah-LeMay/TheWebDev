@@ -4,7 +4,7 @@ import {
   GET_SITES_FAIL,
 } from '../../constants/siteConstants';
 
-export const siteReducer = (state = { sites: [] }, action) => {
+export const siteListReducer = (state = { sites: [] }, action) => {
   switch (action.type) {
     case GET_SITES_REQUEST:
       return { loading: true, sites: [] };

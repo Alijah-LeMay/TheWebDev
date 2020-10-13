@@ -1,12 +1,17 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../store/actions/userActions';
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import FormField from '../../components/utils/FormField';
+import MyButton from '../../components/utils/Button';
 
 const LoginScreen = () => {
+  const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     email: { value: '' },
     password: { value: '' },
@@ -38,6 +43,11 @@ const LoginScreen = () => {
     });
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(login(formState.email, formState.password));
+  };
+
   return (
     <Fragment>
       <ImageBanner
@@ -47,7 +57,7 @@ const LoginScreen = () => {
         label='Admin'
       />
       <CenterContainer>
-        <form>
+        <form onSubmit={submitHandler}>
           <h2>Administrator Login</h2>
           {formElements.map((formElement) => (
             <FormField
@@ -58,6 +68,7 @@ const LoginScreen = () => {
               changed={(event) => inputChangedHandler(event, formElement.id)}
             />
           ))}
+          <MyButton content='Submit' variant='submit' />
         </form>
       </CenterContainer>
     </Fragment>

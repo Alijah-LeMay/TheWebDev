@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { siteReducer } from './siteReducers';
+import { siteListReducer } from './siteReducers';
+import { userLoginReducer } from './userReducers';
 
 export default combineReducers({
-  site: siteReducer,
+  siteList: siteListReducer,
+  userLogin: userLoginReducer,
 });

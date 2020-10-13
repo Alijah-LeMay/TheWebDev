@@ -72,6 +72,13 @@ const MyButton = ({
       </div>
     );
   }
+  if (variant === 'submit') {
+    template = (
+      <button style={rStyle.button} type='submit'>
+        {content}
+      </button>
+    );
+  }
   return template;
 };
 

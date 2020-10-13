@@ -16,6 +16,7 @@ import BlogScreen from './screens/BlogScreen';
 import OurWorkScreen from './screens/OurWorkScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import LandingScreen from './screens/LandingScreen';
+import AdminScreen from './screens/AdminScreen';
 
 const App = () => (
   <Provider store={store}>
@@ -25,9 +26,10 @@ const App = () => (
         <Switch>
           <Route exact path='/' component={LandingScreen} />
           <Route exact path='/login' component={LoginScreen} />
+          <Route exact path='/admin' component={AdminScreen} />
           <Route exact path='/services' component={ServicesScreen} />
           <Route exact path='/quote' component={QuoteScreen} />
-          <Route exact path='/our_work' component={OurWorkScreen} />
+          <Route exact path='/ourwork' component={OurWorkScreen} />
           <Route exact path='/blog' component={BlogScreen} />
         </Switch>
         <Footer />

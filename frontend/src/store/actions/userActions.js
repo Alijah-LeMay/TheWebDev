@@ -4,9 +4,11 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
 } from '../../constants/userContstants';
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
+
     const config = {
       headers: {
         'Content-Type': 'application/json',

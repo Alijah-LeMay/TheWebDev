@@ -64,17 +64,17 @@ cats.forEach((x) => {
 const OurWorkScreen = () => {
   const dispatch = useDispatch();
 
-  const site = useSelector((state) => state.site);
-  const { loading, error, sites } = site;
+  const siteList = useSelector((state) => state.siteList);
+  const { loading, error, sites } = siteList;
 
   useEffect(() => {
     dispatch(getSites());
   }, [dispatch]);
   const showTheContent = (
     <div>
-      {sites.map((siteElement, index) => (
+      {/* {sites.map((siteElement, index) => (
         <div key={index}>{console.log(siteElement.category)}</div>
-      ))}
+      ))} */}
     </div>
   );
   return (

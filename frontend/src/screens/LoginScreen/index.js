@@ -10,12 +10,14 @@ import CenterContainer from '../../components/utils/CenterContainer';
 import FormField from '../../components/utils/FormField';
 import MyButton from '../../components/utils/Button';
 
-const LoginScreen = () => {
+const LoginScreen = ({ history }) => {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     email: { value: '' },
     password: { value: '' },
   });
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const formConfig = {
     email: {
@@ -27,11 +29,17 @@ const LoginScreen = () => {
       config: { type: 'text', placeholder: 'Your password' },
     },
   };
-
+  // Prepare formState objects
   const formElements = [];
   for (let key in formState) {
     formElements.push({ id: key, setup: formConfig[key] });
   }
+  useEffect(() => {
+    if (userInfo) {
+      history.push('/admin');
+    }
+  }, [userInfo, history]);
+
   const inputChangedHandler = (event, inputIdentifier) => {
     formElements.forEach((formElement) => {
       if (inputIdentifier === formElement.id) {
@@ -45,6 +53,7 @@ const LoginScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(formState.email, formState.password);
     dispatch(login(formState.email, formState.password));
   };
 

@@ -9,7 +9,7 @@ export const getSites = () => async (dispatch) => {
   try {
     dispatch({ type: GET_SITES_REQUEST });
 
-    const { data } = await axios.get('/api/our_work');
+    const { data } = await axios.get('/api/ourwork');
 
     dispatch({
       type: GET_SITES_SUCCESS,

@@ -1,8 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Redix
-import { useDispatch } from 'react-redux';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { createSite } from '../../store/actions/siteActions';
+import { CREATE_SITE_RESET } from '../../constants/siteConstants';
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
@@ -13,8 +15,8 @@ import FormField from '../../components/utils/FormField';
 import classes from './AdminScreen.module.css';
 import landing_bck from '../../assets/landing_bck.jpg';
 
-const AdminScreen = () => {
-  const dispatch = useDispatch;
+const AdminScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     category: { value: '' },
     siteTitle: { value: '' },
@@ -22,6 +24,15 @@ const AdminScreen = () => {
   });
   const [image, setImage] = useState('');
   const [uploading, setUploading] = useState(false);
+  const siteCreate = useSelector((state) => state.siteCreate);
+  const {
+    loading,
+    error,
+    success: successCreate,
+    site: createdSite,
+  } = siteCreate;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const formConfig = {
     category: {
       type: 'input',
@@ -36,43 +47,24 @@ const AdminScreen = () => {
       config: { type: 'text', placeholder: 'Site Link' },
     },
   };
+
   // Prepare formState objects
   const formElements = [];
   for (let key in formState) {
     formElements.push({ id: key, setup: formConfig[key] });
   }
-  const inputChangedHandler = (event, inputIdentifier) => {
-    formElements.forEach((formElement) => {
-      if (inputIdentifier === formElement.id) {
-        setFormState({
-          ...formState,
-          [inputIdentifier]: event.target.value,
-        });
-      }
-    });
-  };
 
-  const uploadFileHandler = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    setUploading(true);
-    try {
-      const config = {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      };
-
-      const { data } = await axios.post('/api/upload', formData, config);
-      setImage(data);
-      setUploading(false);
-    } catch (error) {
-      console.error(error);
-      setUploading(false);
+  useEffect(() => {
+    if (!userInfo || !userInfo.isAdmin) {
+      history.push('/login');
     }
-  };
+    if (successCreate) {
+      history.push(`/admin/site/${createdSite._id}/edit`);
+    }
+  }, [dispatch, history, userInfo, successCreate, createdSite]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const createProductHandler = () => {
+    dispatch(createSite());
   };
 
   return (
@@ -86,22 +78,12 @@ const AdminScreen = () => {
 
       <CenterContainer>
         <div className={classes.siteUpload_container}>
-          <MyButton content='Create A Site' />
+          <MyButton
+            content='Create A Site'
+            variant='func'
+            onClick={createProductHandler}
+          />
           <h2>Upload A Site</h2>
-          <form onSubmit={submitHandler}>
-            {formElements.map((formElement) => (
-              <FormField
-                key={formElement.id}
-                type={formElement.setup.type}
-                config={formElement.setup.config}
-                value={formElement.setup.value}
-                changed={(event) => inputChangedHandler(event, formElement.id)}
-              />
-            ))}
-            <input type='file' onChange={uploadFileHandler} />
-            {uploading && <div>...loading...</div>}
-            <MyButton content='Submit' variant='submit' />
-          </form>
         </div>
       </CenterContainer>
     </div>

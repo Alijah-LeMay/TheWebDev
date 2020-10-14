@@ -72,9 +72,15 @@ const OurWorkScreen = () => {
   }, [dispatch]);
   const showTheContent = (
     <div>
-      {/* {sites.map((siteElement, index) => (
-        <div key={index}>{console.log(siteElement.category)}</div>
-      ))} */}
+      {sites.map((siteElement, index) => (
+        <FeaturedSite
+          parentCategory={siteElement.category}
+          siteTitle={siteElement.siteTitle}
+          siteLink={siteElement.siteLink}
+          siteImages={siteElement.siteImages}
+          key={index}
+        />
+      ))}
     </div>
   );
   return (

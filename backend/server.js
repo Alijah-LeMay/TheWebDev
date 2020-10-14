@@ -26,7 +26,8 @@ app.use('/api/ourwork', ourWorkRoutes);
 // Image upload route
 app.use('/api/upload', require('./routes/upload'));
 // Make uploads folder statis
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+const dirname = path.resolve();
+app.use('/uploads', express.static(path.join(dirname, '/uploads')));
 
 //
 // Make sure middleware is after all other routes

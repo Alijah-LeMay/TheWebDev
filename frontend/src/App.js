@@ -17,6 +17,7 @@ import OurWorkScreen from './screens/OurWorkScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import LandingScreen from './screens/LandingScreen';
 import AdminScreen from './screens/AdminScreen';
+import EditSiteScreen from './screens/EditSiteScreen';
 
 const App = () => (
   <Provider store={store}>
@@ -27,6 +28,7 @@ const App = () => (
           <Route exact path='/' component={LandingScreen} />
           <Route exact path='/login' component={LoginScreen} />
           <Route exact path='/admin' component={AdminScreen} />
+          <Route exact path='/admin/site/:id/edit' component={EditSiteScreen} />
           <Route exact path='/services' component={ServicesScreen} />
           <Route exact path='/quote' component={QuoteScreen} />
           <Route exact path='/ourwork' component={OurWorkScreen} />

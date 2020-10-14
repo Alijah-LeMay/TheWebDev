@@ -26,7 +26,7 @@ const Navbar = () => {
             <Link to='/services'>Services</Link>
           </li>
           <li className={classes.li}>
-            <Link to='/our_work'>Our Work</Link>
+            <Link to='/ourwork'>Our Work</Link>
           </li>
 
           <li className={classes.liQuote}>

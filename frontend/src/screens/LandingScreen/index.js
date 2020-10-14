@@ -33,7 +33,7 @@ const Landing = () => {
         <div className={classes.landing_featuredContainer}>
           <h1 className={classes.textBanner}>Why Choose Us?</h1>
           <div className={classes.firstCards_container}>
-            <Card height='300px'>
+            <Card>
               <FontAwesomeIcon
                 icon={faKeyboard}
                 className={classes.icon}

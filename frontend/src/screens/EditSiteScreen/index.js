@@ -3,7 +3,9 @@ import axios from 'axios';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { updateSite } from '../../store/actions/siteActions';
+import { updateSite, getSiteDetails } from '../../store/actions/siteActions';
+import { UPDATE_SITE_RESET } from '../../constants/siteConstants';
+
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
@@ -18,19 +20,19 @@ const EditSiteScreen = ({ match, history }) => {
   const siteId = match.params.id;
   const dispatch = useDispatch();
 
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState([]);
   const [uploading, setUploading] = useState(false);
 
-  const siteUpdate = useSelector((state) => state.siteUpdate);
-  const { site: updatedSite } = siteUpdate;
+  const siteDetails = useSelector((state) => state.siteDetails);
+  const { site } = siteDetails;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const siteUpdate = useSelector((state) => state.siteUpdate);
+  const { success: successUpdate } = siteUpdate;
 
   const [formState, setFormState] = useState({
-    category: { value: '' },
-    siteTitle: { value: '' },
-    siteLink: { value: '' },
+    category: '',
+    siteTitle: '',
+    siteLink: '',
   });
   const formConfig = {
     category: {
@@ -46,14 +48,33 @@ const EditSiteScreen = ({ match, history }) => {
       config: { type: 'text', placeholder: 'Site Link' },
     },
   };
+  useEffect(() => {
+    if (successUpdate) {
+      dispatch({ type: UPDATE_SITE_RESET });
+      history.push('/admin');
+    } else {
+      if (!site || siteId !== site._id) {
+        dispatch(getSiteDetails(siteId));
+      } else {
+        setFormState({
+          category: site.category,
+          siteTitle: site.siteTitle,
+          siteLink: site.siteLink,
+        });
+        setImage(site.siteImages);
+      }
+    }
+  }, [dispatch, history, siteId, successUpdate, site, setFormState]);
 
   // Prepare formState objects
   const formElements = [];
   for (let key in formState) {
-    formElements.push({ id: key, setup: formConfig[key] });
+    formElements.push({
+      id: key,
+      setup: formConfig[key],
+      value: formState[key],
+    });
   }
-
-  useEffect(() => {}, []);
 
   const inputChangedHandler = (event, inputIdentifier) => {
     formElements.forEach((formElement) => {
@@ -65,6 +86,10 @@ const EditSiteScreen = ({ match, history }) => {
       }
     });
   };
+  const imagesArray = [];
+  for (let key in image) {
+    imagesArray.push(image[key]);
+  }
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
@@ -77,7 +102,9 @@ const EditSiteScreen = ({ match, history }) => {
       };
 
       const { data } = await axios.post('/api/upload', formData, config);
-      setImage(data);
+
+      imagesArray.push(data);
+      setImage(imagesArray);
       setUploading(false);
     } catch (error) {
       console.error(error);
@@ -93,11 +120,10 @@ const EditSiteScreen = ({ match, history }) => {
         category: formState.category,
         siteTitle: formState.siteTitle,
         siteLink: formState.siteLink,
-        siteImages: [image],
+        siteImages: image,
       })
     );
   };
-
   return (
     <div className={classes.editSiteScreen_container}>
       <ImageBanner
@@ -108,6 +134,7 @@ const EditSiteScreen = ({ match, history }) => {
       />
 
       <CenterContainer>
+        <MyButton content='Go Back' to='/admin' dir='left' />
         <h2>Edit Site</h2>
         <form onSubmit={submitHandler}>
           {formElements.map((formElement) => (
@@ -115,11 +142,21 @@ const EditSiteScreen = ({ match, history }) => {
               key={formElement.id}
               type={formElement.setup.type}
               config={formElement.setup.config}
-              value={formElement.setup.value}
+              value={formElement.value}
               changed={(event) => inputChangedHandler(event, formElement.id)}
             />
           ))}
-          <input type='file' onChange={uploadFileHandler} />
+          {image.map((item, index) => {
+            return (
+              <img
+                key={index}
+                src={item}
+                style={{ width: '100px' }}
+                alt={item}
+              />
+            );
+          })}
+          <input type='file' onChange={uploadFileHandler} name={image} />
           {uploading && <div>...loading...</div>}
           <MyButton content='Submit' variant='submit' />
         </form>

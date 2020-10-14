@@ -15,8 +15,17 @@ const MyButton = ({
   to,
   children,
   onClick,
+  dir,
 }) => {
+  let direction;
+  if (dir === 'left') {
+    direction = 'flex-start';
+  }
+  if (dir === 'right') {
+    direction = 'flex-end';
+  }
   let rStyle = {
+    containerDiv: { alignSelf: direction ? direction : 'center' },
     submitBtn: {
       textDecoration: 'none',
       color: color ? color : '#333',
@@ -52,6 +61,8 @@ const MyButton = ({
   };
   if (styleVariant === 'clear') {
     rStyle = {
+      containerDiv: { alignSelf: direction && direction },
+
       button: {
         textDecoration: 'none',
       },
@@ -71,7 +82,7 @@ const MyButton = ({
     };
   }
   let template = (
-    <div>
+    <div style={rStyle.containerDiv}>
       <Link to={to} style={rStyle.button}>
         <p key='r2' style={rStyle.buttonPara}>
           {content ? content : children}

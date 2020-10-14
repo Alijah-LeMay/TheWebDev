@@ -3,6 +3,9 @@ import {
   GET_SITES_REQUEST,
   GET_SITES_SUCCESS,
   GET_SITES_FAIL,
+  GET_SITE_DETAILS_REQUEST,
+  GET_SITE_DETAILS_SUCCESS,
+  GET_SITE_DETAILS_FAIL,
   CREATE_SITE_REQUEST,
   CREATE_SITE_SUCCESS,
   CREATE_SITE_FAIL,
@@ -31,16 +34,49 @@ export const getSites = () => async (dispatch) => {
     });
   }
 };
-
-export const createSite = () => async (dispatch, getState) => {
+export const getSiteDetails = (id) => async (dispatch, getState) => {
   try {
-    dispatch({ type: CREATE_SITE_REQUEST });
+    dispatch({ type: GET_SITE_DETAILS_REQUEST });
+
     const {
       userLogin: { userInfo },
     } = getState();
 
     const config = {
       headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/ourwork/${id}`, config);
+
+    dispatch({
+      type: GET_SITE_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_SITE_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const createSite = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: CREATE_SITE_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
@@ -65,6 +101,7 @@ export const createSite = () => async (dispatch, getState) => {
 export const updateSite = (site) => async (dispatch, getState) => {
   try {
     dispatch({ type: UPDATE_SITE_REQUEST });
+
     const {
       userLogin: { userInfo },
     } = getState();

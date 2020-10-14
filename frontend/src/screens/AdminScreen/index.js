@@ -1,15 +1,13 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { createSite } from '../../store/actions/siteActions';
-import { CREATE_SITE_RESET } from '../../constants/siteConstants';
+import { createSite, getSites } from '../../store/actions/siteActions';
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import MyButton from '../../components/utils/Button';
-import FormField from '../../components/utils/FormField';
+import DetailList from '../../components/DetailList';
 
 // Assets
 import classes from './AdminScreen.module.css';
@@ -17,47 +15,21 @@ import landing_bck from '../../assets/landing_bck.jpg';
 
 const AdminScreen = ({ history }) => {
   const dispatch = useDispatch();
-  const [formState, setFormState] = useState({
-    category: { value: '' },
-    siteTitle: { value: '' },
-    siteLink: { value: '' },
-  });
-  const [image, setImage] = useState('');
-  const [uploading, setUploading] = useState(false);
+
   const siteCreate = useSelector((state) => state.siteCreate);
-  const {
-    loading,
-    error,
-    success: successCreate,
-    site: createdSite,
-  } = siteCreate;
+  const { success: successCreate, site: createdSite } = siteCreate;
+
+  const siteList = useSelector((state) => state.siteList);
+  const { loading: loadingSites, sites } = siteList;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const formConfig = {
-    category: {
-      type: 'input',
-      config: { type: 'text', placeholder: 'Site Category' },
-    },
-    siteTitle: {
-      type: 'input',
-      config: { type: 'text', placeholder: 'Site Title' },
-    },
-    siteLink: {
-      type: 'input',
-      config: { type: 'text', placeholder: 'Site Link' },
-    },
-  };
-
-  // Prepare formState objects
-  const formElements = [];
-  for (let key in formState) {
-    formElements.push({ id: key, setup: formConfig[key] });
-  }
 
   useEffect(() => {
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login');
     }
+    dispatch(getSites());
     if (successCreate) {
       history.push(`/admin/site/${createdSite._id}/edit`);
     }
@@ -78,12 +50,31 @@ const AdminScreen = ({ history }) => {
 
       <CenterContainer>
         <div className={classes.siteUpload_container}>
+          <h2>Upload A Site</h2>
+
           <MyButton
             content='Create A Site'
             variant='func'
             onClick={createProductHandler}
           />
-          <h2>Upload A Site</h2>
+          <div>
+            {loadingSites ? (
+              <div>...loading</div>
+            ) : (
+              sites.map((siteElement, index) => (
+                <DetailList
+                  key={index}
+                  content={siteElement}
+                  buttons={[
+                    {
+                      link: siteElement._id,
+                      content: 'Edit',
+                    },
+                  ]}
+                />
+              ))
+            )}
+          </div>
         </div>
       </CenterContainer>
     </div>

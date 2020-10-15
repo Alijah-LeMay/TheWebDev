@@ -33,6 +33,7 @@ const EditSiteScreen = ({ match, history }) => {
     category: '',
     siteTitle: '',
     siteLink: '',
+    siteDescription: '',
   });
   const formConfig = {
     category: {
@@ -47,6 +48,10 @@ const EditSiteScreen = ({ match, history }) => {
       type: 'input',
       config: { type: 'text', placeholder: 'Site Link' },
     },
+    siteDescription: {
+      type: 'input',
+      config: { type: 'text', placeholder: 'Site Description' },
+    },
   };
   useEffect(() => {
     if (successUpdate) {
@@ -60,6 +65,7 @@ const EditSiteScreen = ({ match, history }) => {
           category: site.category,
           siteTitle: site.siteTitle,
           siteLink: site.siteLink,
+          siteDescription: site.siteDescription,
         });
         setImage(site.siteImages);
       }
@@ -120,9 +126,15 @@ const EditSiteScreen = ({ match, history }) => {
         category: formState.category,
         siteTitle: formState.siteTitle,
         siteLink: formState.siteLink,
+        siteDescription: formState.siteDescription,
         siteImages: image,
       })
     );
+  };
+  const imageDeleteHandler = (id) => {
+    const imageIndex = image.indexOf(id);
+    image.splice(imageIndex, 1);
+    console.log(imageIndex);
   };
   return (
     <div className={classes.editSiteScreen_container}>
@@ -148,12 +160,14 @@ const EditSiteScreen = ({ match, history }) => {
           ))}
           {image.map((item, index) => {
             return (
-              <img
-                key={index}
-                src={item}
-                style={{ width: '100px' }}
-                alt={item}
-              />
+              <div className={classes.imageBox_container} key={index}>
+                <img src={item} style={{ width: '100px' }} alt={item} />
+                <MyButton
+                  content='del'
+                  variant='func'
+                  to={() => imageDeleteHandler(item)}
+                />
+              </div>
             );
           })}
           <input type='file' onChange={uploadFileHandler} name={image} />

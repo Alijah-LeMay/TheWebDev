@@ -9,6 +9,7 @@ const Site = require('../models/Site');
 
 const getSites = asyncHandler(async (req, res) => {
   const sites = await Site.find();
+  sites.sort((a, b) => (a.category > b.category ? 1 : -1));
   res.json(sites);
 });
 
@@ -26,6 +27,21 @@ const getSiteById = asyncHandler(async (req, res) => {
   }
 });
 
+// desc         Delete single site
+// @route       DELETE /api/ourwork/:id
+// @access      Private / Admin
+
+const deleteSite = asyncHandler(async (req, res) => {
+  const site = await Site.findById(req.params.id);
+  if (site) {
+    await site.remove();
+    res.json({ message: 'Site Removed' });
+  } else {
+    res.status(404);
+    throw new Error('Site not found');
+  }
+});
+
 // desc         Create site entry
 // @route       POST /api/ourwork
 // @access      Private / Admin
@@ -34,6 +50,7 @@ const createSite = asyncHandler(async (req, res) => {
     category: 'Sample Category',
     siteTitle: 'Sample Title',
     siteLink: 'Sample Link',
+    siteDescription: 'Sample Description',
     siteImages: ['/images/sample.jpg'],
   });
 
@@ -45,7 +62,13 @@ const createSite = asyncHandler(async (req, res) => {
 // @route       PUT /api/ourwork/:id
 // @access      Private / Admin
 const updateSite = asyncHandler(async (req, res) => {
-  const { category, siteTitle, siteLink, siteImages } = req.body;
+  const {
+    category,
+    siteTitle,
+    siteLink,
+    siteImages,
+    siteDescription,
+  } = req.body;
   console.log(req.body);
   const site = await Site.findById(req.params.id);
 
@@ -53,6 +76,9 @@ const updateSite = asyncHandler(async (req, res) => {
     site.category = category ? category : site.category;
     site.siteTitle = siteTitle ? siteTitle : site.siteTitle;
     site.siteLink = siteLink ? siteLink : site.siteLink;
+    site.siteDescription = siteDescription
+      ? siteDescription
+      : site.siteDescription;
     site.siteImages = siteImages ? siteImages : site.siteImages;
     const updatedSite = await site.save();
     res.json(updatedSite);
@@ -62,4 +88,4 @@ const updateSite = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getSites, createSite, updateSite, getSiteById };
+module.exports = { getSites, createSite, updateSite, getSiteById, deleteSite };

@@ -61,6 +61,7 @@ class QuoteScreen extends Component {
       },
     },
   };
+
   submitFormHandler = (event) => {
     event.preventDefault();
     const formData = {};

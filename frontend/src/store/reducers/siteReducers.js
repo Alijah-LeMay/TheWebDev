@@ -9,6 +9,9 @@ import {
   CREATE_SITE_SUCCESS,
   CREATE_SITE_FAIL,
   CREATE_SITE_RESET,
+  DELETE_SITE_REQUEST,
+  DELETE_SITE_SUCCESS,
+  DELETE_SITE_FAIL,
   UPDATE_SITE_REQUEST,
   UPDATE_SITE_SUCCESS,
   UPDATE_SITE_FAIL,
@@ -49,6 +52,18 @@ export const siteCreateReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case CREATE_SITE_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+export const siteDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_SITE_REQUEST:
+      return { loading: true };
+    case DELETE_SITE_SUCCESS:
+      return { loading: false, success: true };
+    case DELETE_SITE_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

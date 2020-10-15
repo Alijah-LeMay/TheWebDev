@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
   siteListReducer,
   siteCreateReducer,
+  siteDeleteReducer,
   siteUpdateReducer,
   siteDetailsReducer,
 } from './siteReducers';
@@ -11,6 +12,7 @@ export default combineReducers({
   siteList: siteListReducer,
   siteDetails: siteDetailsReducer,
   siteCreate: siteCreateReducer,
+  siteDelete: siteDeleteReducer,
   siteUpdate: siteUpdateReducer,
   userLogin: userLoginReducer,
 });

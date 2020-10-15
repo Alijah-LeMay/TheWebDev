@@ -1,6 +1,9 @@
 import React from 'react';
 import Radium from 'radium';
 import MyButton from '../utils/Button';
+import Tr from '../utils/Tr';
+import Td from '../utils/Td';
+import { elipsesText } from '../utils/functions';
 
 const DetailList = ({ content, buttons }) => {
   let contentArray = [];
@@ -12,28 +15,52 @@ const DetailList = ({ content, buttons }) => {
       display: 'flex',
       backgroundColor: '#f2f2f2',
       justifyContent: 'center',
+      width: '100%',
     },
     detailElement: {
       padding: '5px 6px',
-      margin: '5px',
-      border: '1px solid #333',
+      border: '1px solid #ccc',
+      overFlow: 'hidden',
+      maxWidth: '250px',
     },
   };
   return (
-    <div style={rStyle.detailContainer}>
-      {contentArray.map((element, index) => (
-        <div style={rStyle.detailElement} key={index}>
-          {element}
-        </div>
-      ))}
-      {buttons.map((button, index) => (
-        <MyButton
-          key={index}
-          content={button.content}
-          to={`/admin/site/${content._id}/edit`}
-        />
-      ))}
-    </div>
+    <Tr style={rStyle.detailContainer} key='r1'>
+      {contentArray.map((element, index) => {
+        if (!element || element === undefined) {
+          element = '';
+          console.log('element is empty');
+        }
+        return (
+          <Td style={rStyle.detailElement} key={index}>
+            {elipsesText(element, 10)}
+          </Td>
+        );
+      })}
+      {buttons.map((button, index) => {
+        if (button.variant === 'func') {
+          return (
+            <Td key={index}>
+              <MyButton
+                variant={button.variant}
+                content={button.content}
+                to={button.to}
+              />
+            </Td>
+          );
+        } else {
+          return (
+            <Td key={index}>
+              <MyButton
+                variant={button.variant}
+                content={button.content}
+                to={`/admin/site/${content._id}/edit`}
+              />
+            </Td>
+          );
+        }
+      })}
+    </Tr>
   );
 };
 

@@ -7,6 +7,7 @@ const SiteSchema = new mongoose.Schema({
   },
   siteTitle: { type: String, required: true },
   siteLink: { type: String, required: true },
+  siteDescription: { type: String },
   siteImages: { type: Array },
 });
 

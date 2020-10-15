@@ -9,6 +9,7 @@ const { protect, admin } = require('../middleware/authMiddleware');
 const {
   getSites,
   createSite,
+  deleteSite,
   updateSite,
   getSiteById,
 } = require('../controllers/ourWorkController');
@@ -19,6 +20,7 @@ router.route('/').get(getSites).post(protect, admin, createSite);
 router
   .route('/:id')
   .put(protect, admin, updateSite)
-  .get(protect, admin, getSiteById);
+  .get(protect, admin, getSiteById)
+  .delete(protect, admin, deleteSite);
 
 module.exports = router;

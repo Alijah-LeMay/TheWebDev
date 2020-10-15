@@ -9,6 +9,9 @@ import {
   CREATE_SITE_REQUEST,
   CREATE_SITE_SUCCESS,
   CREATE_SITE_FAIL,
+  DELETE_SITE_REQUEST,
+  DELETE_SITE_SUCCESS,
+  DELETE_SITE_FAIL,
   UPDATE_SITE_REQUEST,
   UPDATE_SITE_SUCCESS,
   UPDATE_SITE_FAIL,
@@ -90,6 +93,37 @@ export const createSite = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: CREATE_SITE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const deleteSite = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: DELETE_SITE_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.delete(`/api/ourwork/${id}`, config);
+
+    dispatch({
+      type: DELETE_SITE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_SITE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

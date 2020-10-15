@@ -6,61 +6,12 @@ import { getSites } from '../../store/actions/siteActions';
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
+import Loader from '../../components/utils/Loader';
 import FeaturedSite from './FeaturedSite';
 
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
-import the_venue_1 from '../../assets/the_venue_1.png';
-import the_venue_2 from '../../assets/the_venue_2.png';
-import the_venue_3 from '../../assets/the_venue_3.png';
-import the_venue_4 from '../../assets/the_venue_4.png';
 
-const categories = {
-  architecture: {
-    sites: [
-      {
-        parentCategory: 'Architecture',
-        siteTitle: 'JamesRenoArchitecture',
-        siteLink: 'www.google.com',
-        siteImages: [the_venue_1, the_venue_2, the_venue_3, the_venue_4],
-      },
-      {
-        parentCategory: 'Architecture',
-        siteTitle: 'Blag blah blag',
-        siteLink: 'www.google.com',
-        siteImages: [the_venue_1, the_venue_2, the_venue_3, the_venue_4],
-      },
-    ],
-  },
-  mern: {
-    sites: [
-      {
-        parentCategory: 'MERN Stack',
-        siteTitle: 'The Venue',
-        siteLink: 'www.google.com',
-        siteImages: [the_venue_1, the_venue_2, the_venue_3, the_venue_4],
-      },
-      {
-        parentCategory: 'MERN Stack',
-        siteTitle: 'The pebad',
-        siteLink: 'www.google.com',
-        siteImages: [the_venue_1, the_venue_2, the_venue_3, the_venue_4],
-      },
-    ],
-  },
-};
-
-const entries = Object.entries(categories);
-
-let cats = [];
-
-entries.forEach((x) => cats.push(x[1].sites));
-
-let sits = [];
-
-cats.forEach((x) => {
-  x.forEach((item) => sits.push(item));
-});
 const OurWorkScreen = () => {
   const dispatch = useDispatch();
 
@@ -70,19 +21,10 @@ const OurWorkScreen = () => {
   useEffect(() => {
     dispatch(getSites());
   }, [dispatch]);
-  const showTheContent = (
-    <div>
-      {sites.map((siteElement, index) => (
-        <FeaturedSite
-          parentCategory={siteElement.category}
-          siteTitle={siteElement.siteTitle}
-          siteLink={siteElement.siteLink}
-          siteImages={siteElement.siteImages}
-          key={index}
-        />
-      ))}
-    </div>
-  );
+
+  let previousCategory;
+  let categoryShow;
+
   return (
     <div>
       <ImageBanner
@@ -93,33 +35,37 @@ const OurWorkScreen = () => {
       />
       <CenterContainer>
         {loading ? (
-          <h2>...Loading...</h2>
+          <Loader />
         ) : error ? (
           <h3>{error}</h3>
         ) : (
-          showTheContent
-        )}
-        {sits.map((item, index) => {
-          const { parentCategory, siteTitle, siteLink, siteImages } = item;
-          let showLabel = true;
-          if (
-            sits[index - 1] &&
-            sits[index].parentCategory === sits[index - 1].parentCategory
-          ) {
-            showLabel = false;
-          }
+          <div>
+            {sites.map((siteElement, index) => {
+              if (
+                !previousCategory ||
+                previousCategory !== siteElement.category
+              ) {
+                categoryShow = true;
+              } else {
+                categoryShow = false;
+              }
+              console.log(previousCategory);
 
-          return (
-            <FeaturedSite
-              parentCategory={parentCategory}
-              siteTitle={siteTitle}
-              siteLink={siteLink}
-              siteImages={siteImages}
-              key={index}
-              showLabel={showLabel}
-            />
-          );
-        })}
+              previousCategory = siteElement.category;
+              return (
+                <FeaturedSite
+                  category={siteElement.category}
+                  siteTitle={siteElement.siteTitle}
+                  siteLink={siteElement.siteLink}
+                  siteImages={siteElement.siteImages}
+                  key={index}
+                  showLabel={categoryShow}
+                  siteDescription={siteElement.siteDescription}
+                />
+              );
+            })}
+          </div>
+        )}
       </CenterContainer>
     </div>
   );

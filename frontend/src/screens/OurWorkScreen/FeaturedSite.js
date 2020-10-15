@@ -2,11 +2,12 @@ import React from 'react';
 import Radium from 'radium';
 
 const FeaturedSite = ({
-  parentCategory,
+  category,
   siteTitle,
   siteLink,
   siteImages,
   showLabel,
+  siteDescription,
 }) => {
   let rStyle = {
     divMain: {
@@ -67,7 +68,7 @@ const FeaturedSite = ({
     <div style={rStyle.divMain}>
       <div>
         {showLabel ? (
-          <h2 style={rStyle.h2}>{parentCategory}</h2>
+          <h2 style={rStyle.h2}>{category}</h2>
         ) : (
           <div style={rStyle.spacer}></div>
         )}
@@ -75,6 +76,7 @@ const FeaturedSite = ({
           <a style={rStyle.link} href={siteLink}>
             {siteTitle}
           </a>
+          <p>{siteDescription}</p>
         </div>
       </div>
       <div style={rStyle.imageContainer}>

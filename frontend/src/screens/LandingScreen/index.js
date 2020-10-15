@@ -125,7 +125,7 @@ const Landing = () => {
               </p>
             </Card>
           </div>
-          <MyButton content='Quote' />
+          <MyButton content='Quote' to='/quote' />
         </div>
       </CenterContainer>
     </div>

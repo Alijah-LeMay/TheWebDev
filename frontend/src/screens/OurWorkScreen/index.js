@@ -8,11 +8,13 @@ import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import Loader from '../../components/utils/Loader';
 import FeaturedSite from './FeaturedSite';
+import Carrousel from '../../components/utils/Carrousel';
 
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
 
 const OurWorkScreen = () => {
+  const images = [landing_bck, landing_bck, landing_bck];
   const dispatch = useDispatch();
 
   const siteList = useSelector((state) => state.siteList);
@@ -34,6 +36,7 @@ const OurWorkScreen = () => {
         label='Our Work'
       />
       <CenterContainer>
+        <Carrousel images={images} />
         {loading ? (
           <Loader />
         ) : error ? (

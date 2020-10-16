@@ -1,69 +1,49 @@
-import React from 'react';
-import Radium from 'radium';
-let rStyle = {
-  slider: {
-    background: '#fff',
-    height: '100px',
-    margin: 'auto',
-    overflow: 'hidden',
-    position: 'relative',
-    width: '960px',
-    '&::before': {
-      '@include': whiteGradient,
-      content: '',
-      height: '100px',
-      position: 'absolute',
-      width: '200px',
-      zIndex: 2,
-      left: 0,
-      top: 0,
-    },
-    '&::after': {
-      '@include': whiteGradient,
-      content: '',
-      height: '100px',
-      position: 'absolute',
-      width: '200px',
-      zIndex: 2,
-      right: 0,
-      top: 0,
-      transform: 'rotateZ(180deg)',
-    },
-  },
-  slide_track: {
-    animation: 'scroll $animationSpeed linear infinite',
-    display: 'flex',
-    width: 'calc(250px * 14)',
-  },
-  slide: {
-    height: '100px',
-    width: '250px',
-  },
-};
+import React, { useState, useEffect, useRef } from 'react';
+import styled, { keyframes } from 'styled-components';
 
-const Carrousel = ({ images }) => {
+const Carrousel = ({ images, size }) => {
   return (
-    <div style={rStyle.slider} class='slider'>
-      <div style={rStyle.slide_track} class='slide-track'>
-        <div style={rStyle.slide} class='slide'>
-          <img
-            src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png'
-            height='100'
-            width='250'
-            alt=''
-          />
-        </div>
-        <div style={rStyle.slide} class='slide'>
-          <img
-            src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png'
-            height='100'
-            width='250'
-            alt=''
-          />
-        </div>
-      </div>
+    <div
+      style={{
+        position: 'relative',
+        width: '100px',
+        overFlow: 'hidden',
+        height: '100px',
+      }}
+    >
+      {images.map((image, index) => (
+        <CarouselImage
+          key={index}
+          src={image}
+          startingPos={`${100 * index}px`}
+        />
+      ))}
     </div>
   );
 };
+const giveKeyValues = () => {
+  return ``;
+};
 
-export default Radium(Carrousel);
+const slideAnimation = keyframes`0% {transform: translateX(${(props) =>
+  props.startingPos});}
+15% {transform: translateX(calc(100px));}
+100% {transform: translateX(calc(100px));}`;
+
+const CarouselImage = styled.img`
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 0;
+  left: ${(props) => props.startingPos};
+  background-color: ${(props) => props.color};
+  animation-name: ${slideAnimation};
+  animation-duration: 8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+`;
+
+CarouselImage.defaultProps = {
+  startingPos: '0',
+};
+export default Carrousel;

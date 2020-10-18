@@ -13,9 +13,9 @@
 }
 .headerLogo {
   margin: 0;
-  padding: 10px 20px;
+  padding: 10px 0 0;
 }
-.ul {
+.desktop_container {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -53,4 +53,58 @@
 }
 .liQuote a:hover {
   color: #4bb781;
+}
+
+.hamburger_container {
+  display: 'flex';
+  align-items: center;
+  margin: auto 0;
+  padding: 0 40px;
+  cursor: pointer;
+}
+
+@media (max-width: 1080px) {
+  .desktop_container {
+    display: none;
+  }
+}
+@media (min-width: 1080px) {
+  .hamburger_container {
+    display: none;
+  }
+}
+
+.sideDrawer_open {
+  position: fixed;
+  width: 280px;
+  max-width: 70%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 200;
+  background-color: white;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
+}
+.sideDrawer_open {
+  transform: translateX(0);
+}
+
+.sideDrawer_close {
+  position: fixed;
+  width: 280px;
+  max-width: 70%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 200;
+  background-color: white;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
+}
+
+.sideDrawer_close {
+  transform: translateX(100%);
 }

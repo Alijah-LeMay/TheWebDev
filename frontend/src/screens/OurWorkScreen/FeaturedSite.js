@@ -1,5 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
+import SlickSlider from '../../components/SlickSlider';
 
 const FeaturedSite = ({
   category,
@@ -64,6 +65,7 @@ const FeaturedSite = ({
       },
     };
   }
+
   return (
     <div style={rStyle.divMain}>
       <div>
@@ -79,11 +81,7 @@ const FeaturedSite = ({
           <p>{siteDescription}</p>
         </div>
       </div>
-      <div style={rStyle.imageContainer}>
-        {siteImages.map((item, index) => (
-          <img style={rStyle.image} key={index} src={item} alt={siteTitle} />
-        ))}
-      </div>
+      <SlickSlider images={siteImages} height='250' width='250' />
     </div>
   );
 };

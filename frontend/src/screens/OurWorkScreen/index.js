@@ -9,6 +9,7 @@ import CenterContainer from '../../components/utils/CenterContainer';
 import Loader from '../../components/utils/Loader';
 import FeaturedSite from './FeaturedSite';
 import Carrousel from '../../components/utils/Carrousel';
+import SlickSlider from '../../components/SlickSlider';
 
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
@@ -36,7 +37,6 @@ const OurWorkScreen = () => {
         label='Our Work'
       />
       <CenterContainer>
-        <Carrousel images={images} />
         {loading ? (
           <Loader />
         ) : error ? (
@@ -52,8 +52,6 @@ const OurWorkScreen = () => {
               } else {
                 categoryShow = false;
               }
-              console.log(previousCategory);
-
               previousCategory = siteElement.category;
               return (
                 <FeaturedSite

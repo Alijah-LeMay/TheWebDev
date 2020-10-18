@@ -9,6 +9,7 @@ import banner_white from '../../../assets/banner_white.png';
 import HamburgerMenu from './HamburgerMenu';
 import NavigationItems from './NavigationItems';
 import CenterContainer from '../../utils/CenterContainer';
+import OutlinedNavBtn from './OutlinedNavBtn';
 
 const Navbar = () => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
@@ -36,6 +37,7 @@ const Navbar = () => {
 
         <ul className={classes.desktop_container}>
           <NavigationItems />
+          <OutlinedNavBtn to='/quote' content='Quote' />
         </ul>
         <HamburgerMenu
           showBack={showSideDrawer}

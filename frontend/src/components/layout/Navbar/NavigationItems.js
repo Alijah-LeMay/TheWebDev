@@ -6,18 +6,14 @@ import classes from './Navbar.module.css';
 const NavigationItems = () => {
   return (
     <>
-      <li className={classes.li}>
+      <li>
         <Link to='/'>Home</Link>
       </li>
-      <li className={classes.li}>
+      <li>
         <Link to='/services'>Services</Link>
       </li>
-      <li className={classes.li}>
+      <li>
         <Link to='/ourwork'>Our Work</Link>
-      </li>
-
-      <li className={classes.liQuote}>
-        <Link to='/quote'>Quote</Link>
       </li>
     </>
   );

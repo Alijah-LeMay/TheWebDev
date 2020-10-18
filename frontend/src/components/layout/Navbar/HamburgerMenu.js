@@ -21,7 +21,9 @@ const HamburgerMenu = (props) => {
           props.showBack ? classes.sideDrawer_open : classes.sideDrawer_close
         }
       >
-        <NavigationItems />
+        <ul className={classes.drawerlist_container}>
+          <NavigationItems />
+        </ul>
       </div>
     </>
   );

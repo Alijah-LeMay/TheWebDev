@@ -17,41 +17,23 @@
 }
 .desktop_container {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
-  align-self: center;
+  margin: auto 0;
 }
-.li {
+.desktop_container li {
   float: left;
+  margin: auto 0;
 }
 
-.li a {
+.desktop_container li a {
   display: block;
   color: white;
+  margin: auto;
   text-align: center;
   padding: 16px;
   text-decoration: none;
   font-size: 1.1rem;
 }
-.li a:hover {
-  color: #4bb781;
-}
-.liQuote {
-  float: left;
-}
-
-.liQuote a {
-  display: block;
-  background-color: white;
-  border-radius: 20px;
-  color: #333;
-  text-align: center;
-  padding: 8px 16px;
-  margin: 8px 0;
-  text-decoration: none;
-  font-size: 1.1rem;
-}
-.liQuote a:hover {
+.desktop_container li a:hover {
   color: #4bb781;
 }
 
@@ -74,6 +56,22 @@
   }
 }
 
+.drawerlist_container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+.drawerlist_container li {
+  padding: 15px 0;
+  border-bottom: 1px solid#4bb781;
+}
+.drawerlist_container li:hover {
+  border-bottom: 1px solid #3d5aaf;
+}
+.drawerlist_container li a {
+  color: #fff;
+}
 .sideDrawer_open {
   position: fixed;
   width: 280px;
@@ -82,13 +80,10 @@
   right: 0;
   top: 0;
   z-index: 200;
-  background-color: white;
+  background-color: #333;
   padding: 32px 16px;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
-}
-.sideDrawer_open {
-  transform: translateX(0);
 }
 
 .sideDrawer_close {
@@ -99,7 +94,7 @@
   right: 0;
   top: 0;
   z-index: 200;
-  background-color: white;
+  background-color: #333;
   padding: 32px 16px;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
@@ -107,4 +102,7 @@
 
 .sideDrawer_close {
   transform: translateX(100%);
+}
+.sideDrawer_open {
+  transform: translateX(0);
 }

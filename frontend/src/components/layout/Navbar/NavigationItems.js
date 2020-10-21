@@ -1,19 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+// import classes from './Navbar.module.css';
 
-import classes from './Navbar.module.css';
-
-const NavigationItems = () => {
+const NavigationItems = ({ clicked, mobile }) => {
+  let currentlyActiveStyle = { color: '#4bb781' };
+  if (mobile) {
+    currentlyActiveStyle = { color: '#3d5aaf' };
+  }
   return (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <NavLink
+          exact
+          activeStyle={currentlyActiveStyle}
+          to='/'
+          onClick={clicked}
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link to='/services'>Services</Link>
+        <NavLink
+          exact
+          activeStyle={currentlyActiveStyle}
+          to='/services'
+          onClick={clicked}
+        >
+          Services
+        </NavLink>
       </li>
       <li>
-        <Link to='/ourwork'>Our Work</Link>
+        <NavLink
+          exact
+          activeStyle={currentlyActiveStyle}
+          to='/ourwork'
+          onClick={clicked}
+        >
+          Our Work
+        </NavLink>
       </li>
     </>
   );

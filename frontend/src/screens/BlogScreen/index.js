@@ -1,31 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 // Assets
 import blog_page from '../../assets/blog_page.jpg';
+
+// Redux
+
+import { getblogs } from '../../store/actions/blogActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import ArticleContainer from '../../components/utils/ArticleContainer';
+import Loader from '../../components/utils/Loader';
 
-const content = [
-  {
-    category: 'Website Development',
-    imageURL: blog_page,
-    title: 'whats a domain name?',
-    description: 'dwndabnrybawuiyfbaiwjhfbnawihjfbnaiwfbwaf',
-    link: 'www.google.com',
-  },
-  {
-    category: 'Website Development',
-    imageURL: blog_page,
-    title: 'whats a domain name?',
-    description:
-      'dwndabnrybawuiyfbaiwjhfbnawihjfbnaiwfbwafwdjhabdhwabduhwabdwuahdbwuahydbwaouDyhbwduywagbvduyatgdwyagdwydgaudygwaudygawdyagwduyydbwaudygbwuydbwaudygawduywagduywagduwydgauydgaufyawfy',
-    link: 'www.google.com',
-  },
-];
 const BlogScreen = () => {
+  const dispatch = useDispatch();
+
+  const blogList = useSelector((state) => state.blogList);
+  const { loading: loadingBlogs, error, blogs } = blogList;
+
+  useEffect(() => {
+    dispatch(getblogs());
+  }, [dispatch]);
   return (
     <Fragment>
       <ImageBanner
@@ -35,15 +32,19 @@ const BlogScreen = () => {
         opacity={0.3}
       />
       <CenterContainer Horizontal justify='left'>
-        {content.map((articleElement) => (
-          <ArticleContainer
-            category={articleElement.category}
-            title={articleElement.title}
-            imageLOC={articleElement.imageURL}
-            description={articleElement.description}
-            link={articleElement.link}
-          />
-        ))}
+        {loadingBlogs ? (
+          <Loader />
+        ) : (
+          blogs.map((articleElement) => (
+            <ArticleContainer
+              category={articleElement.category}
+              title={articleElement.title}
+              imageLOC={articleElement.images[0]}
+              description={articleElement.content}
+              link={`/blog/${articleElement._id}`}
+            />
+          ))
+        )}
       </CenterContainer>
     </Fragment>
   );

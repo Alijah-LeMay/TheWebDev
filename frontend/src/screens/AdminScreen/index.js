@@ -7,24 +7,28 @@ import {
   deleteSite,
   getSites,
 } from '../../store/actions/siteActions';
+import { CREATE_SITE_RESET } from '../../constants/siteConstants';
 // My Components
+import BlogListContainer from './BlogListContainer';
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import MyButton from '../../components/utils/Button';
 import DetailList from '../../components/DetailList';
 import Table from '../../components/utils/Table';
+import TBody from '../../components/utils/TBody';
+
 import Loader from '../../components/utils/Loader';
 
 // Assets
 import classes from './AdminScreen.module.css';
 import landing_bck from '../../assets/landing_bck.jpg';
-import TBody from '../../components/utils/TBody';
+import { logout } from '../../store/actions/userActions';
 
 const AdminScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const siteCreate = useSelector((state) => state.siteCreate);
-  const { success: successCreate, site: createdSite } = siteCreate;
+  const { success: successCreateSite, site: createdSite } = siteCreate;
 
   const siteList = useSelector((state) => state.siteList);
   const { loading: loadingSites, sites } = siteList;
@@ -34,23 +38,37 @@ const AdminScreen = ({ history }) => {
 
   const siteDelete = useSelector((state) => state.siteDelete);
   const {
-    loading: loadingDelete,
+    // loading: loadingDelete,
     success: successDelete,
-    error: errorDelete,
+    // error: errorDelete,
   } = siteDelete;
 
   useEffect(() => {
+    dispatch({
+      type: CREATE_SITE_RESET,
+    });
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login');
     }
     dispatch(getSites());
-    if (successCreate) {
+
+    if (successCreateSite) {
       history.push(`/admin/site/${createdSite._id}/edit`);
     }
-  }, [dispatch, history, userInfo, successCreate, createdSite, successDelete]);
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successCreateSite,
+    createdSite,
+    successDelete,
+  ]);
 
   const createProductHandler = () => {
     dispatch(createSite());
+  };
+  const logoutHandler = () => {
+    dispatch(logout());
   };
 
   const deleteSiteHandler = (id) => {
@@ -75,8 +93,9 @@ const AdminScreen = ({ history }) => {
           <MyButton
             content='Create A Site'
             variant='func'
-            onClick={createProductHandler}
+            to={createProductHandler}
           />
+          <MyButton content='Logout' variant='func' to={logoutHandler} />
           <div>
             {loadingSites ? (
               <Loader />
@@ -90,6 +109,7 @@ const AdminScreen = ({ history }) => {
                         key={index}
                         label='Existing Sites'
                         content={siteElement}
+                        editLoc='site'
                         buttons={[
                           {
                             link: siteElement._id,
@@ -109,6 +129,7 @@ const AdminScreen = ({ history }) => {
             )}
           </div>
         </div>
+        <BlogListContainer />
       </CenterContainer>
     </div>
   );

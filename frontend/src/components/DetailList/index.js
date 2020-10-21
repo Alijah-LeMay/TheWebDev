@@ -5,7 +5,7 @@ import Tr from '../utils/Tr';
 import Td from '../utils/Td';
 import { elipsesText } from '../utils/functions';
 
-const DetailList = ({ content, buttons }) => {
+const DetailList = ({ content, buttons, editLoc }) => {
   let contentArray = [];
   for (let key in content) {
     contentArray.push(content[key]);
@@ -29,7 +29,6 @@ const DetailList = ({ content, buttons }) => {
       {contentArray.map((element, index) => {
         if (!element || element === undefined) {
           element = '';
-          console.log('element is empty');
         }
         return (
           <Td style={rStyle.detailElement} key={index}>
@@ -54,7 +53,7 @@ const DetailList = ({ content, buttons }) => {
               <MyButton
                 variant={button.variant}
                 content={button.content}
-                to={`/admin/site/${content._id}/edit`}
+                to={`/admin/${editLoc}/${content._id}/edit`}
               />
             </Td>
           );

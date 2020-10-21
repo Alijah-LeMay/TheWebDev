@@ -12,7 +12,7 @@ const {
   deleteSite,
   updateSite,
   getSiteById,
-} = require('../controllers/ourWorkController');
+} = require('../controllers/siteController');
 
 // Routes
 

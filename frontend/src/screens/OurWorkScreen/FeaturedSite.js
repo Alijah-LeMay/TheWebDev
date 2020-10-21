@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import SlickSlider from '../../components/SlickSlider';
+import classes from './OurWorkScreen.module.css';
 
 const FeaturedSite = ({
   category,
@@ -11,19 +12,6 @@ const FeaturedSite = ({
   siteDescription,
 }) => {
   let rStyle = {
-    divMain: {
-      display: 'flex',
-      flexDirection: 'row',
-      padding: '40px',
-    },
-
-    imageContainer: {
-      display: 'flex',
-      alignItems: 'center',
-    },
-    image: {
-      maxWidth: '250px',
-    },
     text_container: {
       minWidth: '175px',
       maxWidth: '175px',
@@ -31,24 +19,11 @@ const FeaturedSite = ({
     link: {
       textDecoration: 'none',
       color: '#3D5AAF',
-      fontSize: '1.3rem',
       wordWrap: 'break-word',
     },
   };
   if (showLabel) {
     rStyle = {
-      divMain: {
-        display: 'flex',
-        flexDirection: 'row',
-        padding: '40px',
-      },
-      imageContainer: {
-        display: 'flex',
-        alignItems: 'center',
-      },
-      image: {
-        maxWidth: '250px',
-      },
       h2: {
         position: 'absolute',
         margin: '-40px 0 0 0',
@@ -60,14 +35,13 @@ const FeaturedSite = ({
       link: {
         textDecoration: 'none',
         color: '#3D5AAF',
-        fontSize: '1.3rem',
         wordWrap: 'break-word',
       },
     };
   }
 
   return (
-    <div style={rStyle.divMain}>
+    <div className={classes.divMain}>
       <div>
         {showLabel ? (
           <h2 style={rStyle.h2}>{category}</h2>

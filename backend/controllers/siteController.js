@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const Site = require('../models/Site');
 
 // desc         Get all sets of our work
-// @route       GET /api/ourwork
+// @route       GET /api/site
 // @access      Public
 
 const getSites = asyncHandler(async (req, res) => {
@@ -14,7 +14,7 @@ const getSites = asyncHandler(async (req, res) => {
 });
 
 // desc         Fetch single site
-// @route       GET /api/ourwork/:id
+// @route       GET /api/site/:id
 // @access      Private / Admin
 
 const getSiteById = asyncHandler(async (req, res) => {
@@ -28,7 +28,7 @@ const getSiteById = asyncHandler(async (req, res) => {
 });
 
 // desc         Delete single site
-// @route       DELETE /api/ourwork/:id
+// @route       DELETE /api/site/:id
 // @access      Private / Admin
 
 const deleteSite = asyncHandler(async (req, res) => {
@@ -43,7 +43,7 @@ const deleteSite = asyncHandler(async (req, res) => {
 });
 
 // desc         Create site entry
-// @route       POST /api/ourwork
+// @route       POST /api/site
 // @access      Private / Admin
 const createSite = asyncHandler(async (req, res) => {
   const site = new Site({
@@ -59,7 +59,7 @@ const createSite = asyncHandler(async (req, res) => {
 });
 
 // desc         Update Site Entry
-// @route       PUT /api/ourwork/:id
+// @route       PUT /api/site/:id
 // @access      Private / Admin
 const updateSite = asyncHandler(async (req, res) => {
   const {

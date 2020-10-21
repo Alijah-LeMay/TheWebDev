@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-
+import classes from './SlickSlider.module.css';
 import Slide from './Slide';
 
 const SlickSlider = ({
@@ -24,23 +24,23 @@ const SlickSlider = ({
     arrows: arrows ? arrows : false,
     slidesToScroll: slidesToScroll ? slidesToScroll : 1,
   };
+
   let defaultHeight = height ? `${height}px` : '250px';
 
   let calculatedWidth = `${width * settings.slidesToShow}px`;
-
   if (images.length < settings.slidesToShow)
     calculatedWidth = `${width * images.length}px`;
 
   return (
-    <div
-      style={{
-        height: defaultHeight,
-        width: calculatedWidth,
-      }}
-    >
+    <div className={classes.slider_container}>
       <Slider {...settings}>
         {images.map((image, index) => (
-          <Slide key={index} image={image} height={defaultHeight} />
+          <Slide
+            key={index}
+            image={image}
+            height={defaultHeight}
+            alt='Site example'
+          />
         ))}
       </Slider>
     </div>

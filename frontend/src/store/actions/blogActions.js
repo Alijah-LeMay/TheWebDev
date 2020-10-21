@@ -1,35 +1,35 @@
 import axios from 'axios';
 import {
-  GET_SITES_REQUEST,
-  GET_SITES_SUCCESS,
-  GET_SITES_FAIL,
-  GET_SITE_DETAILS_REQUEST,
-  GET_SITE_DETAILS_SUCCESS,
-  GET_SITE_DETAILS_FAIL,
-  CREATE_SITE_REQUEST,
-  CREATE_SITE_SUCCESS,
-  CREATE_SITE_FAIL,
-  DELETE_SITE_REQUEST,
-  DELETE_SITE_SUCCESS,
-  DELETE_SITE_FAIL,
-  UPDATE_SITE_REQUEST,
-  UPDATE_SITE_SUCCESS,
-  UPDATE_SITE_FAIL,
-} from '../../constants/siteConstants';
+  GET_BLOGS_REQUEST,
+  GET_BLOGS_SUCCESS,
+  GET_BLOGS_FAIL,
+  UPDATE_BLOG_SUCCESS,
+  UPDATE_BLOG_FAIL,
+  UPDATE_BLOG_REQUEST,
+  CREATE_BLOG_SUCCESS,
+  CREATE_BLOG_FAIL,
+  CREATE_BLOG_REQUEST,
+  BLOG_DETAILS_REQUEST,
+  BLOG_DETAILS_SUCCESS,
+  BLOG_DETAILS_FAIL,
+  DELETE_BLOG_REQUEST,
+  DELETE_BLOG_SUCCESS,
+  DELETE_BLOG_FAIL,
+} from '../../constants/blogConstants';
 
-export const getSites = () => async (dispatch) => {
+export const getblogs = () => async (dispatch) => {
   try {
-    dispatch({ type: GET_SITES_REQUEST });
+    dispatch({ type: GET_BLOGS_REQUEST });
 
-    const { data } = await axios.get('/api/site');
+    const { data } = await axios.get('/api/blog');
 
     dispatch({
-      type: GET_SITES_SUCCESS,
+      type: GET_BLOGS_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_SITES_FAIL,
+      type: GET_BLOGS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -37,9 +37,31 @@ export const getSites = () => async (dispatch) => {
     });
   }
 };
-export const getSiteDetails = (id) => async (dispatch, getState) => {
+
+export const getBlogDetails = (id) => async (dispatch) => {
   try {
-    dispatch({ type: GET_SITE_DETAILS_REQUEST });
+    dispatch({ type: BLOG_DETAILS_REQUEST });
+
+    const { data } = await axios.get(`/api/blog/${id}`);
+
+    dispatch({
+      type: BLOG_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: BLOG_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const createBlog = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: CREATE_BLOG_REQUEST });
 
     const {
       userLogin: { userInfo },
@@ -52,15 +74,15 @@ export const getSiteDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/site/${id}`, config);
+    const { data } = await axios.post('/api/blog', {}, config);
 
     dispatch({
-      type: GET_SITE_DETAILS_SUCCESS,
+      type: CREATE_BLOG_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_SITE_DETAILS_FAIL,
+      type: CREATE_BLOG_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -69,9 +91,9 @@ export const getSiteDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-export const createSite = () => async (dispatch, getState) => {
+export const deleteBlog = (id) => async (dispatch, getState) => {
   try {
-    dispatch({ type: CREATE_SITE_REQUEST });
+    dispatch({ type: DELETE_BLOG_REQUEST });
 
     const {
       userLogin: { userInfo },
@@ -84,15 +106,15 @@ export const createSite = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post('/api/site', {}, config);
+    const { data } = await axios.delete(`/api/blog/${id}`, config);
 
     dispatch({
-      type: CREATE_SITE_SUCCESS,
+      type: DELETE_BLOG_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: CREATE_SITE_FAIL,
+      type: DELETE_BLOG_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -100,9 +122,10 @@ export const createSite = () => async (dispatch, getState) => {
     });
   }
 };
-export const deleteSite = (id) => async (dispatch, getState) => {
+
+export const updateBlog = (blog) => async (dispatch, getState) => {
   try {
-    dispatch({ type: DELETE_SITE_REQUEST });
+    dispatch({ type: UPDATE_BLOG_REQUEST });
 
     const {
       userLogin: { userInfo },
@@ -115,47 +138,15 @@ export const deleteSite = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/site/${id}`, config);
+    const { data } = await axios.put(`/api/blog/${blog._id}`, blog, config);
 
     dispatch({
-      type: DELETE_SITE_SUCCESS,
+      type: UPDATE_BLOG_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: DELETE_SITE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
-
-export const updateSite = (site) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: UPDATE_SITE_REQUEST });
-
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-
-    const { data } = await axios.put(`/api/site/${site._id}`, site, config);
-
-    dispatch({
-      type: UPDATE_SITE_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: UPDATE_SITE_FAIL,
+      type: UPDATE_BLOG_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

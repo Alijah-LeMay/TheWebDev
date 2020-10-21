@@ -7,6 +7,13 @@ import {
   siteDetailsReducer,
 } from './siteReducers';
 import { userLoginReducer } from './userReducers';
+import {
+  blogListReducer,
+  blogCreateReducer,
+  blogUpdateReducer,
+  blogDetailsReducer,
+  blogDeleteReducer,
+} from './blogReducers';
 
 export default combineReducers({
   siteList: siteListReducer,
@@ -15,4 +22,9 @@ export default combineReducers({
   siteDelete: siteDeleteReducer,
   siteUpdate: siteUpdateReducer,
   userLogin: userLoginReducer,
+  blogList: blogListReducer,
+  blogCreate: blogCreateReducer,
+  blogUpdate: blogUpdateReducer,
+  blogDetails: blogDetailsReducer,
+  blogDelete: blogDeleteReducer,
 });

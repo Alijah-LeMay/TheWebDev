@@ -74,9 +74,12 @@ const Landing = () => {
       </CenterContainer>
       <CenterContainer bgPadding='40px 0'>
         <div className={classes.infoSection_container}>
-          <Card height='100%'>
-            <img src={home_analytics} alt='website analytics' />
-          </Card>
+          <div className={classes.card_container}>
+            <Card>
+              <img src={home_analytics} alt='website analytics' />
+            </Card>
+          </div>
+
           <div className={classes.infoSection_right}>
             <h2>Website Development</h2>
             <h3>Intuitive Design</h3>
@@ -94,7 +97,7 @@ const Landing = () => {
               applications for all clients. We understand your demands and
               intend to help you achieve them.
             </p>
-            <MyButton content='LEARN MORE' to='/services' />
+            <MyButton content='Learn More' to='/services' />
           </div>
         </div>
       </CenterContainer>
@@ -125,7 +128,7 @@ const Landing = () => {
               </p>
             </Card>
           </div>
-          <MyButton content='Quote' to='/quote' />
+          <MyButton content='Get A Quote' to='/quote' />
         </div>
       </CenterContainer>
     </div>

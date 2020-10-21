@@ -7,6 +7,7 @@ import classes from './Navbar.module.css';
 // My Components
 import Backdrop from '../../utils/Backdrop';
 import NavigationItems from './NavigationItems';
+import Logo from '../../Logo';
 
 const HamburgerMenu = (props) => {
   return (
@@ -22,8 +23,13 @@ const HamburgerMenu = (props) => {
         }
       >
         <ul className={classes.drawerlist_container}>
-          <NavigationItems />
+          <NavigationItems clicked={props.close} mobile />
         </ul>
+        <div className={classes.spacing_container}>
+          <div className={classes.logo_container}>
+            <Logo width='180px' />
+          </div>
+        </div>
       </div>
     </>
   );

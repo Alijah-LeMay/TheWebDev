@@ -1,9 +1,10 @@
 import React from 'react';
+import classes from './SlickSlider.module.css';
 
-const Slide = ({ image, height }) => {
+const Slide = ({ image, alt }) => {
   return (
     <div>
-      <img src={image} style={{ height: height, width: 'auto' }} />
+      <img src={image} className={classes.image} alt={alt} />
     </div>
   );
 };

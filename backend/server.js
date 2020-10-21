@@ -5,7 +5,8 @@ const connectDB = require('./config/db');
 const path = require('path');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const userRoutes = require('./routes/userRoutes');
-const ourWorkRoutes = require('./routes/ourWorkRoutes');
+const siteRoutes = require('./routes/siteRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 const app = express();
 
@@ -19,8 +20,9 @@ app.use(express.json({ extended: false }));
 app.get('/', (req, res) => res.send('API Running'));
 
 // Define Routes
-app.use('/api/users', userRoutes);
-app.use('/api/ourwork', ourWorkRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/site', siteRoutes);
+app.use('/api/blog', blogRoutes);
 
 //
 // Image upload route

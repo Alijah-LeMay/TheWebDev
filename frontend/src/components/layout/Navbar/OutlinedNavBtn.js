@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Radium from 'radium';
-import { noAuto } from '@fortawesome/fontawesome-svg-core';
 
 // Assets
 

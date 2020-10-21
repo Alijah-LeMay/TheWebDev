@@ -2,3 +2,22 @@
   width: 100%;
   margin: 0;
 }
+.divMain {
+  display: flex;
+  padding: 40px 0;
+}
+.divMain a {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 980px) {
+  .divMain {
+    flex-direction: column;
+  }
+  .divMain h2 {
+    font-size: 1.3rem;
+  }
+  .divMain a {
+    font-size: 1.1rem;
+  }
+}

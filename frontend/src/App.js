@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import { StyleRoot } from 'radium';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -18,6 +18,8 @@ import QuoteScreen from './screens/QuoteScreen';
 import LandingScreen from './screens/LandingScreen';
 import AdminScreen from './screens/AdminScreen';
 import EditSiteScreen from './screens/EditSiteScreen';
+import EditBlogScreen from './screens/EditBlogScreen';
+import BlogPostScreen from './screens/BlogPostScreen';
 
 const App = () => (
   <Provider store={store}>
@@ -33,6 +35,8 @@ const App = () => (
           <Route exact path='/quote' component={QuoteScreen} />
           <Route exact path='/ourwork' component={OurWorkScreen} />
           <Route exact path='/blog' component={BlogScreen} />
+          <Route exact path='/blog/:id' component={BlogPostScreen} />
+          <Route exact path='/admin/blog/:id/edit' component={EditBlogScreen} />
         </Switch>
         <Footer />
       </Fragment>

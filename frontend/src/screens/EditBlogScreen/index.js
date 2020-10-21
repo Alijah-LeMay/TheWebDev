@@ -3,7 +3,8 @@ import axios from 'axios';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { updateSite, getSiteDetails } from '../../store/actions/siteActions';
+import { UPDATE_BLOG_RESET } from '../../constants/blogConstants';
+import { getBlogDetails, updateBlog } from '../../store/actions/blogActions';
 
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
@@ -12,69 +13,64 @@ import MyButton from '../../components/utils/Button';
 import FormField from '../../components/utils/FormField';
 
 // Assets
-import classes from './EditSiteScreen.module.css';
+import classes from './EditBlogScreen.module.css';
 import landing_bck from '../../assets/landing_bck.jpg';
-import { UPDATE_SITE_RESET } from '../../constants/siteConstants';
 
-const EditSiteScreen = ({ match, history }) => {
-  const siteId = match.params.id;
+const EditBlogScreen = ({ match, history }) => {
+  const blogId = match.params.id;
   const dispatch = useDispatch();
 
   const [image, setImage] = useState([]);
   const [uploading, setUploading] = useState(false);
 
-  const siteDetails = useSelector((state) => state.siteDetails);
-  const { site } = siteDetails;
+  const blogDetails = useSelector((state) => state.blogDetails);
+  const { blog } = blogDetails;
 
-  const siteUpdate = useSelector((state) => state.siteUpdate);
-  const { success: successUpdate } = siteUpdate;
+  const blogUpdate = useSelector((state) => state.blogUpdate);
+  const { success: successUpdate } = blogUpdate;
 
   const [formState, setFormState] = useState({
+    title: '',
     category: '',
-    siteTitle: '',
-    siteLink: '',
-    siteDescription: '',
+    content: '',
   });
   const formConfig = {
+    title: {
+      type: 'input',
+      config: { type: 'text', placeholder: 'Site Title' },
+    },
     category: {
       type: 'input',
       config: { type: 'text', placeholder: 'Site Category' },
     },
-    siteTitle: {
+    content: {
       type: 'input',
-      config: { type: 'text', placeholder: 'Site Title' },
-    },
-    siteLink: {
-      type: 'input',
-      config: { type: 'text', placeholder: 'Site Link' },
-    },
-    siteDescription: {
-      type: 'input',
-      config: { type: 'text', placeholder: 'Site Description' },
+      config: { type: 'text', placeholder: 'Site Content' },
     },
   };
+  console.log(blog);
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: UPDATE_SITE_RESET });
+      dispatch({ type: UPDATE_BLOG_RESET });
+
       history.push('/admin');
     } else {
-      if (!site || siteId !== site._id) {
-        dispatch(getSiteDetails(siteId));
+      if (!blog || blogId !== blog._id) {
+        dispatch(getBlogDetails(blogId));
       } else {
         setFormState({
-          category: site.category,
-          siteTitle: site.siteTitle,
-          siteLink: site.siteLink,
-          siteDescription: site.siteDescription,
+          title: blog.title,
+          category: blog.category,
+          content: blog.content,
         });
-
-        setImage(site.siteImages);
+        setImage(blog.images);
       }
     }
-  }, [dispatch, history, siteId, successUpdate, site]);
+  }, [dispatch, blog, history, blogId, successUpdate]);
 
   // Prepare formState objects
   const formElements = [];
+
   for (let key in formState) {
     formElements.push({
       id: key,
@@ -93,6 +89,7 @@ const EditSiteScreen = ({ match, history }) => {
       }
     });
   };
+
   const imagesArray = [];
   for (let key in image) {
     imagesArray.push(image[key]);
@@ -122,34 +119,33 @@ const EditSiteScreen = ({ match, history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      updateSite({
-        _id: siteId,
+      updateBlog({
+        _id: blogId,
+        title: formState.title,
         category: formState.category,
-        siteTitle: formState.siteTitle,
-        siteLink: formState.siteLink,
-        siteDescription: formState.siteDescription,
-        siteImages: image,
+        content: formState.content,
+        images: image,
       })
     );
   };
+
   const imageDeleteHandler = (id) => {
     const imageIndex = image.indexOf(id);
     image.splice(imageIndex, 1);
     console.log(imageIndex);
   };
-
   return (
     <div className={classes.editSiteScreen_container}>
       <ImageBanner
         imageLOC={landing_bck}
         bgOpacity
         opacity={0.3}
-        label='Edit Site'
+        label='Edit Blog'
       />
 
       <CenterContainer>
         <MyButton content='Go Back' to='/admin' dir='left' />
-        <h2>Edit Site</h2>
+        <h2>Edit Blog</h2>
         <form onSubmit={submitHandler}>
           {formElements.map((formElement) => (
             <FormField
@@ -181,4 +177,4 @@ const EditSiteScreen = ({ match, history }) => {
   );
 };
 
-export default EditSiteScreen;
+export default EditBlogScreen;

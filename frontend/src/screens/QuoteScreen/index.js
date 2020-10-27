@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-// Icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelopeOpen, faPhone } from '@fortawesome/free-solid-svg-icons';
 // Assets
 
 import classes from './QuoteScreen.module.css';
 import quote_bck from '../../assets/quote_bck.jpg';
+// Redux
+// import { useDispatch } from 'react-redux';
 
 // My Components
 
@@ -16,123 +15,103 @@ import Card from '../../components/utils/Card';
 import MyButton from '../../components/utils/Button';
 import FormField from '../../components/utils/FormField';
 
-class QuoteScreen extends Component {
-  state = {
-    quoteForm: {
-      name: {
-        type: 'input',
-        config: {
-          type: 'text',
-          placeholder: 'Name',
-        },
-        value: '',
-      },
-      email: {
-        type: 'input',
-        config: {
-          type: 'email',
-          placeholder: 'Email',
-        },
-        value: '',
-      },
-      phone: {
-        type: 'input',
-        config: {
-          type: 'text',
-          placeholder: 'Phone Number',
-        },
-        value: '',
-      },
-      address: {
-        type: 'input',
-        config: {
-          type: 'text',
-          placeholder: 'Address',
-        },
-        value: '',
-      },
-      typeOfBusiness: {
-        type: 'input',
-        config: {
-          type: 'text',
-          placeholder: 'Type of Business',
-        },
-        value: '',
-      },
+const QuoteScreen = () => {
+  // const dispatch = useDispatch();
+  const [formState, setFormState] = useState({
+    name: { value: '' },
+    email: { value: '' },
+    phone: { value: '' },
+    address: { value: '' },
+    typeOfBusiness: { value: '' },
+  });
+  const formConfig = {
+    name: {
+      type: 'input',
+      config: { type: 'text', placeholder: 'Name' },
+    },
+    email: {
+      type: 'input',
+      config: { type: 'email', placeholder: 'Email' },
+    },
+    phone: {
+      type: 'input',
+      config: { type: 'text', placeholder: 'Phone' },
+    },
+    address: {
+      type: 'input',
+      config: { type: 'text', placeholder: 'Address' },
+    },
+    typeOfBusiness: {
+      type: 'input',
+      config: { type: 'text', placeholder: 'Type of business' },
     },
   };
 
-  submitFormHandler = (event) => {
-    event.preventDefault();
-    const formData = {};
-    for (let formElementIdentifier in this.state.quoteForm) {
-      formData[formElementIdentifier] = this.state.quoteForm[
-        formElementIdentifier
-      ].value;
-    }
-    console.log(formData);
-  };
-  updateFormHandler = (event, inputIdentifier) => {
-    const updatedForm = {
-      ...this.state.quoteForm,
-    };
-    const updatedFormElement = { ...updatedForm[inputIdentifier] };
-    updatedFormElement.value = event.target.value;
-    updatedForm[inputIdentifier] = updatedFormElement;
-    this.setState({
-      quoteForm: updatedForm,
+  // Prepare formState objects
+  const formElements = [];
+  for (let key in formState) {
+    formElements.push({ id: key, setup: formConfig[key] });
+  }
+  const inputChangedHandler = (event, inputIdentifier) => {
+    formElements.forEach((formElement) => {
+      if (inputIdentifier === formElement.id) {
+        setFormState({
+          ...formState,
+          [inputIdentifier]: event.target.value,
+        });
+      }
     });
   };
-  render() {
-    const formElementsArray = [];
-    for (let key in this.state.quoteForm) {
-      formElementsArray.push({
-        id: key,
-        setup: this.state.quoteForm[key],
-      });
-    }
-    return (
-      <div className={classes.quoteScreen_container}>
-        <ImageBanner
-          imageLOC={quote_bck}
-          label='Time To Grow'
-          altText='Quote Screen Banner'
-          bgOpacity
-          opacity={0.5}
-        />
-        <CenterContainer Horizontal>
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <div className={classes.quoteScreen_container}>
+      <ImageBanner
+        imageLOC={quote_bck}
+        label='Time To Grow'
+        altText='Quote Screen Banner'
+        bgOpacity
+        opacity={0.5}
+        bgColor='fff'
+      />
+      <CenterContainer>
+        <div className={classes.section_container}>
           <div className={classes.quote_left}>
             <h2 className={classes.label}>Get In Touch </h2>
-            <h1>Contact Details</h1>
-            <div className={classes.icon_container}>
-              <FontAwesomeIcon
-                className={classes.icon}
-                icon={faEnvelopeOpen}
-                size='lg'
-              />
-              <p>info@thewebdev.net</p>
-            </div>
-            <div className={classes.icon_container}>
-              <FontAwesomeIcon
-                className={classes.icon}
-                icon={faPhone}
-                size='lg'
-              />
-              <p>{'(239)-671-7373'}</p>
+            <div className={classes.info_container}>
+              <div className={classes.icon_container}>
+                <i
+                  className='fas fa-envelope'
+                  style={{ padding: '0 0 0 20px' }}
+                ></i>
+
+                <p>info@thewebdev.net</p>
+              </div>
+              <div className={classes.icon_container}>
+                <i
+                  className='fas fa-phone'
+                  style={{ padding: '0 0 0 20px' }}
+                ></i>
+
+                <p>{'(239)-671-7373'}</p>
+              </div>
             </div>
           </div>
           <Card align='left'>
             <h2 className={classes.label}>Free Estimation</h2>
             <h1>Request A Quote</h1>
-            <form onSubmit={this.submitFormHandler}>
-              {formElementsArray.map((formElement) => (
+            <form onSubmit={submitHandler}>
+              {formElements.map((formElement) => (
                 <FormField
                   key={formElement.id}
                   type={formElement.setup.type}
                   config={formElement.setup.config}
                   value={formElement.setup.value}
                   changed={(event) =>
-                    this.updateFormHandler(event, formElement.id)
+                    inputChangedHandler(event, formElement.id)
                   }
                 />
               ))}
@@ -146,10 +125,10 @@ class QuoteScreen extends Component {
               />
             </form>
           </Card>
-        </CenterContainer>
-      </div>
-    );
-  }
-}
+        </div>
+      </CenterContainer>
+    </div>
+  );
+};
 
 export default QuoteScreen;

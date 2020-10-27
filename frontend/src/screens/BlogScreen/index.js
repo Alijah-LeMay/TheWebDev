@@ -18,7 +18,7 @@ const BlogScreen = () => {
   const dispatch = useDispatch();
 
   const blogList = useSelector((state) => state.blogList);
-  const { loading: loadingBlogs, error, blogs } = blogList;
+  const { loading: loadingBlogs, blogs } = blogList;
 
   useEffect(() => {
     dispatch(getblogs());
@@ -35,8 +35,9 @@ const BlogScreen = () => {
         {loadingBlogs ? (
           <Loader />
         ) : (
-          blogs.map((articleElement) => (
+          blogs.map((articleElement, idx) => (
             <ArticleContainer
+              key={idx}
               category={articleElement.category}
               title={articleElement.title}
               imageLOC={articleElement.images[0]}

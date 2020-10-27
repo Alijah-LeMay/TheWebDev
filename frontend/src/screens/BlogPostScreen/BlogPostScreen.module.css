@@ -1,0 +1,8 @@
+.blog_content {
+  font-size: 1.6rem;
+  padding: 0 40px;
+  line-height: 55px;
+}
+.post_container {
+  display: flex;
+}

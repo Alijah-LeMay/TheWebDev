@@ -24,22 +24,32 @@ import BlogPostScreen from './screens/BlogPostScreen';
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
-      <Fragment>
-        <Navbar />
-        <Switch>
-          <Route exact path='/' component={LandingScreen} />
-          <Route exact path='/login' component={LoginScreen} />
-          <Route exact path='/admin' component={AdminScreen} />
-          <Route exact path='/admin/site/:id/edit' component={EditSiteScreen} />
-          <Route exact path='/services' component={ServicesScreen} />
-          <Route exact path='/quote' component={QuoteScreen} />
-          <Route exact path='/ourwork' component={OurWorkScreen} />
-          <Route exact path='/blog' component={BlogScreen} />
-          <Route exact path='/blog/:id' component={BlogPostScreen} />
-          <Route exact path='/admin/blog/:id/edit' component={EditBlogScreen} />
-        </Switch>
-        <Footer />
-      </Fragment>
+      <StyleRoot>
+        <Fragment>
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={LandingScreen} />
+            <Route exact path='/login' component={LoginScreen} />
+            <Route exact path='/admin' component={AdminScreen} />
+            <Route
+              exact
+              path='/admin/site/:id/edit'
+              component={EditSiteScreen}
+            />
+            <Route exact path='/services' component={ServicesScreen} />
+            <Route exact path='/quote' component={QuoteScreen} />
+            <Route exact path='/ourwork' component={OurWorkScreen} />
+            <Route exact path='/blog' component={BlogScreen} />
+            <Route exact path='/blog/:id' component={BlogPostScreen} />
+            <Route
+              exact
+              path='/admin/blog/:id/edit'
+              component={EditBlogScreen}
+            />
+          </Switch>
+          <Footer />
+        </Fragment>
+      </StyleRoot>
     </BrowserRouter>
   </Provider>
 );

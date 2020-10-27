@@ -24,18 +24,42 @@ const FeaturedSite = ({
   };
   if (showLabel) {
     rStyle = {
-      h2: {
-        position: 'absolute',
-        margin: '-40px 0 0 0',
+      label: {
+        margin: '-30px 0 0 0',
+        fontSize: '1.5rem',
+        maxWidth: '200px',
+        minWidth: '200px',
+        '@media (max-width:980px)': {
+          fontSize: '1.3rem',
+          minWidth: 0,
+        },
+        '@media (max-width:440px)': {
+          fontSize: '1.1rem',
+        },
       },
       text_container: {
-        minWidth: '175px',
         maxWidth: '175px',
+        minWidth: '175px',
+        '@media(max-width: 980px)': {
+          minWidth: 0,
+        },
       },
       link: {
         textDecoration: 'none',
         color: '#3D5AAF',
         wordWrap: 'break-word',
+        '@media (max-width:980px)': {
+          fontSize: '1.1rem',
+        },
+        '@media (max-width:440px)': {
+          fontSize: '.9rem',
+        },
+      },
+      description: {
+        fontsize: '1rem',
+        '@media (max-width:440px)': {
+          fontSize: '.9rem',
+        },
       },
     };
   }
@@ -44,7 +68,7 @@ const FeaturedSite = ({
     <div className={classes.divMain}>
       <div>
         {showLabel ? (
-          <h2 style={rStyle.h2}>{category}</h2>
+          <h2 style={rStyle.label}>{category}</h2>
         ) : (
           <div style={rStyle.spacer}></div>
         )}
@@ -52,10 +76,10 @@ const FeaturedSite = ({
           <a style={rStyle.link} href={siteLink}>
             {siteTitle}
           </a>
-          <p>{siteDescription}</p>
+          <p style={rStyle.description}>{siteDescription}</p>
         </div>
       </div>
-      <SlickSlider images={siteImages} height='250' width='250' />
+      <SlickSlider images={siteImages} />
     </div>
   );
 };

@@ -1,44 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import classes from './Navbar.module.css';
+import classes from './Navbar.module.css';
 
-const NavigationItems = ({ clicked, mobile }) => {
+const NavigationItems = ({ mobile }) => {
   let currentlyActiveStyle = { color: '#4bb781' };
   if (mobile) {
     currentlyActiveStyle = { color: '#3d5aaf' };
   }
+  let navItems = [
+    { to: '/', name: 'Home' },
+    { to: '/services', name: 'Services' },
+    { to: '/ourwork', name: 'Our Work' },
+  ];
   return (
     <>
-      <li>
-        <NavLink
-          exact
-          activeStyle={currentlyActiveStyle}
-          to='/'
-          onClick={clicked}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          exact
-          activeStyle={currentlyActiveStyle}
-          to='/services'
-          onClick={clicked}
-        >
-          Services
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          exact
-          activeStyle={currentlyActiveStyle}
-          to='/ourwork'
-          onClick={clicked}
-        >
-          Our Work
-        </NavLink>
-      </li>
+      {navItems.map((item, idx) => (
+        <li key={idx} className={classes.regular_nav_li}>
+          <NavLink exact activeStyle={currentlyActiveStyle} to={item.to}>
+            {item.name}
+          </NavLink>
+        </li>
+      ))}
     </>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-
 // Assets / Classes
 import services_bck from '../../assets/services_bck.jpg';
 import home_analytics from '../../assets/home_analytics.png';
@@ -121,7 +120,7 @@ const services = () => {
       <CenterContainer
         bgVariant='image'
         bgImageURL={quote_info}
-        bgHeight='400px'
+        bgHeight='100%'
         bgPadding='40px 0'
         bgImageAlt='Get A Web Design Quote'
       >
@@ -136,7 +135,6 @@ const services = () => {
             </p>
             <p style={mStyle.whiteText}>Get A Free Estimate Today!</p>
           </div>
-
           <MyButton content='Get A Quote' to='/quote' />
         </div>
       </CenterContainer>

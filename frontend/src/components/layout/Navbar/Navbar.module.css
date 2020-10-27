@@ -19,7 +19,7 @@
   list-style-type: none;
   margin: auto 0;
 }
-.desktop_container li {
+.regular_nav_li {
   float: left;
   margin: auto 0;
 }
@@ -36,9 +36,27 @@
 .desktop_container li a:hover {
   color: #4bb781;
 }
-.activeClass {
-  color: #4bb781;
+.outlined_nav_li {
+  float: left;
+  margin: auto 0;
+  background-color: white;
+  border-radius: 40px;
 }
+.outlined_nav_li a {
+  color: #333;
+}
+/* textDecoration: 'none',
+      margin: 0,
+      padding: 0,
+      color: 'red',
+      alignSelf: 'center',
+      padding: '10px',
+      margin: 'auto 0',
+      fontSize: '1.2rem',
+      borderRadius: '40px',
+      backgroundColor: 'white',
+      color: '#333',
+      borderWidth: '0px', */
 
 .hamburger_container {
   display: 'flex';

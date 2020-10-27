@@ -28,6 +28,12 @@ const ImageBanner = ({
       height: '400px',
       width: '100%',
       objectFit: 'cover',
+      '@media (max-width:980px)': {
+        height: '300px',
+      },
+      '@media (max-width:440px)': {
+        height: '250px',
+      },
     },
     label: {
       position: 'absolute',
@@ -36,12 +42,15 @@ const ImageBanner = ({
       fontSize: '2.5rem',
       color: 'white',
       zIndex: 1,
+      '@media (max-width:980px)': {
+        fontSize: '2rem',
+      },
     },
     opaque: {
       position: 'absolute',
       backgroundColor: bgColorOpacity,
       width: '100%',
-      height: '99%',
+      height: '100%',
       top: 0,
     },
   };

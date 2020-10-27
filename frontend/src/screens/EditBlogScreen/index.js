@@ -44,7 +44,7 @@ const EditBlogScreen = ({ match, history }) => {
       config: { type: 'text', placeholder: 'Site Category' },
     },
     content: {
-      type: 'input',
+      type: 'textarea',
       config: { type: 'text', placeholder: 'Site Content' },
     },
   };

@@ -14,6 +14,7 @@ import CenterContainer from '../../components/utils/CenterContainer';
 import Card from '../../components/utils/Card';
 
 import MyButton from '../../components/utils/Button';
+import Meta from '../../components/utils/Meta';
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
 import home_analytics from '../../assets/home_analytics.png';
@@ -21,6 +22,10 @@ import home_analytics from '../../assets/home_analytics.png';
 const Landing = () => {
   return (
     <div className={classes.landing_Container}>
+      <Meta
+        title='Home | The Web Developers'
+        description='One Stop Shop for Website, Software, and Mobile Development.'
+      />
       <ImageBanner
         imageLOC={landing_bck}
         label='Professional Website Design'

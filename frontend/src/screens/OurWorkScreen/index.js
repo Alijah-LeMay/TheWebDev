@@ -8,6 +8,7 @@ import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import Loader from '../../components/utils/Loader';
 import FeaturedSite from './FeaturedSite';
+import Meta from '../../components/utils/Meta';
 
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
@@ -27,6 +28,10 @@ const OurWorkScreen = () => {
 
   return (
     <div>
+      <Meta
+        title='Our Work | The Web Developers'
+        description='We have developed software and websites for years, and we would love to convert your project to one of our finished products!'
+      />
       <ImageBanner
         imageLOC={landing_bck}
         bgOpacity

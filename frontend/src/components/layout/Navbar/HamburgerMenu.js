@@ -8,6 +8,7 @@ import classes from './Navbar.module.css';
 import Backdrop from '../../utils/Backdrop';
 import NavigationItems from './NavigationItems';
 import Logo from '../../Logo';
+import OutlinedNavBtn from './OutlinedNavBtn';
 
 const HamburgerMenu = (props) => {
   return (
@@ -24,6 +25,7 @@ const HamburgerMenu = (props) => {
       >
         <ul className={classes.drawerlist_container}>
           <NavigationItems clicked={props.close} mobile />
+          <OutlinedNavBtn content='Quote' to='/quote' mobile />
         </ul>
         <div className={classes.spacing_container}>
           <div className={classes.logo_container}>

@@ -13,6 +13,7 @@ import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import Card from '../../components/utils/Card';
 import MyButton from '../../components/utils/Button';
+import Meta from '../../components/utils/Meta';
 
 let mStyle = {
   blueH3: {
@@ -31,6 +32,10 @@ let mStyle = {
 const services = () => {
   return (
     <div className={classes.servicesScreen_container}>
+      <Meta
+        title='Services | The Web Developers'
+        description='We Offer Website Design,  Logo Creation, Software Development, and more.'
+      />
       <ImageBanner
         imageLOC={services_bck}
         label='What We Do'

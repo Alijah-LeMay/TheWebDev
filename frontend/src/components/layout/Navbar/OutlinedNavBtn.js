@@ -5,15 +5,18 @@ import classes from './Navbar.module.css';
 
 // Assets
 
-const OutlinedNavBtn = ({ to, content, children }) => {
-  let rStyle = {
-    activeButton: {
-      color: '#4bb781',
-    },
-  };
+const OutlinedNavBtn = ({ to, content, children, mobile }) => {
+  let currentlyActiveStyle = { color: '#4bb781' };
+  const currentClass = mobile
+    ? classes.mobile_outlined_nav_li
+    : classes.outlined_nav_li;
   return (
-    <li className={classes.outlined_nav_li}>
-      <NavLink to={to} activeStyle={rStyle.activeButton}>
+    <li className={currentClass}>
+      <NavLink
+        className={classes.wideLink}
+        to={to}
+        activeStyle={currentlyActiveStyle}
+      >
         {content ? content : children}
       </NavLink>
     </li>

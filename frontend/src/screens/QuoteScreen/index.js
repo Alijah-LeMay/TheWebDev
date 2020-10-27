@@ -14,6 +14,7 @@ import CenterContainer from '../../components/utils/CenterContainer';
 import Card from '../../components/utils/Card';
 import MyButton from '../../components/utils/Button';
 import FormField from '../../components/utils/FormField';
+import Meta from '../../components/utils/Meta';
 
 const QuoteScreen = () => {
   // const dispatch = useDispatch();
@@ -69,6 +70,10 @@ const QuoteScreen = () => {
 
   return (
     <div className={classes.quoteScreen_container}>
+      <Meta
+        title='Free Quote | The Web Developers'
+        description='We have developed software and websites for years, and we would love to convert your project to one of our finished products!'
+      />
       <ImageBanner
         imageLOC={quote_bck}
         label='Time To Grow'

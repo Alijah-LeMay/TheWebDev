@@ -1,12 +1,5 @@
 import React from 'react';
 import classes from './Landing.module.css';
-// fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faKeyboard,
-  faShoppingCart,
-  faDolly,
-} from '@fortawesome/free-solid-svg-icons';
 
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
@@ -39,11 +32,10 @@ const Landing = () => {
           <h1 className={classes.textBanner}>Why Choose Us?</h1>
           <div className={classes.firstCards_container}>
             <Card>
-              <FontAwesomeIcon
-                icon={faKeyboard}
-                className={classes.icon}
-                color={'#CEB302'}
-              />
+              <i
+                className='fas fa-keyboard'
+                style={{ fontSize: '4rem', color: '#CEB302' }}
+              ></i>
               <h2>Intuitive, Creative, Professional</h2>
               <p>
                 You get the best experience when choosing us for your design and
@@ -51,11 +43,10 @@ const Landing = () => {
               </p>
             </Card>
             <Card>
-              <FontAwesomeIcon
-                icon={faShoppingCart}
-                className={classes.icon}
-                color={'#3D5AAF'}
-              />
+              <i
+                className='fas fa-shopping-cart'
+                style={{ fontSize: '4rem', color: '#3D5AAF' }}
+              ></i>
               <h2>One Stop Shop</h2>
               <p>
                 Need a website? No problem. Search Engine Optimization? We've
@@ -63,11 +54,10 @@ const Landing = () => {
               </p>
             </Card>
             <Card>
-              <FontAwesomeIcon
-                icon={faDolly}
-                className={classes.icon}
-                color={'#4BB781'}
-              />
+              <i
+                className='fas fa-dolly'
+                style={{ fontSize: '4rem', color: '#4BB781' }}
+              ></i>
               <h2>Hard Working</h2>
               <p>
                 We strive to provide our customers quick and professional

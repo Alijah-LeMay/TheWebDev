@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 // Assets
 
@@ -7,6 +8,8 @@ import quote_bck from '../../assets/quote_bck.jpg';
 // Redux
 // import { useDispatch } from 'react-redux';
 
+// Util functions
+import { sendEmail } from '../../components/utils/mail';
 // My Components
 
 import ImageBanner from '../../components/utils/ImageBanner';
@@ -64,8 +67,40 @@ const QuoteScreen = () => {
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+    const { name, email, phone, address, typeOfBusiness } = formState;
+    try {
+      await axios.post('/api/send', {
+        name,
+        email,
+        phone,
+        address,
+        typeOfBusiness,
+      });
+      console.log('Message Sent');
+    } catch (error) {
+      console.log('Message failed to send');
+    }
+
+    // .then((response) => {
+    //   if (response.data.msg === 'success') {
+    //     console.log('Message Sent');
+    //   } else {
+
+    //   }
+    // });
+    // axios({
+    //   method: 'POST',
+    //   url: '/api/send',
+    //   data: {
+    //     name,
+    //     email,
+    //     phone,
+    //     address,
+    //     typeOfBusiness,
+    //   },
+    // })
   };
 
   return (
@@ -82,7 +117,7 @@ const QuoteScreen = () => {
         opacity={0.5}
         bgColor='fff'
       />
-      <CenterContainer>
+      <CenterContainer bgPadding='30px 0 0 0'>
         <div className={classes.section_container}>
           <div className={classes.quote_left}>
             <h2 className={classes.label}>Get In Touch </h2>
@@ -121,8 +156,8 @@ const QuoteScreen = () => {
                 />
               ))}
               <MyButton
-                content='SUBMIT'
-                type='submit'
+                content='Submit'
+                variant='submit'
                 style={{ margin: '10px 0' }}
                 styleVariant='clear'
                 hoverColor='#4bb781'

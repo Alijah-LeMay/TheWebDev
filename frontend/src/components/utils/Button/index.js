@@ -66,6 +66,19 @@ const MyButton = ({
     if (styleVariant === 'clear') {
       rStyle = {
         containerDiv: { alignSelf: direction && direction },
+        submitBtn: {
+          display: 'inline-block',
+          padding: padding ? padding : '15px',
+          height: 'auto',
+          fontSize: fontSize ? fontSize : '1.2rem',
+          borderRadius: '40px',
+          backgroundColor: bgColor ? bgColor : 'white',
+          color: color ? color : '#333',
+          borderWidth: '0px',
+          ':hover': {
+            color: hoverColor ? hoverColor : 'white',
+          },
+        },
 
         button: {
           textDecoration: 'none',

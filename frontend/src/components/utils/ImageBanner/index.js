@@ -26,13 +26,16 @@ const ImageBanner = ({
     },
     image: {
       height: '400px',
+      minHeight: '300px',
       width: '100%',
       objectFit: 'cover',
       '@media (max-width:980px)': {
         height: '300px',
+        minHeight: '200px',
       },
       '@media (max-width:440px)': {
         height: '250px',
+        minHeight: '200px',
       },
     },
     label: {

@@ -12,14 +12,16 @@ import Footer from './components/layout/Footer';
 // My Screens
 import LoginScreen from './screens/LoginScreen';
 import ServicesScreen from './screens/ServicesScreen';
-import BlogScreen from './screens/BlogScreen';
 import OurWorkScreen from './screens/OurWorkScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import LandingScreen from './screens/LandingScreen';
 import AdminScreen from './screens/AdminScreen';
 import EditSiteScreen from './screens/EditSiteScreen';
-import EditBlogScreen from './screens/EditBlogScreen';
-import BlogPostScreen from './screens/BlogPostScreen';
+import NotFoundScreen from './screens/NotFoundScreen';
+import PrivacyPolicyScreen from './screens/PrivacyPolicyScreen';
+// import BlogScreen from './screens/BlogScreen';
+// import EditBlogScreen from './screens/EditBlogScreen';
+// import BlogPostScreen from './screens/BlogPostScreen';
 
 const App = () => (
   <Provider store={store}>
@@ -39,13 +41,15 @@ const App = () => (
             <Route exact path='/services' component={ServicesScreen} />
             <Route exact path='/quote' component={QuoteScreen} />
             <Route exact path='/ourwork' component={OurWorkScreen} />
-            <Route exact path='/blog' component={BlogScreen} />
-            <Route exact path='/blog/:id' component={BlogPostScreen} />
-            <Route
+            <Route component={NotFoundScreen} />
+            {/* <Route exact path='/privacy' component={PrivacyPolicyScreen} /> */}
+            {/* <Route exact path='/blog' component={BlogScreen} /> */}
+            {/* <Route exact path='/blog/:id' component={BlogPostScreen} /> */}
+            {/* <Route
               exact
               path='/admin/blog/:id/edit'
               component={EditBlogScreen}
-            />
+            /> */}
           </Switch>
           <Footer />
         </Fragment>

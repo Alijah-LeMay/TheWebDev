@@ -1,4 +1,11 @@
-const quote = (data) => {
+require('dotenv').config();
+
+const resetPass = (data) => {
+  const URL =
+    process.env.NODE_ENV === 'production'
+      ? process.env.ROOT_URL
+      : 'http://localhost:3000';
+
   return `<!DOCTYPE html>
   <html style="margin: 0; padding: 0">
     <head>
@@ -33,31 +40,14 @@ const quote = (data) => {
                 text-transform: uppercase;
               "
             >
-              ${data.name}
-              ${data.email}
-              ${data.phone}
-              ${data.address}
-              ${data.typeOfBusiness}
+              Waves
             </h1>
           </td>
         </tr>
         <tr>
-          <td style="margin: 0 auto">
-            <a
-              href="/"
-              style="
-                box-sizing: border-box;
-                color: #999592 !important;
-                font-family: Arial, Helvetica, sans-serif;
-                line-height: 1.4;
-                margin: 0;
-                text-decoration: none;
-              "
-              ><img
-                class="full-width"
-                src="https://media.giphy.com/media/RIm19GefKk3kY/giphy.gif"
-                style="vertical-align: sub; width: 100%"
-            /></a>
+          <td style="margin: 0 auto; padding: 15px 25px; box-sizing: border-box">
+            <p>Click on this link to reset your password:</p>
+            <a href="/${URL}/reset_password/${data.resetToken}">Reset your password</a>
           </td>
         </tr>
         <tr>
@@ -89,4 +79,4 @@ const quote = (data) => {
   `;
 };
 
-module.exports = { quote };
+module.exports = { resetPass };

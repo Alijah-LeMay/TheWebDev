@@ -1,7 +1,6 @@
 import React from 'react';
 // fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 import classes from './Navbar.module.css';
 
 // My Components
@@ -14,7 +13,10 @@ const HamburgerMenu = (props) => {
   return (
     <>
       <div className={classes.hamburger_container} onClick={props.clicked}>
-        <FontAwesomeIcon icon={faBars} size='lg' color='white' />
+        <i
+          className='fas fa-bars'
+          style={{ color: '#fff', fontSize: '1.3rem' }}
+        ></i>
       </div>
       <Backdrop show={props.showBack} clicked={props.close} />
 

@@ -8,8 +8,6 @@ import quote_bck from '../../assets/quote_bck.jpg';
 // Redux
 // import { useDispatch } from 'react-redux';
 
-// Util functions
-import { sendEmail } from '../../components/utils/mail';
 // My Components
 
 import ImageBanner from '../../components/utils/ImageBanner';
@@ -18,8 +16,9 @@ import Card from '../../components/utils/Card';
 import MyButton from '../../components/utils/Button';
 import FormField from '../../components/utils/FormField';
 import Meta from '../../components/utils/Meta';
+import Loader from '../../components/utils/Loader';
 
-const QuoteScreen = () => {
+const QuoteScreen = ({ history }) => {
   // const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     name: { value: '' },
@@ -28,6 +27,7 @@ const QuoteScreen = () => {
     address: { value: '' },
     typeOfBusiness: { value: '' },
   });
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const formConfig = {
     name: {
       type: 'input',
@@ -50,12 +50,12 @@ const QuoteScreen = () => {
       config: { type: 'text', placeholder: 'Type of business' },
     },
   };
-
   // Prepare formState objects
-  const formElements = [];
+  let formElements = [];
   for (let key in formState) {
     formElements.push({ id: key, setup: formConfig[key] });
   }
+
   const inputChangedHandler = (event, inputIdentifier) => {
     formElements.forEach((formElement) => {
       if (inputIdentifier === formElement.id) {
@@ -69,6 +69,8 @@ const QuoteScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoadingSubmit(true);
+
     const { name, email, phone, address, typeOfBusiness } = formState;
     try {
       await axios.post('/api/send', {
@@ -82,25 +84,8 @@ const QuoteScreen = () => {
     } catch (error) {
       console.log('Message failed to send');
     }
-
-    // .then((response) => {
-    //   if (response.data.msg === 'success') {
-    //     console.log('Message Sent');
-    //   } else {
-
-    //   }
-    // });
-    // axios({
-    //   method: 'POST',
-    //   url: '/api/send',
-    //   data: {
-    //     name,
-    //     email,
-    //     phone,
-    //     address,
-    //     typeOfBusiness,
-    //   },
-    // })
+    setLoadingSubmit(false);
+    history.push('/thankyou');
   };
 
   return (
@@ -155,14 +140,18 @@ const QuoteScreen = () => {
                   }
                 />
               ))}
-              <MyButton
-                content='Submit'
-                variant='submit'
-                style={{ margin: '10px 0' }}
-                styleVariant='clear'
-                hoverColor='#4bb781'
-                fontSize='1rem'
-              />
+              {loadingSubmit ? (
+                <Loader size='6px' />
+              ) : (
+                <MyButton
+                  content='Submit'
+                  variant='submit'
+                  style={{ margin: '10px 0' }}
+                  styleVariant='clear'
+                  hoverColor='#4bb781'
+                  fontSize='1rem'
+                />
+              )}
             </form>
           </Card>
         </div>

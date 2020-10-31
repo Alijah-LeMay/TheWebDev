@@ -5,6 +5,7 @@ import classes from './Landing.module.css';
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import Card from '../../components/utils/Card';
+import Loader from '../../components/utils/Loader';
 
 import MyButton from '../../components/utils/Button';
 import Meta from '../../components/utils/Meta';

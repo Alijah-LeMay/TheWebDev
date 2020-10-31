@@ -19,6 +19,7 @@ import AdminScreen from './screens/AdminScreen';
 import EditSiteScreen from './screens/EditSiteScreen';
 import NotFoundScreen from './screens/NotFoundScreen';
 import PrivacyPolicyScreen from './screens/PrivacyPolicyScreen';
+import ThankYouScreen from './screens/ThankYouScreen';
 // import BlogScreen from './screens/BlogScreen';
 // import EditBlogScreen from './screens/EditBlogScreen';
 // import BlogPostScreen from './screens/BlogPostScreen';
@@ -41,6 +42,7 @@ const App = () => (
             <Route exact path='/services' component={ServicesScreen} />
             <Route exact path='/quote' component={QuoteScreen} />
             <Route exact path='/ourwork' component={OurWorkScreen} />
+            <Route exact path='/thankyou' component={ThankYouScreen} />
             <Route component={NotFoundScreen} />
             {/* <Route exact path='/privacy' component={PrivacyPolicyScreen} /> */}
             {/* <Route exact path='/blog' component={BlogScreen} /> */}

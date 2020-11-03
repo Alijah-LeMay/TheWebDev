@@ -21,7 +21,6 @@ const Navbar = () => {
     setShowSideDrawer(false);
   };
 
-  console.log(showSideDrawer);
   return (
     <CenterContainer>
       <nav className={classes.nav}>

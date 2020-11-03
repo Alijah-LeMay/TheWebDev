@@ -18,46 +18,47 @@ import LandingScreen from './screens/LandingScreen';
 import AdminScreen from './screens/AdminScreen';
 import EditSiteScreen from './screens/EditSiteScreen';
 import NotFoundScreen from './screens/NotFoundScreen';
-import PrivacyPolicyScreen from './screens/PrivacyPolicyScreen';
 import ThankYouScreen from './screens/ThankYouScreen';
+import { useTracking } from './components/utils/useTracking';
 // import BlogScreen from './screens/BlogScreen';
 // import EditBlogScreen from './screens/EditBlogScreen';
 // import BlogPostScreen from './screens/BlogPostScreen';
 
-const App = () => (
-  <Provider store={store}>
-    <BrowserRouter>
-      <StyleRoot>
-        <Fragment>
-          <Navbar />
-          <Switch>
-            <Route exact path='/' component={LandingScreen} />
-            <Route exact path='/login' component={LoginScreen} />
-            <Route exact path='/admin' component={AdminScreen} />
-            <Route
-              exact
-              path='/admin/site/:id/edit'
-              component={EditSiteScreen}
-            />
-            <Route exact path='/services' component={ServicesScreen} />
-            <Route exact path='/quote' component={QuoteScreen} />
-            <Route exact path='/ourwork' component={OurWorkScreen} />
-            <Route exact path='/thankyou' component={ThankYouScreen} />
-            <Route component={NotFoundScreen} />
-            {/* <Route exact path='/privacy' component={PrivacyPolicyScreen} /> */}
-            {/* <Route exact path='/blog' component={BlogScreen} /> */}
-            {/* <Route exact path='/blog/:id' component={BlogPostScreen} /> */}
-            {/* <Route
+export const App = () => {
+  useTracking();
+  return (
+    <Fragment>
+      <Navbar />
+      <Switch>
+        <Route exact path='/' component={LandingScreen} />
+        <Route exact path='/login' component={LoginScreen} />
+        <Route exact path='/admin' component={AdminScreen} />
+        <Route exact path='/admin/site/:id/edit' component={EditSiteScreen} />
+        <Route exact path='/services' component={ServicesScreen} />
+        <Route exact path='/quote' component={QuoteScreen} />
+        <Route exact path='/ourwork' component={OurWorkScreen} />
+        <Route exact path='/thankyou' component={ThankYouScreen} />
+        <Route component={NotFoundScreen} />
+        {/* <Route exact path='/privacy' component={PrivacyPolicyScreen} /> */}
+        {/* <Route exact path='/blog' component={BlogScreen} /> */}
+        {/* <Route exact path='/blog/:id' component={BlogPostScreen} /> */}
+        {/* <Route
               exact
               path='/admin/blog/:id/edit'
               component={EditBlogScreen}
             /> */}
-          </Switch>
-          <Footer />
-        </Fragment>
+      </Switch>
+      <Footer />
+    </Fragment>
+  );
+};
+
+export default () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <StyleRoot>
+        <App />
       </StyleRoot>
     </BrowserRouter>
   </Provider>
 );
-
-export default App;

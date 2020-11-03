@@ -5,7 +5,7 @@ import classes from './Navbar.module.css';
 
 // Assets
 
-const OutlinedNavBtn = ({ to, content, children, mobile }) => {
+const OutlinedNavBtn = ({ to, content, children, mobile, clicked }) => {
   let currentlyActiveStyle = { color: '#4bb781' };
   const currentClass = mobile
     ? classes.mobile_outlined_nav_li
@@ -16,6 +16,7 @@ const OutlinedNavBtn = ({ to, content, children, mobile }) => {
         className={classes.wideLink}
         to={to}
         activeStyle={currentlyActiveStyle}
+        onClick={clicked}
       >
         {content ? content : children}
       </NavLink>

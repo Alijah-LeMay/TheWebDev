@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.css';
 
-const NavigationItems = ({ mobile, color }) => {
+const NavigationItems = ({ mobile, color, clicked }) => {
   let currentlyActiveStyle = { color: '#4bb781' };
 
   let navItems = [
@@ -20,6 +20,7 @@ const NavigationItems = ({ mobile, color }) => {
             exact
             activeStyle={currentlyActiveStyle}
             to={item.to}
+            onClick={clicked}
           >
             {item.name}
           </NavLink>

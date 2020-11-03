@@ -26,8 +26,13 @@ const HamburgerMenu = (props) => {
         }
       >
         <ul className={classes.drawerlist_container}>
-          <NavigationItems clicked={props.close} mobile />
-          <OutlinedNavBtn content='Quote' to='/quote' mobile />
+          <NavigationItems clicked={props.clicked} mobile />
+          <OutlinedNavBtn
+            content='Quote'
+            to='/quote'
+            mobile
+            clicked={props.clicked}
+          />
         </ul>
         <div className={classes.spacing_container}>
           <div className={classes.logo_container}>

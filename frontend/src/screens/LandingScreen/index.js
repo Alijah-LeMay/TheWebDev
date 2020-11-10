@@ -6,12 +6,14 @@ import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import Card from '../../components/utils/Card';
 import Loader from '../../components/utils/Loader';
+import FormField from '../../components/utils/FormField';
 
 import MyButton from '../../components/utils/Button';
 import Meta from '../../components/utils/Meta';
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
 import home_analytics from '../../assets/home_analytics.png';
+import MyReCaptcha from '../../components/utils/ReCaptcha';
 
 const Landing = () => {
   return (
@@ -28,6 +30,10 @@ const Landing = () => {
         opacity={0.2}
         bgColor='#f2f2f2'
       />
+      <CenterContainer>
+        <MyReCaptcha />
+      </CenterContainer>
+
       <CenterContainer bgColor='#f2f2f2' bgPadding='25px 0'>
         <div className={classes.landing_featuredContainer}>
           <h1 className={classes.textBanner}>Why Choose Us?</h1>

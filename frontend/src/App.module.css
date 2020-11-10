@@ -1,5 +1,8 @@
 h2,
 h3,
 h1 {
-  font-family: 'Roboto';
+  font-family: 'Source Code Pro';
+}
+p {
+  font-family: 'Inter';
 }

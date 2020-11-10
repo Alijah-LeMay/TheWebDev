@@ -14,6 +14,7 @@ import {
   blogDetailsReducer,
   blogDeleteReducer,
 } from './blogReducers';
+import { captchaReducer } from './captchaReducers';
 
 export default combineReducers({
   siteList: siteListReducer,
@@ -27,4 +28,5 @@ export default combineReducers({
   blogUpdate: blogUpdateReducer,
   blogDetails: blogDetailsReducer,
   blogDelete: blogDeleteReducer,
+  captcha: captchaReducer,
 });

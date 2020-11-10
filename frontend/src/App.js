@@ -5,6 +5,8 @@ import { StyleRoot } from 'radium';
 import { Provider } from 'react-redux';
 import store from './store';
 
+import './App.module.css';
+
 // My Components
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';

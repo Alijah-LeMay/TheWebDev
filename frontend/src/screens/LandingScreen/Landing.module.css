@@ -41,6 +41,10 @@
   height: 20%;
   width: auto;
 }
+.miniform_container {
+  margin: auto;
+  max-width: 500px;
+}
 .infoSection_right {
   flex: 3;
   text-align: left;

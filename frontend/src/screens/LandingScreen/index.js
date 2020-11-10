@@ -1,21 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 import classes from './Landing.module.css';
 
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import Card from '../../components/utils/Card';
-import Loader from '../../components/utils/Loader';
-import FormField from '../../components/utils/FormField';
 
 import MyButton from '../../components/utils/Button';
 import Meta from '../../components/utils/Meta';
+import FormField from '../../components/utils/FormField';
+import Loader from '../../components/utils/Loader';
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
 import home_analytics from '../../assets/home_analytics.png';
-import MyReCaptcha from '../../components/utils/ReCaptcha';
 
-const Landing = () => {
+const Landing = ({ history }) => {
+  const [formState, setFormState] = useState({
+    name: { value: '' },
+    email: { value: '' },
+  });
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const formConfig = {
+    name: {
+      type: 'input',
+      config: { type: 'text', placeholder: 'Name' },
+    },
+    email: {
+      type: 'input',
+      config: { type: 'email', placeholder: 'Email' },
+    },
+  };
+
+  // Prepare formState objects
+  let formElements = [];
+  for (let key in formState) {
+    formElements.push({ id: key, setup: formConfig[key] });
+  }
+  const inputChangedHandler = (event, inputIdentifier) => {
+    formElements.forEach((formElement) => {
+      if (inputIdentifier === formElement.id) {
+        setFormState({
+          ...formState,
+          [inputIdentifier]: event.target.value,
+        });
+      }
+    });
+  };
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    setLoadingSubmit(true);
+
+    const { name, email, phone, address, typeOfBusiness } = formState;
+    try {
+      await axios.post('/api/send', {
+        name,
+        email,
+        phone,
+        address,
+        typeOfBusiness,
+      });
+      console.log('Message Sent');
+    } catch (error) {
+      console.log('Message failed to send');
+    }
+    setLoadingSubmit(false);
+    history.push('/thankyou');
+  };
+
   return (
     <div className={classes.landing_Container}>
       <Meta
@@ -30,9 +83,6 @@ const Landing = () => {
         opacity={0.2}
         bgColor='#f2f2f2'
       />
-      <CenterContainer>
-        <MyReCaptcha />
-      </CenterContainer>
 
       <CenterContainer bgColor='#f2f2f2' bgPadding='25px 0'>
         <div className={classes.landing_featuredContainer}>
@@ -71,6 +121,34 @@ const Landing = () => {
                 support​​
               </p>
             </Card>
+          </div>
+          <h1 className={classes.textBanner}>Get Started</h1>
+          <div className={classes.miniform_container}>
+            <form onSubmit={submitHandler}>
+              {formElements.map((formElement) => (
+                <FormField
+                  key={formElement.id}
+                  type={formElement.setup.type}
+                  config={formElement.setup.config}
+                  value={formElement.setup.value}
+                  changed={(event) =>
+                    inputChangedHandler(event, formElement.id)
+                  }
+                />
+              ))}
+              {loadingSubmit ? (
+                <Loader size='6px' />
+              ) : (
+                <MyButton
+                  content='Submit'
+                  variant='submit'
+                  style={{ margin: '10px 0' }}
+                  styleVariant='clear'
+                  hoverColor='#4bb781'
+                  fontSize='1.1rem'
+                />
+              )}
+            </form>
           </div>
         </div>
       </CenterContainer>

@@ -52,14 +52,11 @@ const Landing = ({ history }) => {
     e.preventDefault();
     setLoadingSubmit(true);
 
-    const { name, email, phone, address, typeOfBusiness } = formState;
+    const { name, email } = formState;
     try {
       await axios.post('/api/send', {
         name,
         email,
-        phone,
-        address,
-        typeOfBusiness,
       });
       console.log('Message Sent');
     } catch (error) {
@@ -142,7 +139,6 @@ const Landing = ({ history }) => {
                 <MyButton
                   content='Submit'
                   variant='submit'
-                  style={{ margin: '10px 0' }}
                   styleVariant='clear'
                   hoverColor='#4bb781'
                   fontSize='1.1rem'
@@ -177,7 +173,6 @@ const Landing = ({ history }) => {
               applications for all clients. We understand your demands and
               intend to help you achieve them.
             </p>
-            <MyButton content='Learn More' to='/services' />
           </div>
         </div>
       </CenterContainer>
@@ -208,7 +203,7 @@ const Landing = ({ history }) => {
               </p>
             </Card>
           </div>
-          <MyButton content='Get A Quote' to='/quote' />
+          <MyButton content='Get A Quote' to='/quote' direction='center' />
         </div>
       </CenterContainer>
     </div>

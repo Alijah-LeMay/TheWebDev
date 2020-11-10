@@ -7,8 +7,8 @@ const NavigationItems = ({ mobile, color, clicked }) => {
 
   let navItems = [
     { to: '/', name: 'Home' },
-    { to: '/services', name: 'Services' },
     { to: '/ourwork', name: 'Our Work' },
+    { to: '/services', name: 'Services' },
   ];
 
   return (

@@ -32,7 +32,7 @@ const Navbar = () => {
 
         <ul className={classes.desktop_container}>
           <NavigationItems />
-          <OutlinedNavBtn to='/quote' content='Quote' />
+          <OutlinedNavBtn to='/quote' content='Hire Us' />
         </ul>
         <HamburgerMenu
           showBack={showSideDrawer}

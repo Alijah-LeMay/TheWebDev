@@ -26,15 +26,6 @@ router.post(
   '/',
   asyncHandler(async (req, res, next) => {
     const { name, email, phone, address, typeOfBusiness } = req.body;
-    if (!phone) {
-      phone = 'none';
-    }
-    if (!address) {
-      address = 'none';
-    }
-    if (!typeOfBusiness) {
-      typeOfBusiness = 'none';
-    }
 
     const content = `Name: ${name} \n Email: ${email} \n Phone: ${phone} \n Address: ${address} \n Type Of Biz: ${typeOfBusiness}`;
 

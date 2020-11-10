@@ -68,13 +68,7 @@ const Footer = () => {
                   </p>
                 </Link>
               </li>
-              <li style={rStyle.li}>
-                <Link to='/services' style={rStyle.a}>
-                  <p key='r2' style={rStyle.aHover}>
-                    Services
-                  </p>
-                </Link>
-              </li>
+
               <li style={rStyle.li}>
                 <Link to='/ourwork' style={rStyle.a}>
                   <p key='r3' style={rStyle.aHover}>
@@ -82,20 +76,13 @@ const Footer = () => {
                   </p>
                 </Link>
               </li>
-              {/* <li style={rStyle.li}>
-                <Link to='/blog' style={rStyle.a}>
-                  <p key='r4' style={rStyle.aHover}>
-                    Blog
+              <li style={rStyle.li}>
+                <Link to='/services' style={rStyle.a}>
+                  <p key='r2' style={rStyle.aHover}>
+                    Services
                   </p>
                 </Link>
-              </li> */}
-              {/* <li style={rStyle.li}>
-                <Link to='/privacy' style={rStyle.a}>
-                  <p key='r5' style={rStyle.aHover}>
-                    Privacy Policy
-                  </p>
-                </Link>
-              </li> */}
+              </li>
             </ul>
             <h3 style={rStyle.copyRight}>&copy; LemaTech LLC 2020 </h3>
           </div>

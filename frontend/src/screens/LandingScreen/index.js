@@ -57,6 +57,9 @@ const Landing = ({ history }) => {
       await axios.post('/api/send', {
         name,
         email,
+        phone: '',
+        address: '',
+        typeOfBusiness: '',
       });
       console.log('Message Sent');
     } catch (error) {

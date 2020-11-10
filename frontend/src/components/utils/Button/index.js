@@ -29,7 +29,7 @@ const MyButton = ({
       margin: 'auto',
       border: 'none',
       textDecoration: decoration ? decoration : 'none',
-      color: color && color,
+      color: color ? color : '#333',
       padding: padding ? padding : '15px 30px',
       backgroundColor: bgColor ? bgColor : 'white',
       borderRadius: radius ? radius : '40px',
@@ -79,7 +79,7 @@ const MyButton = ({
           fontSize: fontSize ? fontSize : '1.2rem',
           borderRadius: radius ? radius : '40px',
           backgroundColor: bgColor ? bgColor : 'rgba(0,0,0,0)',
-          color: color && color,
+          color: color ? color : '#333',
           borderWidth: '0px',
           ':hover': {
             color: hoverColor ? hoverColor : 'white',
@@ -97,7 +97,7 @@ const MyButton = ({
           fontSize: fontSize ? fontSize : '1.2rem',
           borderRadius: radius ? radius : '40px',
           backgroundColor: bgColor && bgColor,
-          color: color ? color : 'inherit',
+          color: color ? color : '#333',
           borderWidth: '0px',
           ':hover': {
             color: hoverColor ? hoverColor : 'white',
@@ -105,6 +105,10 @@ const MyButton = ({
         },
       };
     }
+  // sanity check
+  if (!to) {
+    to = '/';
+  }
   //  AS DEFAULT
   //  React Router Button
   //  INSIDE LINKS

@@ -22,12 +22,13 @@ import EditSiteScreen from './screens/EditSiteScreen';
 import NotFoundScreen from './screens/NotFoundScreen';
 import ThankYouScreen from './screens/ThankYouScreen';
 import { useTracking } from './components/utils/useTracking';
+import ScrollToTop from './components/utils/ScrollToTop';
 // import BlogScreen from './screens/BlogScreen';
 // import EditBlogScreen from './screens/EditBlogScreen';
 // import BlogPostScreen from './screens/BlogPostScreen';
 
 export const App = () => {
-  useTracking();
+  useTracking('G-F35LSG5NHY');
   return (
     <Fragment>
       <Navbar />
@@ -58,6 +59,7 @@ export const App = () => {
 export default () => (
   <Provider store={store}>
     <BrowserRouter>
+      <ScrollToTop />
       <StyleRoot>
         <App />
       </StyleRoot>

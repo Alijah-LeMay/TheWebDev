@@ -26,7 +26,8 @@ const MyButton = ({
     },
     //  for buttons that do not contain an inner P
     submitBtn: {
-      margin: 'auto',
+      display: 'block',
+      margin: horMargin && horMargin,
       border: 'none',
       textDecoration: decoration ? decoration : 'none',
       color: color ? color : '#333',
@@ -72,7 +73,8 @@ const MyButton = ({
           margin: horMargin && horMargin,
         },
         submitBtn: {
-          display: 'inline',
+          display: 'block',
+          margin: horMargin && horMargin,
           padding: padding ? padding : '15px',
           textDecoration: decoration ? decoration : 'none',
           height: 'auto',

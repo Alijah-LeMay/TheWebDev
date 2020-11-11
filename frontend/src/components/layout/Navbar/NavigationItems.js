@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.css';
 
-const NavigationItems = ({ mobile, color, clicked }) => {
+const NavigationItems = ({ clicked }) => {
   let currentlyActiveStyle = { color: '#4bb781' };
 
   let navItems = [

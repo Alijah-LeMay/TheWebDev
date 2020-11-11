@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 // Assets
+import landing_bck from '../../assets/landing_bck.jpg';
 
 import classes from './QuoteScreen.module.css';
 import quote_bck from '../../assets/quote_bck.jpg';
@@ -95,12 +96,12 @@ const QuoteScreen = ({ history }) => {
         description='We have developed software and websites for years, and we would love to convert your project to one of our finished products!'
       />
       <ImageBanner
-        imageLOC={quote_bck}
-        label='Time To Grow'
-        altText='Quote Screen Banner'
+        imageLOC={landing_bck}
+        label='Hire Us'
+        altText='Hire Us'
         bgOpacity
-        opacity={0.5}
-        bgColor='fff'
+        opacity={0.3}
+        bgColor='#f2f2f2'
       />
       <CenterContainer bgPadding='30px 0 0 0'>
         <div className={classes.section_container}>

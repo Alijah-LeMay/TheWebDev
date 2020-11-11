@@ -16,7 +16,7 @@ import LoginScreen from './screens/LoginScreen';
 import ServicesScreen from './screens/ServicesScreen';
 import OurWorkScreen from './screens/OurWorkScreen';
 import QuoteScreen from './screens/QuoteScreen';
-import LandingScreen from './screens/LandingScreen';
+import HomeScreen from './screens/HomeScreen';
 import AdminScreen from './screens/AdminScreen';
 import EditSiteScreen from './screens/EditSiteScreen';
 import NotFoundScreen from './screens/NotFoundScreen';
@@ -33,7 +33,7 @@ export const App = () => {
     <Fragment>
       <Navbar />
       <Switch>
-        <Route exact path='/' component={LandingScreen} />
+        <Route exact path='/' component={HomeScreen} />
         <Route exact path='/login' component={LoginScreen} />
         <Route exact path='/admin' component={AdminScreen} />
         <Route exact path='/admin/site/:id/edit' component={EditSiteScreen} />

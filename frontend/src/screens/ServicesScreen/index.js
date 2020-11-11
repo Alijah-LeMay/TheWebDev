@@ -1,9 +1,7 @@
 import React from 'react';
 // Assets / Classes
-import services_bck from '../../assets/services_bck.jpg';
-import home_analytics from '../../assets/home_analytics.png';
-import services_seo from '../../assets/services_seo.jpg';
-import services_analytics from '../../assets/services_analytics.png';
+import landing_bck from '../../assets/landing_bck.jpg';
+
 import quote_info from '../../assets/quote_info.jpg';
 
 import classes from './ServicesScreen.module.css';
@@ -11,7 +9,6 @@ import classes from './ServicesScreen.module.css';
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
-import Card from '../../components/utils/Card';
 import MyButton from '../../components/utils/Button';
 import Meta from '../../components/utils/Meta';
 
@@ -37,61 +34,47 @@ const services = () => {
         description='We Offer Website Design,  Logo Creation, Software Development, and more.'
       />
       <ImageBanner
-        imageLOC={services_bck}
+        imageLOC={landing_bck}
         label='What We Do'
-        altText='Services Screen Banner'
-        bgColor='#f2f2f2'
+        altText='What We Do'
         bgOpacity
-        opacity={0.4}
+        opacity={0.3}
+        bgColor='#f2f2f2'
       />
       <CenterContainer bgColor='#f2f2f2' bgPadding='40px 0'>
         <div className={classes.section_container}>
-          <div className={classes.card_container}>
-            <Card height='100%'>
-              <img src={home_analytics} alt='Website Analytics' />
-            </Card>
-          </div>
           <div className={classes.section_right}>
             <h2>Website Development</h2>
             <h3 style={mStyle.blueH3}>Intuitive Design</h3>
             <p>
-              Desire something special? We create intuitive and stunning
-              websites that feature aesthetic designs and clean modern branding.
-              For us, every project starts with a goal and gets completed with
-              outstanding outcomes.
+              We create intuitive websites that feature clean and modern
+              designs. Every project starts with an outline of how we're going
+              to achieve the desired outcome, and we stick to that schedule.
             </p>
             <h3 style={mStyle.blueH3}>Worry Free</h3>
             <p>
               We are your full-service website development partner, and we take
-              care of everything when it comes to web design. The Web Developers
-              specialize in creating exceptional and outstanding website
-              applications for all clients. We understand your demands and
-              intend to help you achieve them.
+              care of everything when it comes to web design. We can get you a
+              domain name, build your site, and host it, all in one place.
             </p>
           </div>
         </div>
       </CenterContainer>
       <CenterContainer bgPadding='40px 0'>
         <div className={classes.section_container}>
-          <div className={classes.card_container}>
-            <Card height='100%'>
-              <img src={services_seo} alt='Search Engine Optimization' />
-            </Card>
-          </div>
           <div className={classes.section_right}>
-            <h2>Search Engine Optimization</h2>
-            <h3 style={mStyle.greenH3}>Stay Up To Date</h3>
+            <h2>Hosting</h2>
+            <h3 style={mStyle.greenH3}>Everything you need, right here.</h3>
             <p>
-              These days, businesses are learning that in addition to a stunning
-              website, you must also keep this website up to date and optimized.
-              With relevant SEO terms, you have much better chances of showing
-              up at the top of search results.
+              We can build your website, or app, and we can also host it for
+              you. You need three things for a website, the content of the site,
+              a domain name, and you need a server to <i>host</i> the content.
             </p>
-            <h3 style={mStyle.greenH3}>Increase Conversions</h3>
+            <h3 style={mStyle.greenH3}>Less Work On Your Part</h3>
             <p>
-              Our team understands every brand has a target audience. We keep
-              this in mind when developing our websites so that we can make each
-              page attractive to the customers of a particular industry.
+              Since we build your product, manage and now also host it, it's a
+              lot less for you to think about. You have less people to pay, at
+              the end of the day.
             </p>
           </div>
         </div>
@@ -102,23 +85,17 @@ const services = () => {
             <h2>Logo Creation</h2>
             <h3 style={mStyle.blueH3}>Experienced Designers</h3>
             <p>
-              Your brand is unique, your logo ought to be too. Our team includes
-              experienced designers with exceptional skills in logo design. With
-              a good logo, you can make your business stand out among the rest
-              and leave a lasting impression on your customer.
+              Your brand is unique, your logo should be too. Our team includes
+              experienced designers with exceptional skills in graphic design.
+              With a good logo, you can make your business stand out among the
+              rest.
             </p>
             <h3 style={mStyle.blueH3}>Competitive Pricing</h3>
             <p>
-              Logos are valuable for any business, small or big. Our designs
-              come with a competitive price range to suit every budget. Working
-              with our talented team of designers means you will get the best
-              bang for your buck!
+              Our designs come with a competitive price range to suit every
+              budget. Working with our talented team of designers means you will
+              get the best bang for your buck!
             </p>
-          </div>
-          <div className={classes.card_container}>
-            <Card height='100%'>
-              <img src={services_analytics} alt='Logo Creation' />
-            </Card>
           </div>
         </div>
       </CenterContainer>

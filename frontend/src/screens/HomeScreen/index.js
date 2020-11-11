@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import classes from './Landing.module.css';
+import classes from './HomeScreen.module.css';
 
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner';
@@ -14,9 +14,8 @@ import FormField from '../../components/utils/FormField';
 import Loader from '../../components/utils/Loader';
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg';
-import home_analytics from '../../assets/home_analytics.png';
 
-const Landing = ({ history }) => {
+const HomeScreen = ({ history }) => {
   const [formState, setFormState] = useState({
     name: { value: '' },
     email: { value: '' },
@@ -80,7 +79,7 @@ const Landing = ({ history }) => {
         label='Professional Website Design'
         altText='Home page Banner'
         bgOpacity
-        opacity={0.2}
+        opacity={0.3}
         bgColor='#f2f2f2'
       />
 
@@ -153,28 +152,19 @@ const Landing = ({ history }) => {
       </CenterContainer>
       <CenterContainer bgPadding='40px 0'>
         <div className={classes.infoSection_container}>
-          <div className={classes.card_container}>
-            <Card>
-              <img src={home_analytics} alt='website analytics' />
-            </Card>
-          </div>
-
           <div className={classes.infoSection_right}>
             <h2>Website Development</h2>
             <h3>Intuitive Design</h3>
             <p>
-              Desire something special? We create intuitive and stunning
-              websites that feature aesthetic designs and clean modern branding.
-              For us, every project starts with a goal and gets completed with
-              outstanding outcomes.
+              We create intuitive websites that feature clean and modern
+              designs. Every project starts with an outline of how we're going
+              to achieve the desired outcome, and we stick to that schedule.
             </p>
             <h3>Worry Free</h3>
             <p>
               We are your full-service website development partner, and we take
-              care of everything when it comes to web design. The Web Developers
-              specialize in creating exceptional and outstanding website
-              applications for all clients. We understand your demands and
-              intend to help you achieve them.
+              care of everything when it comes to web design. We can get you a
+              domain name, build your site, and host it, all in one place.
             </p>
           </div>
         </div>
@@ -192,10 +182,10 @@ const Landing = ({ history }) => {
               </p>
             </Card>
             <Card variant='outline'>
-              <h2>SEO</h2>
+              <h2>Hosting</h2>
               <p>
-                Drive more Organic traffic to your site by increasing your rank
-                in search results
+                Secure, affordable, and <i>reliable</i> hosting to make sure
+                your site is always up.
               </p>
             </Card>
             <Card variant='outline'>
@@ -213,4 +203,4 @@ const Landing = ({ history }) => {
   );
 };
 
-export default Landing;
+export default HomeScreen;

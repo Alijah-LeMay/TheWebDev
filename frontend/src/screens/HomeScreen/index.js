@@ -105,8 +105,8 @@ const HomeScreen = ({ history }) => {
               ></i>
               <h2>One Stop Shop</h2>
               <p>
-                Need a website? No problem. Search Engine Optimization? We've
-                got you covered. App Development? Yep, that too​
+                Need a website? No problem. Hosting? We've got you covered. App
+                Development? Yep, that too​
               </p>
             </Card>
             <Card>

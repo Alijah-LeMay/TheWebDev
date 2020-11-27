@@ -6,7 +6,7 @@ const path = require('path');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const userRoutes = require('./routes/userRoutes');
 const siteRoutes = require('./routes/siteRoutes');
-// const blogRoutes = require('./routes/blogRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.use(express.json({ extended: false }));
 // Define Routes
 app.use('/api/user', userRoutes);
 app.use('/api/site', siteRoutes);
-// app.use('/api/blog', blogRoutes);
+app.use('/api/blog', blogRoutes);
 
 app.use('/api/send', require('./routes/sendEmail'));
 

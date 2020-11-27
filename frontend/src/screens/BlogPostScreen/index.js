@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import Loader from '../../components/utils/Loader';
+import ReactMarkdown from 'react-markdown';
 
 const BlogPostScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -27,22 +28,7 @@ const BlogPostScreen = ({ match }) => {
       dispatch(getBlogDetails(blogId));
     }
   }, [dispatch, blog, blogId]);
-  // const regEx = /<.+?>/g;
-  // const regEx1 = /<\s*b[^>]*>(.*?)<\s*\/\s*b>/g;
-  // const regEx2 = /<b.*class=.test.*[\n]*.*?<\/b>/g;
-  // const regEx3 = /<.*?>/g;
-  // if (blog.content) {
-  //   let currentContent = blog.content;
-  //   let noBreaks = currentContent.replace(/(\r\n|\n|\r)/gm, '</br>');
-  //   let tags = noBreaks.trim().match(regEx1);
-  //   tags.forEach((tag) => {
-  //     console.log(tag);
-  //     let tagContent = tag.match(regEx3);
 
-  //     console.log(tagContent);
-  //   });
-  //   console.log(tags);
-  // }
   return (
     <Fragment>
       <ImageBanner
@@ -58,7 +44,7 @@ const BlogPostScreen = ({ match }) => {
           <Loader />
         ) : (
           <div className={classes.post_container}>
-            <p className={classes.blog_content}>{blog.content}</p>
+            <ReactMarkdown source={blog.content} />
           </div>
         )}
       </CenterContainer>

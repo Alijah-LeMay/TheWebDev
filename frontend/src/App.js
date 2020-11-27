@@ -23,9 +23,9 @@ import NotFoundScreen from './screens/NotFoundScreen';
 import ThankYouScreen from './screens/ThankYouScreen';
 import { useTracking } from './components/utils/useTracking';
 import ScrollToTop from './components/utils/ScrollToTop';
-// import BlogScreen from './screens/BlogScreen';
-// import EditBlogScreen from './screens/EditBlogScreen';
-// import BlogPostScreen from './screens/BlogPostScreen';
+import BlogScreen from './screens/BlogScreen';
+import EditBlogScreen from './screens/EditBlogScreen';
+import BlogPostScreen from './screens/BlogPostScreen';
 
 export const App = () => {
   useTracking('G-F35LSG5NHY');
@@ -41,15 +41,11 @@ export const App = () => {
         <Route exact path='/quote' component={QuoteScreen} />
         <Route exact path='/ourwork' component={OurWorkScreen} />
         <Route exact path='/thankyou' component={ThankYouScreen} />
-        <Route component={NotFoundScreen} />
         {/* <Route exact path='/privacy' component={PrivacyPolicyScreen} /> */}
-        {/* <Route exact path='/blog' component={BlogScreen} /> */}
-        {/* <Route exact path='/blog/:id' component={BlogPostScreen} /> */}
-        {/* <Route
-              exact
-              path='/admin/blog/:id/edit'
-              component={EditBlogScreen}
-            /> */}
+        {/* <Route exact path='/blog' component={BlogScreen} />
+        <Route exact path='/blog/:id' component={BlogPostScreen} />
+        <Route exact path='/admin/blog/:id/edit' component={EditBlogScreen} /> */}
+        <Route component={NotFoundScreen} />
       </Switch>
       <Footer />
     </Fragment>

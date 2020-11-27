@@ -9,7 +9,7 @@ import {
 } from '../../store/actions/siteActions';
 import { CREATE_SITE_RESET } from '../../constants/siteConstants';
 // My Components
-// import BlogListContainer from './BlogListContainer';
+import BlogListContainer from './BlogListContainer';
 import ImageBanner from '../../components/utils/ImageBanner';
 import CenterContainer from '../../components/utils/CenterContainer';
 import MyButton from '../../components/utils/Button';
@@ -129,7 +129,7 @@ const AdminScreen = ({ history }) => {
             )}
           </div>
         </div>
-        {/* <BlogListContainer /> */}
+        <BlogListContainer />
       </CenterContainer>
     </div>
   );

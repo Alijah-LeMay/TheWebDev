@@ -31,7 +31,7 @@ router.post(
 
     const mail = {
       from: process.env.EMAIL_USER,
-      to: 'alijah@thewebdev.com',
+      to: 'alijah@thewebdev.net',
       subject: 'New Message from Contact form',
       text: content,
     };

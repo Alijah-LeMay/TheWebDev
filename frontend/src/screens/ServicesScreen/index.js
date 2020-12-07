@@ -31,7 +31,7 @@ const services = () => {
     <div className={classes.servicesScreen_container}>
       <Meta
         title='Services | The Web Developers'
-        description='We Offer Website Design,  Logo Creation, Software Development, and more.'
+        description='We Offer Website Design,  Logo Design, Software Development, and more.'
       />
       <ImageBanner
         imageLOC={landing_bck}
@@ -82,7 +82,7 @@ const services = () => {
       <CenterContainer bgColor='#f2f2f2' bgPadding='40px 0'>
         <div className={classes.section_container}>
           <div className={classes.section_right}>
-            <h2>Logo Creation</h2>
+            <h2>Logo Design</h2>
             <h3 style={mStyle.blueH3}>Experienced Designers</h3>
             <p>
               Your brand is unique, your logo should be too. Our team includes

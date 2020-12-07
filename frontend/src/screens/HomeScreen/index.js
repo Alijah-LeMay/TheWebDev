@@ -175,25 +175,31 @@ const HomeScreen = ({ history }) => {
           <div className={classes.firstCards_container}>
             <Card variant='outline'>
               <h2>Logo Design</h2>
-
-              <p>
-                Take your business a step forward with a website to showcase
-                your products and services.
-              </p>
             </Card>
             <Card variant='outline'>
+              <h2>Machine Learning</h2>
+            </Card>
+            <Card variant='outline'>
+              <h2>API Development</h2>
+            </Card>
+          </div>
+          <div className={classes.firstCards_container}>
+            <Card variant='outline'>
               <h2>Hosting</h2>
-              <p>
-                Secure, affordable, and <i>reliable</i> hosting to make sure
-                your site is always up.
-              </p>
             </Card>
             <Card variant='outline'>
               <h2>Marketing</h2>
-              <p>
-                Get noticed by the customers that matter. Start a Marketing
-                Campaign today.
-              </p>
+            </Card>
+          </div>
+          <div className={classes.firstCards_container}>
+            <Card variant='outline'>
+              <h2>Data Collection</h2>
+            </Card>
+            <Card variant='outline'>
+              <h2>Data Analytics</h2>
+            </Card>
+            <Card variant='outline'>
+              <h2>Database Management</h2>
             </Card>
           </div>
           <MyButton content='Get A Quote' to='/quote' direction='center' />

@@ -18,16 +18,16 @@
 
 .firstCards_container {
   display: flex;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 .firstCards_container h2 {
   font-size: 1.5rem;
   color: #333;
-  padding: 20px 0;
+  padding: 5px 0;
 }
 .firstCards_container p {
   color: #333;
-  padding-top: 20px 0;
+  padding-top: 5px;
   font-size: 1.2rem;
 }
 

@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
+import React, { useState } from 'react'
+import axios from 'axios'
+import ReactMarkdown from 'react-markdown'
 
-import classes from './HomeScreen.module.css';
+import classes from './HomeScreen.module.css'
 
 // My Components
-import ImageBanner from '../../components/utils/ImageBanner';
-import CenterContainer from '../../components/utils/CenterContainer';
-import Card from '../../components/utils/Card';
+import ImageBanner from '../../components/utils/ImageBanner'
+import CenterContainer from '../../components/utils/CenterContainer'
+import Card from '../../components/utils/Card'
 
-import MyButton from '../../components/utils/Button';
-import Meta from '../../components/utils/Meta';
-import FormField from '../../components/utils/FormField';
-import Loader from '../../components/utils/Loader';
+import MyButton from '../../components/utils/Button'
+import Meta from '../../components/utils/Meta'
+import FormField from '../../components/utils/FormField'
+import Loader from '../../components/utils/Loader'
 // Assets
-import landing_bck from '../../assets/landing_bck.jpg';
+import landing_bck from '../../assets/landing_bck.jpg'
 
 const HomeScreen = ({ history }) => {
   const [formState, setFormState] = useState({
     name: { value: '' },
     email: { value: '' },
-  });
-  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  })
+  const [loadingSubmit, setLoadingSubmit] = useState(false)
   const formConfig = {
     name: {
       type: 'input',
@@ -31,12 +31,12 @@ const HomeScreen = ({ history }) => {
       type: 'input',
       config: { type: 'email', placeholder: 'Email' },
     },
-  };
+  }
 
   // Prepare formState objects
-  let formElements = [];
+  let formElements = []
   for (let key in formState) {
-    formElements.push({ id: key, setup: formConfig[key] });
+    formElements.push({ id: key, setup: formConfig[key] })
   }
   const inputChangedHandler = (event, inputIdentifier) => {
     formElements.forEach((formElement) => {
@@ -44,15 +44,15 @@ const HomeScreen = ({ history }) => {
         setFormState({
           ...formState,
           [inputIdentifier]: event.target.value,
-        });
+        })
       }
-    });
-  };
+    })
+  }
   const submitHandler = async (e) => {
-    e.preventDefault();
-    setLoadingSubmit(true);
+    e.preventDefault()
+    setLoadingSubmit(true)
 
-    const { name, email } = formState;
+    const { name, email } = formState
     try {
       await axios.post('/api/send', {
         name,
@@ -60,14 +60,14 @@ const HomeScreen = ({ history }) => {
         phone: '',
         address: '',
         typeOfBusiness: '',
-      });
-      console.log('Message Sent');
+      })
+      console.log('Message Sent')
     } catch (error) {
-      console.log('Message failed to send');
+      console.log('Message failed to send')
     }
-    setLoadingSubmit(false);
-    history.push('/thankyou');
-  };
+    setLoadingSubmit(false)
+    history.push('/thankyou')
+  }
   return (
     <div className={classes.landing_Container}>
       <Meta
@@ -200,7 +200,7 @@ const HomeScreen = ({ history }) => {
         </div>
       </CenterContainer>
     </div>
-  );
-};
+  )
+}
 
-export default HomeScreen;
+export default HomeScreen

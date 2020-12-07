@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 // Assets / Classes
-import landing_bck from '../../assets/landing_bck.jpg';
+import landing_bck from '../../assets/landing_bck.jpg'
 
-import quote_info from '../../assets/quote_info.jpg';
+import quote_info from '../../assets/quote_info.jpg'
 
-import classes from './ServicesScreen.module.css';
+import classes from './ServicesScreen.module.css'
 
 // My Components
-import ImageBanner from '../../components/utils/ImageBanner';
-import CenterContainer from '../../components/utils/CenterContainer';
-import MyButton from '../../components/utils/Button';
-import Meta from '../../components/utils/Meta';
+import ImageBanner from '../../components/utils/ImageBanner'
+import CenterContainer from '../../components/utils/CenterContainer'
+import MyButton from '../../components/utils/Button'
+import Meta from '../../components/utils/Meta'
 
 let mStyle = {
   blueH3: {
@@ -24,7 +24,7 @@ let mStyle = {
   whiteText: {
     color: '#fff',
   },
-};
+}
 
 const services = () => {
   return (
@@ -99,6 +99,101 @@ const services = () => {
           </div>
         </div>
       </CenterContainer>
+      <CenterContainer bgPadding='40px 0'>
+        <div className={classes.section_container}>
+          <div className={classes.section_right}>
+            <h2>API Development</h2>
+            <h3 style={mStyle.greenH3}>Fast</h3>
+            <p>
+              Speed up your websites and apps like never before. With clean and
+              concise code, we offer high level API development that will
+              increase site traffic and reduce the loss of users.
+            </p>
+            <h3 style={mStyle.greenH3}>Versatile</h3>
+            <p>
+              Allow us to build an API that can be easily scaled and added on.
+              Don’t allow frameworks and software limitations to dictate what
+              you want to do with your company.
+            </p>
+          </div>
+        </div>
+      </CenterContainer>
+
+      <CenterContainer bgColor='#f2f2f2' bgPadding='40px 0'>
+        <div className={classes.section_container}>
+          <div className={classes.section_right}>
+            <h2>Machine Learning</h2>
+            <h3 style={mStyle.blueH3}>Advanced AI</h3>
+            <p>
+              Our team offers the most cutting edge AI available. We can build
+              AI to accomplish any task you have in mind. You are only limited
+              by your imagination.
+            </p>
+            <h3 style={mStyle.blueH3}>The Future</h3>
+            <p>
+              With the rise of AI, companies have been more dependent on it than
+              ever before. Let us take your company into the future with the
+              latest in AI development.
+            </p>
+          </div>
+        </div>
+      </CenterContainer>
+      <CenterContainer bgPadding='40px 0'>
+        <div className={classes.section_container}>
+          <div className={classes.section_right}>
+            <h2>Data Collection</h2>
+            <h3 style={mStyle.greenH3}>Quality Data</h3>
+            <p>
+              Useless data is a thing of the past. Let our experienced data
+              collectors gather what you need to gain better insights to your
+              business.
+            </p>
+            <h3 style={mStyle.greenH3}>No Limitations</h3>
+            <p>
+              Our data collectors can gather any type of data you seek. If the
+              data is not readily available we can gather it ourselves through
+              surveys and polls
+            </p>
+          </div>
+        </div>
+      </CenterContainer>
+      <CenterContainer bgColor='#f2f2f2' bgPadding='40px 0'>
+        <div className={classes.section_container}>
+          <div className={classes.section_right}>
+            <h2>Database Management</h2>
+            <h3 style={mStyle.blueH3}>Reliable</h3>
+            <p>
+              Let us create a database that will stand the test of time. Don’t
+              let your site go down due to poorly optimized databases.
+            </p>
+            <h3 style={mStyle.blueH3}>Built To Scale</h3>
+            <p>
+              Our databases are built with growth in mind. We ensure that no
+              matter how big your company gets, your database is ready to handle
+              it.
+            </p>
+          </div>
+        </div>
+      </CenterContainer>
+      <CenterContainer bgPadding='40px 0'>
+        <div className={classes.section_container}>
+          <div className={classes.section_right}>
+            <h2>Data Analytics</h2>
+            <h3 style={mStyle.greenH3}>Expert Analysis</h3>
+            <p>
+              Allow our experts to analyze the ins and out of your data. Receive
+              valuable insights on your company's data that can easily translate
+              into action.
+            </p>
+            <h3 style={mStyle.greenH3}>Clear Results</h3>
+            <p>
+              Through clear communication, our analysts can provide you with
+              easy to understand results. Drastically improve what your data can
+              do for you.
+            </p>
+          </div>
+        </div>
+      </CenterContainer>
       <CenterContainer
         bgVariant='image'
         bgImageURL={quote_info}
@@ -121,7 +216,7 @@ const services = () => {
         </div>
       </CenterContainer>
     </div>
-  );
-};
+  )
+}
 
-export default services;
+export default services

@@ -1,34 +1,34 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { StyleRoot } from 'radium';
+import React, { Fragment } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { StyleRoot } from 'radium'
 // Redux
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from 'react-redux'
+import store from './store'
 
-import './App.module.css';
+import './App.module.css'
 
 // My Components
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
+import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
 
 // My Screens
-import LoginScreen from './screens/LoginScreen';
-import ServicesScreen from './screens/ServicesScreen';
-import OurWorkScreen from './screens/OurWorkScreen';
-import QuoteScreen from './screens/QuoteScreen';
-import HomeScreen from './screens/HomeScreen';
-import AdminScreen from './screens/AdminScreen';
-import EditSiteScreen from './screens/EditSiteScreen';
-import NotFoundScreen from './screens/NotFoundScreen';
-import ThankYouScreen from './screens/ThankYouScreen';
-import { useTracking } from './components/utils/useTracking';
-import ScrollToTop from './components/utils/ScrollToTop';
-import BlogScreen from './screens/BlogScreen';
-import EditBlogScreen from './screens/EditBlogScreen';
-import BlogPostScreen from './screens/BlogPostScreen';
+import LoginScreen from './screens/LoginScreen'
+import ServicesScreen from './screens/ServicesScreen'
+import OurWorkScreen from './screens/OurWorkScreen'
+import QuoteScreen from './screens/QuoteScreen'
+import HomeScreen from './screens/HomeScreen'
+import AdminScreen from './screens/AdminScreen'
+import EditSiteScreen from './screens/EditSiteScreen'
+import NotFoundScreen from './screens/NotFoundScreen'
+import ThankYouScreen from './screens/ThankYouScreen'
+import { useTracking } from './components/utils/useTracking'
+import ScrollToTop from './components/utils/ScrollToTop'
+import BlogScreen from './screens/BlogScreen'
+import EditBlogScreen from './screens/EditBlogScreen'
+import BlogPostScreen from './screens/BlogPostScreen'
 
 export const App = () => {
-  useTracking('G-F35LSG5NHY');
+  useTracking('G-F35LSG5NHY')
   return (
     <Fragment>
       <Navbar />
@@ -42,15 +42,15 @@ export const App = () => {
         <Route exact path='/ourwork' component={OurWorkScreen} />
         <Route exact path='/thankyou' component={ThankYouScreen} />
         {/* <Route exact path='/privacy' component={PrivacyPolicyScreen} /> */}
-        {/* <Route exact path='/blog' component={BlogScreen} />
+        <Route exact path='/blog' component={BlogScreen} />
         <Route exact path='/blog/:id' component={BlogPostScreen} />
-        <Route exact path='/admin/blog/:id/edit' component={EditBlogScreen} /> */}
+        <Route exact path='/admin/blog/:id/edit' component={EditBlogScreen} />
         <Route component={NotFoundScreen} />
       </Switch>
       <Footer />
     </Fragment>
-  );
-};
+  )
+}
 
 export default () => (
   <Provider store={store}>
@@ -61,4 +61,4 @@ export default () => (
       </StyleRoot>
     </BrowserRouter>
   </Provider>
-);
+)

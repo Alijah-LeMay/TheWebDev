@@ -1,8 +1,16 @@
 .blog_content {
   font-size: 1.6rem;
-  padding: 0 40px;
-  line-height: 55px;
 }
 .post_container {
-  display: flex;
+  text-align: left;
+  padding: 80px 20px;
+}
+.post_container p,
+.post_container ol {
+  font-size: 1.5rem;
+  line-height: 65px;
+}
+
+.post_container h1 {
+  padding: 20px 0;
 }

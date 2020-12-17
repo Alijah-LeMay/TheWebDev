@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import ReactMarkdown from 'react-markdown'
-
 import classes from './HomeScreen.module.css'
 
 // My Components

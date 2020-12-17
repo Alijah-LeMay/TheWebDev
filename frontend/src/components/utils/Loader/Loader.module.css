@@ -18,7 +18,7 @@
   background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
   background: -ms-linear-gradient(
     left,
-    #ffffff 10%,
+    #0e0d0d 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: linear-gradient(
@@ -36,15 +36,16 @@
 .Loader:before {
   width: 50%;
   height: 50%;
-  background: #0dc5c1;
+  background: #3d5aaf;
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;
   left: 0;
   content: '';
 }
+/* The Center Of The Loader */
 .Loader:after {
-  background: white;
+  background: #f3f3f3;
   width: 75%;
   height: 75%;
   border-radius: 50%;

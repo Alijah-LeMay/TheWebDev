@@ -1,82 +1,88 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux';
-import { UPDATE_BLOG_RESET } from '../../constants/blogConstants';
-import { getBlogDetails, updateBlog } from '../../store/actions/blogActions';
+import { useDispatch, useSelector } from 'react-redux'
+import { UPDATE_BLOG_RESET } from '../../constants/blogConstants'
+import { getBlogDetails, updateBlog } from '../../store/actions/blogActions'
 
 // My Components
-import ImageBanner from '../../components/utils/ImageBanner';
-import CenterContainer from '../../components/utils/CenterContainer';
-import MyButton from '../../components/utils/Button';
-import FormField from '../../components/utils/FormField';
+import ImageBanner from '../../components/utils/ImageBanner'
+import CenterContainer from '../../components/utils/CenterContainer'
+import MyButton from '../../components/utils/Button'
+import FormField from '../../components/utils/FormField'
 
 // Assets
-import classes from './EditBlogScreen.module.css';
-import landing_bck from '../../assets/landing_bck.jpg';
+import classes from './EditBlogScreen.module.css'
+import landing_bck from '../../assets/landing_bck.jpg'
 
 const EditBlogScreen = ({ match, history }) => {
-  const blogId = match.params.id;
-  const dispatch = useDispatch();
+  const blogId = match.params.id
+  const dispatch = useDispatch()
 
-  const [image, setImage] = useState([]);
-  const [uploading, setUploading] = useState(false);
+  const [image, setImage] = useState([])
+  const [uploading, setUploading] = useState(false)
 
-  const blogDetails = useSelector((state) => state.blogDetails);
-  const { blog } = blogDetails;
+  const blogDetails = useSelector((state) => state.blogDetails)
+  const { blog } = blogDetails
 
-  const blogUpdate = useSelector((state) => state.blogUpdate);
-  const { success: successUpdate } = blogUpdate;
+  const blogUpdate = useSelector((state) => state.blogUpdate)
+  const { success: successUpdate } = blogUpdate
 
   const [formState, setFormState] = useState({
     title: '',
     category: '',
     content: '',
-  });
+    description: '',
+  })
   const formConfig = {
     title: {
       type: 'input',
-      config: { type: 'text', placeholder: 'Site Title' },
+      config: { type: 'text', placeholder: 'Blog Title' },
     },
     category: {
       type: 'input',
-      config: { type: 'text', placeholder: 'Site Category' },
+      config: { type: 'text', placeholder: 'Blog Category' },
     },
     content: {
       type: 'textarea',
-      config: { type: 'text', placeholder: 'Site Content' },
+      config: { type: 'text', placeholder: 'Blog Content' },
     },
-  };
-  console.log(blog);
+    description: {
+      type: 'input',
+      config: { type: 'text', placeholder: 'Blog Description' },
+    },
+  }
+  console.log(blog)
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: UPDATE_BLOG_RESET });
+      dispatch({ type: UPDATE_BLOG_RESET })
 
-      history.push('/admin');
+      history.push('/admin')
     } else {
       if (!blog || blogId !== blog._id) {
-        dispatch(getBlogDetails(blogId));
+        dispatch(getBlogDetails(blogId))
       } else {
         setFormState({
           title: blog.title,
           category: blog.category,
           content: blog.content,
-        });
-        setImage(blog.images);
+          description: blog.description,
+        })
+        setImage(blog.images)
       }
     }
-  }, [dispatch, blog, history, blogId, successUpdate]);
+  }, [dispatch, blog, history, blogId, successUpdate])
 
   // Prepare formState objects
-  const formElements = [];
+  const formElements = []
 
   for (let key in formState) {
     formElements.push({
       id: key,
       setup: formConfig[key],
       value: formState[key],
-    });
+    })
   }
 
   const inputChangedHandler = (event, inputIdentifier) => {
@@ -85,55 +91,56 @@ const EditBlogScreen = ({ match, history }) => {
         setFormState({
           ...formState,
           [inputIdentifier]: event.target.value,
-        });
+        })
       }
-    });
-  };
+    })
+  }
 
-  const imagesArray = [];
+  const imagesArray = []
   for (let key in image) {
-    imagesArray.push(image[key]);
+    imagesArray.push(image[key])
   }
 
   const uploadFileHandler = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
-    setUploading(true);
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
     try {
       const config = {
         headers: { 'Content-Type': 'multipart/form-data' },
-      };
+      }
 
-      const { data } = await axios.post('/api/upload', formData, config);
+      const { data } = await axios.post('/api/upload', formData, config)
 
-      imagesArray.push(data);
-      setImage(imagesArray);
-      setUploading(false);
+      imagesArray.push(data)
+      setImage(imagesArray)
+      setUploading(false)
     } catch (error) {
-      console.error(error);
-      setUploading(false);
+      console.error(error)
+      setUploading(false)
     }
-  };
+  }
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     dispatch(
       updateBlog({
         _id: blogId,
         title: formState.title,
         category: formState.category,
         content: formState.content,
+        description: formState.description,
         images: image,
       })
-    );
-  };
+    )
+  }
 
   const imageDeleteHandler = (id) => {
-    const imageIndex = image.indexOf(id);
-    image.splice(imageIndex, 1);
-    console.log(imageIndex);
-  };
+    const imageIndex = image.indexOf(id)
+    image.splice(imageIndex, 1)
+    console.log(imageIndex)
+  }
   return (
     <div className={classes.editSiteScreen_container}>
       <ImageBanner
@@ -166,7 +173,7 @@ const EditBlogScreen = ({ match, history }) => {
                   to={() => imageDeleteHandler(item)}
                 />
               </div>
-            );
+            )
           })}
           <input type='file' onChange={uploadFileHandler} name={image} />
           {uploading && <div>...loading...</div>}
@@ -174,7 +181,7 @@ const EditBlogScreen = ({ match, history }) => {
         </form>
       </CenterContainer>
     </div>
-  );
-};
+  )
+}
 
-export default EditBlogScreen;
+export default EditBlogScreen

@@ -20,7 +20,7 @@ const ArticleContainer = ({ category, title, imageLOC, description, link }) => {
       margin: '0 0 10px 0',
     },
     description: {
-      width: '100%',
+      width: '95%',
       padding: 0,
       margin: 0,
       maxHeight: '60px',
@@ -40,7 +40,7 @@ const ArticleContainer = ({ category, title, imageLOC, description, link }) => {
     <div style={rStyle.container}>
       <img style={rStyle.image} src={imageLOC} alt={updatedTitle} />
       <h2 style={rStyle.title}>{updatedTitle}</h2>
-      <p style={rStyle.description}>{elipsesText(description, 100)}</p>
+      <p style={rStyle.description}>{elipsesText(description, 80)}</p>
       <div style={rStyle.linkContainer}>
         <Link style={rStyle.link} to={link}>
           Read More

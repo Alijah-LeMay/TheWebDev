@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react'
+import axios from 'axios'
 
 // Assets
-import landing_bck from '../../assets/landing_bck.jpg';
+import landing_bck from '../../assets/landing_bck.jpg'
 
-import classes from './QuoteScreen.module.css';
-import quote_bck from '../../assets/quote_bck.jpg';
+import classes from './QuoteScreen.module.css'
+import quote_bck from '../../assets/quote_bck.jpg'
 // Redux
 // import { useDispatch } from 'react-redux';
 
 // My Components
 
-import ImageBanner from '../../components/utils/ImageBanner';
-import CenterContainer from '../../components/utils/CenterContainer';
-import Card from '../../components/utils/Card';
-import MyButton from '../../components/utils/Button';
-import FormField from '../../components/utils/FormField';
-import Meta from '../../components/utils/Meta';
-import Loader from '../../components/utils/Loader';
+import ImageBanner from '../../components/utils/ImageBanner'
+import CenterContainer from '../../components/utils/CenterContainer'
+import Card from '../../components/utils/Card'
+import MyButton from '../../components/utils/Button'
+import FormField from '../../components/utils/FormField'
+import Meta from '../../components/utils/Meta'
+import Loader from '../../components/utils/Loader'
 
 const QuoteScreen = ({ history }) => {
   // const dispatch = useDispatch();
@@ -27,8 +27,8 @@ const QuoteScreen = ({ history }) => {
     phone: { value: '' },
     address: { value: '' },
     typeOfBusiness: { value: '' },
-  });
-  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  })
+  const [loadingSubmit, setLoadingSubmit] = useState(false)
   const formConfig = {
     name: {
       type: 'input',
@@ -50,11 +50,11 @@ const QuoteScreen = ({ history }) => {
       type: 'input',
       config: { type: 'text', placeholder: 'Type of business' },
     },
-  };
+  }
   // Prepare formState objects
-  let formElements = [];
+  let formElements = []
   for (let key in formState) {
-    formElements.push({ id: key, setup: formConfig[key] });
+    formElements.push({ id: key, setup: formConfig[key] })
   }
 
   const inputChangedHandler = (event, inputIdentifier) => {
@@ -63,16 +63,16 @@ const QuoteScreen = ({ history }) => {
         setFormState({
           ...formState,
           [inputIdentifier]: event.target.value,
-        });
+        })
       }
-    });
-  };
+    })
+  }
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    setLoadingSubmit(true);
+    e.preventDefault()
+    setLoadingSubmit(true)
 
-    const { name, email, phone, address, typeOfBusiness } = formState;
+    const { name, email, phone, address, typeOfBusiness } = formState
     try {
       await axios.post('/api/send', {
         name,
@@ -80,14 +80,14 @@ const QuoteScreen = ({ history }) => {
         phone,
         address,
         typeOfBusiness,
-      });
-      console.log('Message Sent');
+      })
+      console.log('Message Sent')
     } catch (error) {
-      console.log('Message failed to send');
+      console.log('Message failed to send')
     }
-    setLoadingSubmit(false);
-    history.push('/thankyou');
-  };
+    setLoadingSubmit(false)
+    history.push('/thankyou')
+  }
 
   return (
     <div className={classes.quoteScreen_container}>
@@ -142,7 +142,7 @@ const QuoteScreen = ({ history }) => {
                 />
               ))}
               {loadingSubmit ? (
-                <Loader size='6px' />
+                <Loader />
               ) : (
                 <MyButton
                   content='Submit'
@@ -158,7 +158,7 @@ const QuoteScreen = ({ history }) => {
         </div>
       </CenterContainer>
     </div>
-  );
-};
+  )
+}
 
-export default QuoteScreen;
+export default QuoteScreen

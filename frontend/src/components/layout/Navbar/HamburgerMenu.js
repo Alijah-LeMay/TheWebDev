@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 // fontawesome
 
-import classes from './Navbar.module.css';
+import classes from './Navbar.module.css'
 
 // My Components
-import Backdrop from '../../utils/Backdrop';
-import NavigationItems from './NavigationItems';
-import Logo from '../../Logo';
-import OutlinedNavBtn from './OutlinedNavBtn';
+import Backdrop from '../../utils/Backdrop'
+import NavigationItems from './NavigationItems'
+import Logo from '../../Logo'
+import OutlinedNavBtn from './OutlinedNavBtn'
 
 const HamburgerMenu = (props) => {
   return (
@@ -28,7 +28,7 @@ const HamburgerMenu = (props) => {
         <ul className={classes.drawerlist_container}>
           <NavigationItems clicked={props.clicked} mobile />
           <OutlinedNavBtn
-            content='Quote'
+            content='Hire Us'
             to='/quote'
             mobile
             clicked={props.clicked}
@@ -41,7 +41,7 @@ const HamburgerMenu = (props) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default HamburgerMenu;
+export default HamburgerMenu

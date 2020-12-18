@@ -1,8 +1,6 @@
 .Loader {
   margin: 50px auto;
   text-indent: -9999em;
-  width: 11em;
-  height: 11em;
   border-radius: 50%;
   background: #ffffff;
   background: -moz-linear-gradient(
@@ -36,7 +34,6 @@
 .Loader:before {
   width: 50%;
   height: 50%;
-  background: #3d5aaf;
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;
@@ -45,7 +42,6 @@
 }
 /* The Center Of The Loader */
 .Loader:after {
-  background: #f3f3f3;
   width: 75%;
   height: 75%;
   border-radius: 50%;

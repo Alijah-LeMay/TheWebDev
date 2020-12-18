@@ -134,7 +134,7 @@ const HomeScreen = ({ history }) => {
                 />
               ))}
               {loadingSubmit ? (
-                <Loader size='6px' />
+                <Loader afterColor='#f2f2f2' />
               ) : (
                 <MyButton
                   content='Submit'

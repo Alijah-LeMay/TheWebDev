@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux';
-import { getSites } from '../../store/actions/siteActions';
+import { useDispatch, useSelector } from 'react-redux'
+import { getSites } from '../../store/actions/siteActions'
 // My Components
-import ImageBanner from '../../components/utils/ImageBanner';
-import CenterContainer from '../../components/utils/CenterContainer';
-import Loader from '../../components/utils/Loader';
-import FeaturedSite from './FeaturedSite';
-import Meta from '../../components/utils/Meta';
+import ImageBanner from '../../components/utils/ImageBanner'
+import CenterContainer from '../../components/utils/CenterContainer'
+import Loader from '../../components/utils/Loader'
+import FeaturedSite from './FeaturedSite'
+import Meta from '../../components/utils/Meta'
 
 // Assets
-import landing_bck from '../../assets/landing_bck.jpg';
+import landing_bck from '../../assets/landing_bck.jpg'
 
 const OurWorkScreen = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const siteList = useSelector((state) => state.siteList);
-  const { loading, error, sites } = siteList;
+  const siteList = useSelector((state) => state.siteList)
+  const { loading, error, sites } = siteList
 
   useEffect(() => {
-    dispatch(getSites());
-  }, [dispatch]);
+    dispatch(getSites())
+  }, [dispatch])
 
-  let previousCategory;
-  let categoryShow;
+  let previousCategory
+  let categoryShow
 
   return (
     <div>
@@ -40,7 +40,7 @@ const OurWorkScreen = () => {
       />
       <CenterContainer>
         {loading ? (
-          <Loader />
+          <Loader width='11em' height='11em' />
         ) : error ? (
           <h3>{error}</h3>
         ) : (
@@ -50,11 +50,11 @@ const OurWorkScreen = () => {
                 !previousCategory ||
                 previousCategory !== siteElement.category
               ) {
-                categoryShow = true;
+                categoryShow = true
               } else {
-                categoryShow = false;
+                categoryShow = false
               }
-              previousCategory = siteElement.category;
+              previousCategory = siteElement.category
               return (
                 <FeaturedSite
                   category={siteElement.category}
@@ -65,13 +65,13 @@ const OurWorkScreen = () => {
                   showLabel={categoryShow}
                   siteDescription={siteElement.siteDescription}
                 />
-              );
+              )
             })}
           </div>
         )}
       </CenterContainer>
     </div>
-  );
-};
+  )
+}
 
-export default OurWorkScreen;
+export default OurWorkScreen

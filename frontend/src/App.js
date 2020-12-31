@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { StyleRoot } from 'radium'
 // Redux
@@ -10,6 +10,8 @@ import './App.module.css'
 // My Components
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import { useTracking } from './components/utils/useTracking'
+import ScrollToTop from './components/utils/ScrollToTop'
 
 // My Screens
 import LoginScreen from './screens/LoginScreen'
@@ -21,8 +23,6 @@ import AdminScreen from './screens/AdminScreen'
 import EditSiteScreen from './screens/EditSiteScreen'
 import NotFoundScreen from './screens/NotFoundScreen'
 import ThankYouScreen from './screens/ThankYouScreen'
-import { useTracking } from './components/utils/useTracking'
-import ScrollToTop from './components/utils/ScrollToTop'
 import BlogScreen from './screens/BlogScreen'
 import EditBlogScreen from './screens/EditBlogScreen'
 import BlogPostScreen from './screens/BlogPostScreen'
@@ -30,7 +30,7 @@ import BlogPostScreen from './screens/BlogPostScreen'
 export const App = () => {
   useTracking('G-F35LSG5NHY')
   return (
-    <Fragment>
+    <>
       <Navbar />
       <Switch>
         <Route exact path='/' component={HomeScreen} />
@@ -48,7 +48,7 @@ export const App = () => {
         <Route component={NotFoundScreen} />
       </Switch>
       <Footer />
-    </Fragment>
+    </>
   )
 }
 

@@ -53,7 +53,7 @@ const EditBlogScreen = ({ match, history }) => {
       config: { type: 'text', placeholder: 'Blog Description' },
     },
   }
-  console.log(blog)
+
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: UPDATE_BLOG_RESET })

@@ -1,59 +1,60 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import {
   createSite,
   deleteSite,
   getSites,
-} from '../../store/actions/siteActions';
-import { CREATE_SITE_RESET } from '../../constants/siteConstants';
+} from '../../store/actions/siteActions'
+import { CREATE_SITE_RESET } from '../../constants/siteConstants'
 // My Components
-import BlogListContainer from './BlogListContainer';
-import ImageBanner from '../../components/utils/ImageBanner';
-import CenterContainer from '../../components/utils/CenterContainer';
-import MyButton from '../../components/utils/Button';
-import DetailList from '../../components/DetailList';
-import Table from '../../components/utils/Table';
-import TBody from '../../components/utils/TBody';
+import BlogListContainer from './BlogListContainer'
+import ImageBanner from '../../components/utils/ImageBanner'
+import CenterContainer from '../../components/utils/CenterContainer'
+import MyButton from '../../components/utils/Button'
+import DetailList from '../../components/DetailList'
+import Table from '../../components/utils/Table'
+import TBody from '../../components/utils/TBody'
 
-import Loader from '../../components/utils/Loader';
+import Loader from '../../components/utils/Loader'
 
 // Assets
-import classes from './AdminScreen.module.css';
-import landing_bck from '../../assets/landing_bck.jpg';
-import { logout } from '../../store/actions/userActions';
+import classes from './AdminScreen.module.css'
+import landing_bck from '../../assets/landing_bck.jpg'
+import { logout } from '../../store/actions/userActions'
 
-const AdminScreen = ({ history }) => {
-  const dispatch = useDispatch();
+const AdminScreen = (props) => {
+  const { history } = props
+  const dispatch = useDispatch()
 
-  const siteCreate = useSelector((state) => state.siteCreate);
-  const { success: successCreateSite, site: createdSite } = siteCreate;
+  const siteCreate = useSelector((state) => state.siteCreate)
+  const { success: successCreateSite, site: createdSite } = siteCreate
 
-  const siteList = useSelector((state) => state.siteList);
-  const { loading: loadingSites, sites } = siteList;
+  const siteList = useSelector((state) => state.siteList)
+  const { loading: loadingSites, sites } = siteList
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const siteDelete = useSelector((state) => state.siteDelete);
+  const siteDelete = useSelector((state) => state.siteDelete)
   const {
     // loading: loadingDelete,
     success: successDelete,
     // error: errorDelete,
-  } = siteDelete;
+  } = siteDelete
 
   useEffect(() => {
     dispatch({
       type: CREATE_SITE_RESET,
-    });
+    })
     if (!userInfo || !userInfo.isAdmin) {
-      history.push('/login');
+      history.push('/login')
     }
-    dispatch(getSites());
+    dispatch(getSites())
 
     if (successCreateSite) {
-      history.push(`/admin/site/${createdSite._id}/edit`);
+      history.push(`/admin/site/${createdSite._id}/edit`)
     }
   }, [
     dispatch,
@@ -62,20 +63,20 @@ const AdminScreen = ({ history }) => {
     successCreateSite,
     createdSite,
     successDelete,
-  ]);
+  ])
 
-  const createProductHandler = () => {
-    dispatch(createSite());
-  };
+  const createSiteHandler = () => {
+    dispatch(createSite())
+  }
   const logoutHandler = () => {
-    dispatch(logout());
-  };
+    dispatch(logout())
+  }
 
   const deleteSiteHandler = (id) => {
     if (window.confirm('Are you sure?')) {
-      dispatch(deleteSite(id));
+      dispatch(deleteSite(id))
     }
-  };
+  }
 
   return (
     <div className={classes.adminScreen_container}>
@@ -93,7 +94,7 @@ const AdminScreen = ({ history }) => {
           <MyButton
             content='Create A Site'
             variant='func'
-            to={createProductHandler}
+            to={createSiteHandler}
           />
           <MyButton content='Logout' variant='func' to={logoutHandler} />
           <div>
@@ -132,7 +133,7 @@ const AdminScreen = ({ history }) => {
         <BlogListContainer />
       </CenterContainer>
     </div>
-  );
-};
+  )
+}
 
-export default AdminScreen;
+export default AdminScreen

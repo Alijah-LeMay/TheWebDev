@@ -10,7 +10,8 @@ import CenterContainer from '../../components/utils/CenterContainer'
 import FormField from '../../components/utils/FormField'
 import MyButton from '../../components/utils/Button'
 
-const LoginScreen = ({ history }) => {
+const LoginScreen = (props) => {
+  const { history } = props
   const dispatch = useDispatch()
   const [formState, setFormState] = useState({
     email: { value: '' },

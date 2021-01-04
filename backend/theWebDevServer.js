@@ -29,7 +29,7 @@ app.use('/api/send', require('./routes/sendEmail'))
 //
 // Image upload route
 app.use('/api/upload', require('./routes/upload'))
-// Make uploads folder statis
+// Make uploads folder static
 const dirname = path.resolve()
 app.use('/uploads', express.static(path.join(dirname, '/uploads')))
 

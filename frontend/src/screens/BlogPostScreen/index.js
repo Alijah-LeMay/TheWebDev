@@ -1,33 +1,33 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 // Assets
-import landing_bck from '../../assets/landing_bck.jpg';
-import classes from './BlogPostScreen.module.css';
+import landing_bck from '../../assets/landing_bck.jpg'
+import classes from './BlogPostScreen.module.css'
 
 // Redux
-
-import { getBlogDetails } from '../../store/actions/blogActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { getBlogDetails } from '../../store/actions/blogActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 // My Components
-import ImageBanner from '../../components/utils/ImageBanner';
-import CenterContainer from '../../components/utils/CenterContainer';
-import Loader from '../../components/utils/Loader';
-import ReactMarkdown from 'react-markdown';
+import ImageBanner from '../../components/utils/ImageBanner'
+import CenterContainer from '../../components/utils/CenterContainer'
+import Loader from '../../components/utils/Loader'
 
-const BlogPostScreen = ({ match }) => {
-  const dispatch = useDispatch();
+const BlogPostScreen = (props) => {
+  const { match } = props
+  const dispatch = useDispatch()
 
-  const blogId = match.params.id;
+  const blogId = match.params.id
 
-  const blogDetails = useSelector((state) => state.blogDetails);
-  const { loading: loadingDetails, blog } = blogDetails;
+  const blogDetails = useSelector((state) => state.blogDetails)
+  const { loading: loadingDetails, blog } = blogDetails
 
   useEffect(() => {
     if (!blog || blog._id !== blogId) {
-      dispatch(getBlogDetails(blogId));
+      dispatch(getBlogDetails(blogId))
     }
-  }, [dispatch, blog, blogId]);
+  }, [dispatch, blog, blogId])
 
   return (
     <Fragment>
@@ -49,7 +49,7 @@ const BlogPostScreen = ({ match }) => {
         )}
       </CenterContainer>
     </Fragment>
-  );
-};
+  )
+}
 
-export default BlogPostScreen;
+export default BlogPostScreen

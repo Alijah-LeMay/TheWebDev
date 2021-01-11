@@ -16,7 +16,8 @@ import FormField from '../../components/utils/FormField'
 import classes from './EditBlogScreen.module.css'
 import landing_bck from '../../assets/landing_bck.jpg'
 
-const EditBlogScreen = ({ match, history }) => {
+const EditBlogScreen = (props) => {
+  const { match, history } = props
   const blogId = match.params.id
   const dispatch = useDispatch()
 

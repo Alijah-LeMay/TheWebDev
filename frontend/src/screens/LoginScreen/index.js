@@ -14,8 +14,8 @@ const LoginScreen = (props) => {
   const { history } = props
   const dispatch = useDispatch()
   const [formState, setFormState] = useState({
-    email: { value: '' },
-    password: { value: '' },
+    email: '',
+    password: '',
   })
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo, error } = userLogin
@@ -74,7 +74,7 @@ const LoginScreen = (props) => {
               key={formElement.id}
               type={formElement.setup.type}
               config={formElement.setup.config}
-              value={formElement.setup.value}
+              value={formElement.value}
               changed={(event) => inputChangedHandler(event, formElement.id)}
             />
           ))}

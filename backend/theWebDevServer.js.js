@@ -23,7 +23,7 @@ app.use(express.json({ extended: false }))
 app.use('/api/user', userRoutes)
 app.use('/api/site', siteRoutes)
 app.use('/api/blog', blogRoutes)
-
+app.use('/api/download', require('./routes/download'))
 app.use('/api/send', require('./routes/sendEmail'))
 
 //

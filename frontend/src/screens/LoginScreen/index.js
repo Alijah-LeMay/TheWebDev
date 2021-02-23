@@ -36,7 +36,7 @@ const LoginScreen = (props) => {
     formElements.push({ id: key, setup: formConfig[key] })
   }
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && userInfo.isAdmin) {
       history.push('/admin')
     }
   }, [userInfo, history])

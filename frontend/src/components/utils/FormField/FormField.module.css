@@ -1,28 +1,29 @@
-.Input {
+.input {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
 }
-.Label {
+.label {
   font-weight: bold;
   display: block;
   margin-bottom: 8px;
 }
-.InputElement {
+.text {
   outline: none;
   border: 1px solid #ccc;
-  background-color: white;
-  font-size: inherit;
-  padding: 6px 10px;
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
+  background-color: #f2f2f2;
+  font-size: 1.1rem;
+  padding: 10px 0 10px 10px;
+  width: 95%;
+  margin: 10px 0;
+  border-radius: 7px;
 }
-.InputElement:focus {
+
+.text:focus {
   outline: none;
   background-color: #ccc;
 }
-
+/* Not needed for artist portfolio */
 textarea {
   width: 95%;
   height: 100px;

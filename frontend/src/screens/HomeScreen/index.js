@@ -67,7 +67,7 @@ const HomeScreen = ({ history }) => {
     history.push('/thankyou')
   }
   return (
-    <div className={classes.landing_Container}>
+    <div className={classes.screen_container}>
       <Meta
         title='Home | The Web Developers'
         description='One Stop Shop for Website, Software, and Mobile Development.'

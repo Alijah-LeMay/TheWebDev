@@ -27,6 +27,9 @@ import BlogScreen from './screens/BlogScreen'
 import EditBlogScreen from './screens/EditBlogScreen'
 import BlogPostScreen from './screens/BlogPostScreen'
 
+// Still testing
+import CoursesScreen from './screens/CoursesScreen'
+
 export const App = () => {
   useTracking('G-F35LSG5NHY')
   return (
@@ -45,6 +48,9 @@ export const App = () => {
         <Route exact path='/blog' component={BlogScreen} />
         <Route exact path='/blog/:id' component={BlogPostScreen} />
         <Route exact path='/admin/blog/:id/edit' component={EditBlogScreen} />
+        {/* Still Testing */}
+        <Route exact path='/courses' component={CoursesScreen} />
+
         <Route component={NotFoundScreen} />
       </Switch>
       <Footer />

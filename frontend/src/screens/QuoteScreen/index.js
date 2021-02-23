@@ -22,11 +22,11 @@ import Loader from '../../components/utils/Loader'
 const QuoteScreen = ({ history }) => {
   // const dispatch = useDispatch();
   const [formState, setFormState] = useState({
-    name: { value: '' },
-    email: { value: '' },
-    phone: { value: '' },
-    address: { value: '' },
-    typeOfBusiness: { value: '' },
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    typeOfBusiness: '',
   })
   const [loadingSubmit, setLoadingSubmit] = useState(false)
   const formConfig = {
@@ -135,7 +135,7 @@ const QuoteScreen = ({ history }) => {
                   key={formElement.id}
                   type={formElement.setup.type}
                   config={formElement.setup.config}
-                  value={formElement.setup.value}
+                  value={formElement.value}
                   changed={(event) =>
                     inputChangedHandler(event, formElement.id)
                   }

@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const path = require('path')
-const b = require('../../')
 const fs = require('fs')
 const archiver = require('archiver')
+const os = require('os')
 
 // export const download = async (url) => {
 //   const path = 'image.png'
@@ -29,20 +29,15 @@ const archiver = require('archiver')
 //   console.log('downloaded')
 // })
 
-const downloadZip = (req, res) => {
-  const output = fs.createWriteStream(__dirname + '/example.zip')
+const downloadZip = async (req, res) => {
+  const { files } = req.params
   const archive = archiver('zip', {
     zlib: { level: 9 }, // Sets the compression level.
   })
-  output.on('close', function () {
-    console.log(archive.pointer() + ' total bytes')
-    console.log(
-      'archiver has been finalized and the output file descriptor has closed.'
-    )
-  })
-  output.on('end', function () {
-    console.log('Data has been drained')
-  })
+
+  //set the archive name
+  res.attachment('untitled.zip')
+
   archive.on('warning', function (err) {
     if (err.code === 'ENOENT') {
       // log warning
@@ -51,16 +46,16 @@ const downloadZip = (req, res) => {
       throw err
     }
   })
-  archive.on('error', function (err) {
+  archive.on('error', (err) => {
     throw err
   })
-  archive.pipe(output)
   archive.file('uploads/image-1602700125670.png', {
     name: 'file1.png',
   })
   archive.file('uploads/image-1602700131411.png', {
     name: 'file1.png',
   })
+  archive.pipe(res)
   archive.finalize()
 }
 const download = (req, res) => {

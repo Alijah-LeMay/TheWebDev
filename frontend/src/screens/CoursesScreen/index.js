@@ -6,8 +6,7 @@ import classes from './CoursesScreen.module.css'
 const CoursesScreen = () => {
   let chosenImage
   const downloadImage = async (id) => {
-    // window.open(`http://localhost:5001/api/download/${id}`, '_parent')
-    await axios.get(`api/download/${id}`)
+    window.open(`http://localhost:5001/api/download/${id}`, '_parent')
   }
 
   const setImage = (id) => {

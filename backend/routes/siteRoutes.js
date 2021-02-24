@@ -1,9 +1,9 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
 // Middleware
 
-const { protect, admin } = require('../middleware/authMiddleware');
+const { protect, admin } = require('../middleware/authMiddleware')
 // Controllers
 
 const {
@@ -12,15 +12,15 @@ const {
   deleteSite,
   updateSite,
   getSiteById,
-} = require('../controllers/siteController');
+} = require('../controllers/siteController')
 
 // Routes
 
-router.route('/').get(getSites).post(protect, admin, createSite);
+router.route('/').get(getSites).post(protect, admin, createSite)
 router
   .route('/:id')
   .put(protect, admin, updateSite)
   .get(protect, admin, getSiteById)
-  .delete(protect, admin, deleteSite);
+  .delete(protect, admin, deleteSite)
 
-module.exports = router;
+module.exports = router

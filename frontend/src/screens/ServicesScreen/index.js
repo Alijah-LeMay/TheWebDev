@@ -28,7 +28,7 @@ let mStyle = {
 
 const services = () => {
   return (
-    <div className={classes.servicesScreen_container}>
+    <div className={classes.screen_container}>
       <Meta
         title='Services | The Web Developers'
         description='We Offer Website Design,  Logo Design, Software Development, and more.'

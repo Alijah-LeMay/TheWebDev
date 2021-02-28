@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
-
 // Assets
-import blog_page from '../../assets/blog_page.jpg'
-
+// import classes from './CourseScreen.module.css'
+import landing_bck from '../../assets/landing_bck.jpg'
 // Redux
 
-import { getBlogs } from '../../store/actions/blogActions'
 import { useDispatch, useSelector } from 'react-redux'
+import { getCourses } from '../../store/actions/courseActions'
 
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner'
@@ -14,33 +13,33 @@ import CenterContainer from '../../components/utils/CenterContainer'
 import ArticleContainer from '../../components/utils/ArticleContainer'
 import Loader from '../../components/utils/Loader'
 
-const BlogScreen = () => {
+const CourseScreen = () => {
   const dispatch = useDispatch()
 
-  const blogList = useSelector((state) => state.blogList)
-  const { blogs } = blogList
+  const courseList = useSelector((state) => state.courseList)
+  const { courses } = courseList
 
   useEffect(() => {
-    dispatch(getBlogs())
+    dispatch(getCourses())
   }, [dispatch])
+
   return (
     <>
       <ImageBanner
-        imageLOC={blog_page}
+        imageLOC={landing_bck}
         label='All Things Digital'
         bgOpacity
         opacity={0.3}
       />
       <CenterContainer Horizontal justify='left'>
-        {blogs ? (
-          blogs.map((articleElement, idx) => (
+        {courses ? (
+          courses.map((articleElement, idx) => (
             <ArticleContainer
               key={idx}
-              category={articleElement.category}
               title={articleElement.title}
-              imageLOC={articleElement.images[0]}
               description={articleElement.description}
-              link={`/blog/${articleElement._id}`}
+              imageLOC={articleElement.files[0]}
+              link={`/course/${articleElement._id}`}
             />
           ))
         ) : (
@@ -49,6 +48,12 @@ const BlogScreen = () => {
       </CenterContainer>
     </>
   )
+
+  // <div className={classes.screen_container}>
+  //   <div style={{ margin: 100 }}>
+  //     <button onClick={() => downloadImage(files)}>Download</button>
+  //   </div>
+  // </div>
 }
 
-export default BlogScreen
+export default CourseScreen

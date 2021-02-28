@@ -48,6 +48,7 @@ const createCourse = asyncHandler(async (req, res) => {
   const course = new Course({
     title: 'Sample Title',
     description: 'Sample Description',
+    markDown: 'Sample MarkDown',
     files: ['Sample Image'],
     videos: ['Sample Video'],
   })
@@ -60,13 +61,14 @@ const createCourse = asyncHandler(async (req, res) => {
 // @access      Private / Admin
 
 const updateCourse = asyncHandler(async (req, res) => {
-  const { title, description, files, videos } = req.body
+  const { title, description, markDown, files, videos } = req.body
 
   const course = await Course.findById(req.params.id)
 
   if (course) {
     course.title = title
     course.description = description
+    course.makrDown = makrDown
     course.files = files
     course.videos = videos
   }

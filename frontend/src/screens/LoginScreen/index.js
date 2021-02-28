@@ -18,7 +18,7 @@ const LoginScreen = (props) => {
     password: '',
   })
   const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo, error } = userLogin
+  const { userInfo } = userLogin
 
   const formConfig = {
     email: {

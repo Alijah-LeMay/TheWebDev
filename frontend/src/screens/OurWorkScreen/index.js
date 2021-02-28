@@ -12,7 +12,7 @@ import Meta from '../../components/utils/Meta'
 
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg'
-
+import classes from './OurWorkScreen.module.css'
 const OurWorkScreen = () => {
   const dispatch = useDispatch()
 
@@ -44,7 +44,7 @@ const OurWorkScreen = () => {
         ) : error ? (
           <h3>{error}</h3>
         ) : (
-          <div>
+          <div className={classes.screen_container}>
             {sites.map((siteElement, index) => {
               if (
                 !previousCategory ||

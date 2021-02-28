@@ -20,15 +20,17 @@ import OurWorkScreen from './screens/OurWorkScreen'
 import QuoteScreen from './screens/QuoteScreen'
 import HomeScreen from './screens/HomeScreen'
 import AdminScreen from './screens/AdminScreen'
-import EditSiteScreen from './screens/EditSiteScreen'
 import NotFoundScreen from './screens/NotFoundScreen'
 import ThankYouScreen from './screens/ThankYouScreen'
 import BlogScreen from './screens/BlogScreen'
 import EditBlogScreen from './screens/EditBlogScreen'
+import EditSiteScreen from './screens/EditSiteScreen'
+import EditCourseScreen from './screens/EditCourseScreen'
 import BlogPostScreen from './screens/BlogPostScreen'
 
 // Still testing
-import CoursesScreen from './screens/CoursesScreen'
+import CourseScreen from './screens/CourseScreen'
+import CoursePostScreen from './screens/CoursePostScreen'
 
 export const App = () => {
   useTracking('G-F35LSG5NHY')
@@ -38,8 +40,6 @@ export const App = () => {
       <Switch>
         <Route exact path='/' component={HomeScreen} />
         <Route exact path='/login' component={LoginScreen} />
-        <Route exact path='/admin' component={AdminScreen} />
-        <Route exact path='/admin/site/:id/edit' component={EditSiteScreen} />
         <Route exact path='/services' component={ServicesScreen} />
         <Route exact path='/quote' component={QuoteScreen} />
         <Route exact path='/ourwork' component={OurWorkScreen} />
@@ -47,9 +47,17 @@ export const App = () => {
         {/* <Route exact path='/privacy' component={PrivacyPolicyScreen} /> */}
         <Route exact path='/blog' component={BlogScreen} />
         <Route exact path='/blog/:id' component={BlogPostScreen} />
+        <Route exact path='/admin' component={AdminScreen} />
+        <Route exact path='/admin/site/:id/edit' component={EditSiteScreen} />
         <Route exact path='/admin/blog/:id/edit' component={EditBlogScreen} />
+        <Route
+          exact
+          path='/admin/course/:id/edit'
+          component={EditCourseScreen}
+        />
         {/* Still Testing */}
-        <Route exact path='/courses' component={CoursesScreen} />
+        <Route exact path='/course' component={CourseScreen} />
+        <Route exact path='/course/:id' component={CoursePostScreen} />
 
         <Route component={NotFoundScreen} />
       </Switch>

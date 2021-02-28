@@ -1,0 +1,14 @@
+.post_container {
+  text-align: left;
+  padding: 80px 20px;
+}
+.images_container {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.course_image {
+  max-height: 200px;
+  width: auto;
+  padding: 10px;
+}

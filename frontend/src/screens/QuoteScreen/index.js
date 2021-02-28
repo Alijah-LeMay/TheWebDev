@@ -3,14 +3,9 @@ import axios from 'axios'
 
 // Assets
 import landing_bck from '../../assets/landing_bck.jpg'
-
 import classes from './QuoteScreen.module.css'
-import quote_bck from '../../assets/quote_bck.jpg'
-// Redux
-// import { useDispatch } from 'react-redux';
 
 // My Components
-
 import ImageBanner from '../../components/utils/ImageBanner'
 import CenterContainer from '../../components/utils/CenterContainer'
 import Card from '../../components/utils/Card'
@@ -90,7 +85,7 @@ const QuoteScreen = ({ history }) => {
   }
 
   return (
-    <div className={classes.quoteScreen_container}>
+    <div className={classes.screen_container}>
       <Meta
         title='Free Quote | The Web Developers'
         description='We have developed software and websites for years, and we would love to convert your project to one of our finished products!'

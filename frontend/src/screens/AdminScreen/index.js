@@ -82,7 +82,7 @@ const AdminScreen = (props) => {
   }
 
   return (
-    <div className={classes.adminScreen_container}>
+    <div className={classes.screen_container}>
       <ImageBanner
         imageLOC={landing_bck}
         bgOpacity

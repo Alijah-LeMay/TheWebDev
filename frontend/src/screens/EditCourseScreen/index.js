@@ -3,7 +3,6 @@ import axios from 'axios'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
-import { updateSite, getSiteDetails } from '../../store/actions/siteActions'
 
 // My Components
 import ImageBanner from '../../components/utils/ImageBanner'
@@ -12,66 +11,71 @@ import MyButton from '../../components/utils/Button'
 import FormField from '../../components/utils/FormField'
 
 // Assets
-import classes from './EditSiteScreen.module.css'
+import classes from './EditCourseScreen.module.css'
 import landing_bck from '../../assets/landing_bck.jpg'
-import { UPDATE_SITE_RESET } from '../../store/constants/siteConstants'
+import { UPDATE_COURSE_RESET } from '../../store/constants/courseConstants'
+import {
+  getCourseDetails,
+  updateCourse,
+} from '../../store/actions/courseActions'
 
-const EditSiteScreen = ({ match, history }) => {
-  const siteId = match.params.id
+const EditCourseScreen = (props) => {
+  const { match, history } = props
+  const courseId = match.params.id
   const dispatch = useDispatch()
 
   const [image, setImage] = useState([])
   const [uploading, setUploading] = useState(false)
 
-  const siteDetails = useSelector((state) => state.siteDetails)
-  const { site } = siteDetails
+  const courseDetails = useSelector((state) => state.courseDetails)
+  const { course } = courseDetails
 
-  const siteUpdate = useSelector((state) => state.siteUpdate)
-  const { success: successUpdate } = siteUpdate
+  const courseUpdate = useSelector((state) => state.courseUpdate)
+  const { success: successUpdate } = courseUpdate
 
   const [formState, setFormState] = useState({
-    category: '',
-    siteTitle: '',
-    siteLink: '',
-    siteDescription: '',
+    title: '',
+    description: '',
+    markDown: '',
+    videos: '',
   })
   const formConfig = {
-    category: {
+    title: {
       type: 'input',
-      config: { type: 'text', placeholder: 'Site Category' },
+      config: { type: 'text', placeholder: 'Course Title' },
     },
-    siteTitle: {
+    description: {
       type: 'input',
-      config: { type: 'text', placeholder: 'Site Title' },
+      config: { type: 'text', placeholder: 'Course Description' },
     },
-    siteLink: {
+    markDown: {
       type: 'input',
-      config: { type: 'text', placeholder: 'Site Link' },
+      config: { type: 'text', placeholder: 'Course MarkDown' },
     },
-    siteDescription: {
+    videos: {
       type: 'input',
-      config: { type: 'text', placeholder: 'Site Description' },
+      config: { type: 'text', placeholder: 'Course Video Links' },
     },
   }
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: UPDATE_SITE_RESET })
+      dispatch({ type: UPDATE_COURSE_RESET })
       history.push('/admin')
     } else {
-      if (!site || siteId !== site._id) {
-        dispatch(getSiteDetails(siteId))
+      if (!course || courseId !== course._id) {
+        dispatch(getCourseDetails(courseId))
       } else {
         setFormState({
-          category: site.category,
-          siteTitle: site.siteTitle,
-          siteLink: site.siteLink,
-          siteDescription: site.siteDescription,
+          title: course.title,
+          description: course.description,
+          markDown: course.markDown,
+          videos: course.videos,
         })
 
-        setImage(site.siteImages)
+        setImage(course.files)
       }
     }
-  }, [dispatch, history, siteId, successUpdate, site])
+  }, [dispatch, history, courseId, successUpdate, course])
 
   // Prepare formState objects
   const formElements = []
@@ -118,17 +122,16 @@ const EditSiteScreen = ({ match, history }) => {
       setUploading(false)
     }
   }
-
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
-      updateSite({
-        _id: siteId,
-        category: formState.category,
-        siteTitle: formState.siteTitle,
-        siteLink: formState.siteLink,
-        siteDescription: formState.siteDescription,
-        siteImages: image,
+      updateCourse({
+        _id: courseId,
+        title: formState.title,
+        description: formState.description,
+        markDown: formState.markDown,
+        videos: formState.videos,
+        files: image,
       })
     )
   }
@@ -144,12 +147,12 @@ const EditSiteScreen = ({ match, history }) => {
         imageLOC={landing_bck}
         bgOpacity
         opacity={0.3}
-        label='Edit Site'
+        label='Edit Course'
       />
 
       <CenterContainer>
         <MyButton content='Go Back' to='/admin' dir='left' />
-        <h2>Edit Site</h2>
+        <h2>Edit Course</h2>
         <form onSubmit={submitHandler}>
           {formElements.map((formElement) => (
             <FormField
@@ -179,4 +182,4 @@ const EditSiteScreen = ({ match, history }) => {
   )
 }
 
-export default EditSiteScreen
+export default EditCourseScreen

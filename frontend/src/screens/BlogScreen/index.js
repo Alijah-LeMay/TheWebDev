@@ -5,7 +5,7 @@ import blog_page from '../../assets/blog_page.jpg'
 
 // Redux
 
-import { getblogs } from '../../store/actions/blogActions'
+import { getBlogs } from '../../store/actions/blogActions'
 import { useDispatch, useSelector } from 'react-redux'
 
 // My Components
@@ -21,7 +21,7 @@ const BlogScreen = () => {
   const { loading: loadingBlogs, blogs } = blogList
 
   useEffect(() => {
-    dispatch(getblogs())
+    dispatch(getBlogs())
   }, [dispatch])
   return (
     <Fragment>

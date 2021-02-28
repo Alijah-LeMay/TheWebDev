@@ -1,20 +1,29 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 import {
   siteListReducer,
   siteCreateReducer,
   siteDeleteReducer,
   siteUpdateReducer,
   siteDetailsReducer,
-} from './siteReducers';
-import { userLoginReducer } from './userReducers';
+} from './siteReducers'
+import { userLoginReducer } from './userReducers'
 import {
   blogListReducer,
   blogCreateReducer,
   blogUpdateReducer,
   blogDetailsReducer,
   blogDeleteReducer,
-} from './blogReducers';
-import { captchaReducer } from './captchaReducers';
+} from './blogReducers'
+
+import {
+  courseListReducer,
+  courseCreateReducer,
+  courseDeleteReducer,
+  courseDetailsReducer,
+  courseUpdateReducer,
+} from './courseReducers'
+
+import { captchaReducer } from './captchaReducers'
 
 export default combineReducers({
   siteList: siteListReducer,
@@ -28,5 +37,11 @@ export default combineReducers({
   blogUpdate: blogUpdateReducer,
   blogDetails: blogDetailsReducer,
   blogDelete: blogDeleteReducer,
+  courseList: courseListReducer,
+  courseCreate: courseCreateReducer,
+  courseUpdate: courseUpdateReducer,
+  courseDetails: courseDetailsReducer,
+  courseDelete: courseDeleteReducer,
+
   captcha: captchaReducer,
-});
+})

@@ -7,15 +7,18 @@ import {
   deleteSite,
   getSites,
 } from '../../store/actions/siteActions'
-import { CREATE_SITE_RESET } from '../../constants/siteConstants'
+import { CREATE_SITE_RESET } from '../../store/constants/siteConstants'
 // My Components
-import BlogListContainer from './BlogListContainer'
 import ImageBanner from '../../components/utils/ImageBanner'
 import CenterContainer from '../../components/utils/CenterContainer'
 import MyButton from '../../components/utils/Button'
 import DetailList from '../../components/DetailList'
 import Table from '../../components/utils/Table'
 import TBody from '../../components/utils/TBody'
+
+// Parts of this screen
+import BlogListContainer from './BlogListContainer'
+import CourseListContainer from './CourseListContainer'
 
 import Loader from '../../components/utils/Loader'
 
@@ -105,25 +108,29 @@ const AdminScreen = (props) => {
                 <h2>Existing sites</h2>
                 <Table fixed>
                   <TBody>
-                    {sites.map((siteElement, index) => (
-                      <DetailList
-                        key={index}
-                        label='Existing Sites'
-                        content={siteElement}
-                        editLoc='site'
-                        buttons={[
-                          {
-                            link: siteElement._id,
-                            content: 'Edit',
-                          },
-                          {
-                            variant: 'func',
-                            to: () => deleteSiteHandler(siteElement._id),
-                            content: 'Del',
-                          },
-                        ]}
-                      />
-                    ))}
+                    {sites ? (
+                      sites.map((siteElement, index) => (
+                        <DetailList
+                          key={index}
+                          label='Existing Sites'
+                          content={siteElement}
+                          editLoc='site'
+                          buttons={[
+                            {
+                              link: siteElement._id,
+                              content: 'Edit',
+                            },
+                            {
+                              variant: 'func',
+                              to: () => deleteSiteHandler(siteElement._id),
+                              content: 'Del',
+                            },
+                          ]}
+                        />
+                      ))
+                    ) : (
+                      <Loader />
+                    )}
                   </TBody>
                 </Table>
               </div>
@@ -131,6 +138,7 @@ const AdminScreen = (props) => {
           </div>
         </div>
         <BlogListContainer />
+        <CourseListContainer />
       </CenterContainer>
     </div>
   )

@@ -7,6 +7,7 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const userRoutes = require('./routes/userRoutes')
 const siteRoutes = require('./routes/siteRoutes')
 const blogRoutes = require('./routes/blogRoutes')
+const courseRoutes = require('./routes/courseRoutes')
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use(express.json({ extended: false }))
 app.use('/api/user', userRoutes)
 app.use('/api/site', siteRoutes)
 app.use('/api/blog', blogRoutes)
+app.use('/api/course', courseRoutes)
 app.use('/api/download', require('./routes/download'))
 app.use('/api/send', require('./routes/sendEmail'))
 

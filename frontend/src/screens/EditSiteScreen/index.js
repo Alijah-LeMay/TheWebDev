@@ -14,7 +14,7 @@ import FormField from '../../components/utils/FormField'
 // Assets
 import classes from './EditSiteScreen.module.css'
 import landing_bck from '../../assets/landing_bck.jpg'
-import { UPDATE_SITE_RESET } from '../../constants/siteConstants'
+import { UPDATE_SITE_RESET } from '../../store/constants/siteConstants'
 
 const EditSiteScreen = ({ match, history }) => {
   const siteId = match.params.id

@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
 
 // Model
-import Course from '../models/Course'
+const Course = require('../models/Course')
 
 // @desc        Get all courses
 // @route       GET /api/course

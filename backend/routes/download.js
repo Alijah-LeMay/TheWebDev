@@ -30,7 +30,7 @@ const os = require('os')
 // })
 
 const downloadZip = async (req, res) => {
-  const { files } = req.params
+  const { files } = req.query
   const archive = archiver('zip', {
     zlib: { level: 9 }, // Sets the compression level.
   })
@@ -49,12 +49,12 @@ const downloadZip = async (req, res) => {
   archive.on('error', (err) => {
     throw err
   })
-  archive.file('uploads/image-1602700125670.png', {
-    name: 'file1.png',
-  })
-  archive.file('uploads/image-1602700131411.png', {
-    name: 'file1.png',
-  })
+  console.log('file1- ', files[1].url, files[0])
+  // files.forEach((file) => {
+  //   console.log(file)
+  //   archive.file(file.url, { name: file.name })
+  // })
+
   archive.pipe(res)
   archive.finalize()
 }
@@ -71,6 +71,6 @@ const download = (req, res) => {
   })
 }
 
-router.route('/:id').get(downloadZip)
+router.route('/').get(downloadZip)
 
 module.exports = router

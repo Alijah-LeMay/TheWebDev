@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
-import { UPDATE_BLOG_RESET } from '../../constants/blogConstants'
+import { UPDATE_BLOG_RESET } from '../../store/constants/blogConstants'
 import { getBlogDetails, updateBlog } from '../../store/actions/blogActions'
 
 // My Components

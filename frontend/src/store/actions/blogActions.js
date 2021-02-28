@@ -15,9 +15,9 @@ import {
   DELETE_BLOG_REQUEST,
   DELETE_BLOG_SUCCESS,
   DELETE_BLOG_FAIL,
-} from '../../constants/blogConstants'
+} from '../constants/blogConstants'
 
-export const getblogs = () => async (dispatch) => {
+export const getBlogs = () => async (dispatch) => {
   try {
     dispatch({ type: GET_BLOGS_REQUEST })
 

@@ -1,35 +1,35 @@
 import axios from 'axios'
 import {
-  GET_SITES_REQUEST,
-  GET_SITES_SUCCESS,
-  GET_SITES_FAIL,
-  GET_SITE_DETAILS_REQUEST,
-  GET_SITE_DETAILS_SUCCESS,
-  GET_SITE_DETAILS_FAIL,
-  CREATE_SITE_REQUEST,
-  CREATE_SITE_SUCCESS,
-  CREATE_SITE_FAIL,
-  DELETE_SITE_REQUEST,
-  DELETE_SITE_SUCCESS,
-  DELETE_SITE_FAIL,
-  UPDATE_SITE_REQUEST,
-  UPDATE_SITE_SUCCESS,
-  UPDATE_SITE_FAIL,
-} from '../constants/siteConstants'
+  GET_COURSES_REQUEST,
+  GET_COURSES_SUCCESS,
+  GET_COURSES_FAIL,
+  UPDATE_COURSE_SUCCESS,
+  UPDATE_COURSE_FAIL,
+  UPDATE_COURSE_REQUEST,
+  CREATE_COURSE_SUCCESS,
+  CREATE_COURSE_FAIL,
+  CREATE_COURSE_REQUEST,
+  COURSE_DETAILS_REQUEST,
+  COURSE_DETAILS_SUCCESS,
+  COURSE_DETAILS_FAIL,
+  DELETE_COURSE_REQUEST,
+  DELETE_COURSE_SUCCESS,
+  DELETE_COURSE_FAIL,
+} from '../constants/courseConstants'
 
-export const getSites = () => async (dispatch) => {
+export const getCourses = () => async (dispatch) => {
   try {
-    dispatch({ type: GET_SITES_REQUEST })
+    dispatch({ type: GET_COURSES_REQUEST })
 
-    const { data } = await axios.get('/api/site')
+    const { data } = await axios.get('/api/course')
 
     dispatch({
-      type: GET_SITES_SUCCESS,
+      type: GET_COURSES_SUCCESS,
       payload: data,
     })
   } catch (error) {
     dispatch({
-      type: GET_SITES_FAIL,
+      type: GET_COURSES_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -37,9 +37,31 @@ export const getSites = () => async (dispatch) => {
     })
   }
 }
-export const getSiteDetails = (id) => async (dispatch, getState) => {
+
+export const getCourseDetails = (id) => async (dispatch) => {
   try {
-    dispatch({ type: GET_SITE_DETAILS_REQUEST })
+    dispatch({ type: COURSE_DETAILS_REQUEST })
+
+    const { data } = await axios.get(`/api/course/${id}`)
+
+    dispatch({
+      type: COURSE_DETAILS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: COURSE_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const createCourse = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: CREATE_COURSE_REQUEST })
 
     const {
       userLogin: { userInfo },
@@ -52,15 +74,15 @@ export const getSiteDetails = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.get(`/api/site/${id}`, config)
+    const { data } = await axios.post('/api/course', {}, config)
 
     dispatch({
-      type: GET_SITE_DETAILS_SUCCESS,
+      type: CREATE_COURSE_SUCCESS,
       payload: data,
     })
   } catch (error) {
     dispatch({
-      type: GET_SITE_DETAILS_FAIL,
+      type: CREATE_COURSE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -69,9 +91,9 @@ export const getSiteDetails = (id) => async (dispatch, getState) => {
   }
 }
 
-export const createSite = () => async (dispatch, getState) => {
+export const deleteCourse = (id) => async (dispatch, getState) => {
   try {
-    dispatch({ type: CREATE_SITE_REQUEST })
+    dispatch({ type: DELETE_COURSE_REQUEST })
 
     const {
       userLogin: { userInfo },
@@ -84,15 +106,15 @@ export const createSite = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post('/api/site', {}, config)
+    const { data } = await axios.delete(`/api/course/${id}`, config)
 
     dispatch({
-      type: CREATE_SITE_SUCCESS,
+      type: DELETE_COURSE_SUCCESS,
       payload: data,
     })
   } catch (error) {
     dispatch({
-      type: CREATE_SITE_FAIL,
+      type: DELETE_COURSE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -100,9 +122,10 @@ export const createSite = () => async (dispatch, getState) => {
     })
   }
 }
-export const deleteSite = (id) => async (dispatch, getState) => {
+
+export const updateCourse = (course) => async (dispatch, getState) => {
   try {
-    dispatch({ type: DELETE_SITE_REQUEST })
+    dispatch({ type: UPDATE_COURSE_REQUEST })
 
     const {
       userLogin: { userInfo },
@@ -115,47 +138,19 @@ export const deleteSite = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.delete(`/api/site/${id}`, config)
+    const { data } = await axios.put(
+      `/api/course/${course._id}`,
+      course,
+      config
+    )
 
     dispatch({
-      type: DELETE_SITE_SUCCESS,
+      type: UPDATE_COURSE_SUCCESS,
       payload: data,
     })
   } catch (error) {
     dispatch({
-      type: DELETE_SITE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
-  }
-}
-
-export const updateSite = (site) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: UPDATE_SITE_REQUEST })
-
-    const {
-      userLogin: { userInfo },
-    } = getState()
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    }
-
-    const { data } = await axios.put(`/api/site/${site._id}`, site, config)
-
-    dispatch({
-      type: UPDATE_SITE_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: UPDATE_SITE_FAIL,
+      type: UPDATE_COURSE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

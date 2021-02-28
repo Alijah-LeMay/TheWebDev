@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   createBlog,
   deleteBlog,
-  getblogs,
+  getBlogs,
 } from '../../store/actions/blogActions'
-import { CREATE_BLOG_RESET } from '../../constants/blogConstants'
+import { CREATE_BLOG_RESET } from '../../store/constants/blogConstants'
 // My Components
 import DetailList from '../../components/DetailList'
 import MyButton from '../../components/utils/Button'
@@ -42,7 +42,7 @@ const BlogListContainer = ({ history }) => {
         history.push('/login')
       }
     }
-    dispatch(getblogs())
+    dispatch(getBlogs())
     if (successCreateBlog) {
       history.push(`/admin/blog/${createdBlog._id}/edit`)
     }
@@ -80,25 +80,29 @@ const BlogListContainer = ({ history }) => {
           <h2>Existing Blogs</h2>
           <Table fixed>
             <TBody>
-              {blogs.map((blogElement, index) => (
-                <DetailList
-                  key={index}
-                  label='Existing Blogs'
-                  content={blogElement}
-                  editLoc='blog'
-                  buttons={[
-                    {
-                      link: blogElement._id,
-                      content: 'Edit',
-                    },
-                    {
-                      variant: 'func',
-                      to: () => deleteBlogHandler(blogElement._id),
-                      content: 'Del',
-                    },
-                  ]}
-                />
-              ))}
+              {blogs ? (
+                blogs.map((blogElement, index) => (
+                  <DetailList
+                    key={index}
+                    label='Existing Blogs'
+                    content={blogElement}
+                    editLoc='blog'
+                    buttons={[
+                      {
+                        link: blogElement._id,
+                        content: 'Edit',
+                      },
+                      {
+                        variant: 'func',
+                        to: () => deleteBlogHandler(blogElement._id),
+                        content: 'Del',
+                      },
+                    ]}
+                  />
+                ))
+              ) : (
+                <Loader />
+              )}
             </TBody>
           </Table>
           {loadingDelete ? <Loader /> : null}

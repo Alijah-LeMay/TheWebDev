@@ -4,26 +4,18 @@ import axios from 'axios'
 import classes from './CoursesScreen.module.css'
 
 const CoursesScreen = () => {
-  let chosenImage
-  const downloadImage = async (id) => {
-    window.open(`http://localhost:5001/api/download/${id}`, '_parent')
+  const files = [
+    { url: 'image-1602700125670.png', name: 'image1' },
+    { url: 'image-1603302272458.jpg', name: 'image2' },
+  ]
+  const downloadImage = async () => {
+    window.open(`http://localhost:5001/api/download?files=${files}`, '_parent')
   }
 
-  const setImage = (id) => {
-    chosenImage = id
-    console.log({ chosenImage, id })
-  }
   return (
     <div className={classes.screen_container}>
       <div style={{ margin: 100 }}>
-        <button onClick={() => setImage('image-1602700125670.png')}>
-          Reno Architecture
-        </button>
-
-        <button onClick={() => setImage('image-1603302272458.jpg')}>
-          Bizzy Biz
-        </button>
-        <button onClick={() => downloadImage(chosenImage)}>Download</button>
+        <button onClick={() => downloadImage(files)}>Download</button>
       </div>
     </div>
   )

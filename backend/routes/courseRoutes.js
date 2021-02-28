@@ -6,13 +6,13 @@ const router = express.Router()
 const { protect, admin } = require('../middleware/authMiddleware')
 
 // Controllers
-import {
+const {
   getAllCourses,
   getCourseById,
   deleteCourse,
   createCourse,
   updateCourse,
-} from '../controllers/courseController'
+} = require('../controllers/courseController')
 
 // Routes
 router.route('/').get(getAllCourses).post(protect, admin, createCourse)

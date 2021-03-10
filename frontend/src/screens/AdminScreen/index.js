@@ -98,8 +98,16 @@ const AdminScreen = (props) => {
             content='Create A Site'
             variant='func'
             to={createSiteHandler}
+            outMargin='15px'
+            direction='left'
           />
-          <MyButton content='Logout' variant='func' to={logoutHandler} />
+          <MyButton
+            content='Logout'
+            variant='func'
+            to={logoutHandler}
+            outMargin='15px'
+            direction='left'
+          />
           <div>
             {loadingSites ? (
               <Loader />

@@ -1,6 +1,6 @@
-import React from 'react';
-import Radium from 'radium';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import Radium from 'radium'
+import { Link } from 'react-router-dom'
 
 const MyButton = ({
   padding,
@@ -17,18 +17,19 @@ const MyButton = ({
   direction,
   radius,
   decoration,
-  horMargin,
+  margin,
+  outMargin,
 }) => {
   let rStyle = {
     containerDiv: {
       display: 'block',
-      margin: horMargin && horMargin,
+      textAlign: direction && direction,
     },
     //  for buttons that do not contain an inner P
     submitBtn: {
-      display: 'block',
-      margin: horMargin && horMargin,
+      margin: outMargin ? outMargin : 'auto',
       border: 'none',
+      justifyContent: 'start',
       textDecoration: decoration ? decoration : 'none',
       color: color ? color : '#333',
       padding: padding ? padding : '15px 30px',
@@ -42,14 +43,10 @@ const MyButton = ({
         color: hoverColor ? hoverColor : 'white',
       },
     },
-    button: {
-      textDecoration: 'none',
-    },
     // if the button contains an inner P
     buttonPara: {
-      margin: 'auto',
+      margin: outMargin ? outMargin : 'auto',
       textDecoration: decoration ? decoration : 'none',
-      textAlign: direction && direction,
       color: color ? color : '#333',
       padding: padding ? padding : '15px 30px',
       backgroundColor: bgColor ? bgColor : 'white',
@@ -63,18 +60,18 @@ const MyButton = ({
         color: hoverColor ? hoverColor : 'white',
       },
     },
-  };
+  }
 
   if (styleVariant)
     if (styleVariant === 'clear') {
       rStyle = {
         containerDiv: {
           display: 'block',
-          margin: horMargin && horMargin,
+          margin: margin && margin,
         },
         submitBtn: {
           display: 'block',
-          margin: horMargin && horMargin,
+          margin: margin && margin,
           padding: padding ? padding : '15px',
           textDecoration: decoration ? decoration : 'none',
           height: 'auto',
@@ -86,10 +83,6 @@ const MyButton = ({
           ':hover': {
             color: hoverColor ? hoverColor : 'white',
           },
-        },
-
-        button: {
-          textDecoration: 'none',
         },
         buttonPara: {
           textAlign: direction && direction,
@@ -105,59 +98,59 @@ const MyButton = ({
             color: hoverColor ? hoverColor : 'white',
           },
         },
-      };
+      }
     }
   // sanity check
   if (!to) {
-    to = '/';
+    to = '/'
   }
   //  AS DEFAULT
   //  React Router Button
   //  INSIDE LINKS
   let template = (
     <div style={rStyle.containerDiv}>
-      <Link to={to} style={rStyle.button}>
-        <p key='r2' style={rStyle.buttonPara}>
-          {content ? content : children}
-        </p>
+      <Link to={to}>
+        <p style={rStyle.buttonPara}>{content ? content : children}</p>
       </Link>
     </div>
-  );
+  )
   //  variant
   //  <a> link button
   //  OUTSIDE LINKS
   if (variant === 'a') {
     template = (
       <div style={rStyle.containerDiv}>
-        <a style={rStyle.button} href={to}>
-          <p key='r2' style={rStyle.buttonPara}>
-            {content ? content : children}
-          </p>
+        <a href={to}>
+          <p style={rStyle.buttonPara}>{content ? content : children}</p>
         </a>
       </div>
-    );
+    )
   }
   //  variant
   //  submit button variant
   //  FOR FORMS
   if (variant === 'submit') {
     template = (
-      <button style={rStyle.submitBtn} type='submit'>
-        {content ? content : children}
-      </button>
-    );
+      <div style={rStyle.containerDiv}>
+        <button style={rStyle.submitBtn} type='submit'>
+          {content ? content : children}
+        </button>
+      </div>
+    )
   }
   // variant
   //  function button
   //  ONCLICK HANDLERS
   if (variant === 'func') {
     template = (
-      <button style={rStyle.submitBtn} onClick={to}>
-        {content ? content : children}
-      </button>
-    );
+      <div style={rStyle.containerDiv}>
+        <button style={rStyle.submitBtn} onClick={to}>
+          {content ? content : children}
+        </button>
+      </div>
+    )
   }
-  return template;
-};
+  return template
+}
 
-export default Radium(MyButton);
+export default Radium(MyButton)

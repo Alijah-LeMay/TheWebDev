@@ -68,7 +68,7 @@ const updateCourse = asyncHandler(async (req, res) => {
   if (course) {
     course.title = title
     course.description = description
-    course.makrDown = makrDown
+    course.markDown = markDown
     course.files = files
     course.videos = videos
   }

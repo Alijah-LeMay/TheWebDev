@@ -71,6 +71,14 @@ const CourseListContainer = ({ history }) => {
         content='Create a new course'
         variant='func'
         to={createCourseHandler}
+        outMargin='15px'
+        direction='left'
+      />
+      <MyButton
+        content='Go To /Course'
+        outMargin='15px'
+        direction='left'
+        to='/course'
       />
       {loadingCreateCourse ? <Loader /> : null}
       {loadingCourses ? (

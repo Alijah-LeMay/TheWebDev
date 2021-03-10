@@ -33,7 +33,11 @@ const LoginScreen = (props) => {
   // Prepare formState objects
   const formElements = []
   for (let key in formState) {
-    formElements.push({ id: key, setup: formConfig[key] })
+    formElements.push({
+      id: key,
+      setup: formConfig[key],
+      value: formState[key],
+    })
   }
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {

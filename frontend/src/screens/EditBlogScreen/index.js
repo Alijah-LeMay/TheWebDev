@@ -152,7 +152,23 @@ const EditBlogScreen = (props) => {
       />
 
       <CenterContainer>
-        <MyButton content='Go Back' to='/admin' dir='left' />
+        <MyButton
+          content='Go Back'
+          to='/admin'
+          dir='left'
+          outMargin='15px'
+          direction='left'
+        />
+        {blog && (
+          <div>
+            <MyButton
+              content='View Post'
+              to={`/blog/${blog._id}`}
+              outMargin='15px'
+              direction='left'
+            />
+          </div>
+        )}
         <h2>Edit Blog</h2>
         <form onSubmit={submitHandler}>
           {formElements.map((formElement) => (

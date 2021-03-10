@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 
 // Assets
@@ -18,11 +18,15 @@ import MyButton from '../../components/utils/Button'
 const CoursePostScreen = (props) => {
   const { match } = props
   const dispatch = useDispatch()
+  const [isAdministrator, setIsAdministrator] = useState(false)
 
   const courseId = match.params.id
 
   const courseDetails = useSelector((state) => state.courseDetails)
   const { course } = courseDetails
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const downloadImage = async () => {
     window.open(
@@ -35,6 +39,9 @@ const CoursePostScreen = (props) => {
     if (!course || course._id !== courseId) {
       dispatch(getCourseDetails(courseId))
       console.log(course)
+    }
+    if (userInfo && userInfo.isAdmin) {
+      setIsAdministrator(true)
     }
   }, [dispatch, course, courseId])
 
@@ -49,9 +56,19 @@ const CoursePostScreen = (props) => {
         bgColor='#f2f2f2'
       />
       <CenterContainer Horizontal justify='left'>
-        {console.log(course.files)}
         {course ? (
           <div className={classes.post_container}>
+            {isAdministrator && (
+              <div>
+                <MyButton
+                  content='Edit post'
+                  outMargin='15px'
+                  direction='left'
+                  to={`/admin/course/${course._id}/edit`}
+                />
+              </div>
+            )}
+            <ReactMarkdown source={course.markDown} />
             <div className={classes.images_container}>
               {course.files && (
                 <div>
@@ -71,7 +88,6 @@ const CoursePostScreen = (props) => {
                 </div>
               )}
             </div>
-            <ReactMarkdown source={course.content} />
           </div>
         ) : (
           <Loader />

@@ -3,6 +3,9 @@ import classes from './FormField.module.css'
 
 const FormField = ({ label, type, config, value, changed }) => {
   let inputElement = null
+  if (value === undefined) {
+    value = ''
+  }
   switch (type) {
     case 'input':
       inputElement = (

@@ -71,6 +71,15 @@ const BlogListContainer = ({ history }) => {
         content='Create a new blog post'
         variant='func'
         to={createBlogHandler}
+        outMargin='15px'
+        direction='left'
+      />
+      <MyButton
+        content='Go To /Blog'
+        to={createBlogHandler}
+        outMargin='15px'
+        direction='left'
+        to='/blog'
       />
       {loadingCreateBlog ? <Loader /> : null}
       {loadingBlogs ? (

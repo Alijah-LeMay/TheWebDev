@@ -15,15 +15,21 @@ export const elipsesText = (text, limit) => {
   // if (!text) {
   //   // console.log(`elipses input is ${text}`)
   // }
-  if (typeof text === 'string') {
-    console.log(typeof text)
-  }
+  // if (typeof text === 'string') {
+  //   console.log(typeof text)
+  // }
   if (typeof text === 'object') {
-    text.map((item, idx) => {
+    const newArray = []
+    text.map((item) => {
       const cut = item.slice(0, limit / 2)
       const elips = cut.concat('...')
-      return elips
+      // console.log(elips)
+      newArray.push(elips)
+      return newArray
     })
+    console.log(newArray)
+    const displayMessage = `Arr. with ${newArray.length} entries. ${newArray[0]}`
+    return displayMessage
   }
   if (text.length > limit) {
     const cut = text.slice(0, limit)

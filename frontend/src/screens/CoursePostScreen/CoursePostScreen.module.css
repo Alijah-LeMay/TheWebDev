@@ -1,6 +1,7 @@
 .post_container {
   text-align: left;
   padding: 80px 20px;
+  max-width: 100%;
 }
 .images_container {
   display: flex;

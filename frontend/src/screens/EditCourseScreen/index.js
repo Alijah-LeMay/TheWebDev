@@ -9,6 +9,7 @@ import ImageBanner from '../../components/utils/ImageBanner'
 import CenterContainer from '../../components/utils/CenterContainer'
 import MyButton from '../../components/utils/Button'
 import FormField from '../../components/utils/FormField'
+import Loader from '../../components/utils/Loader'
 
 // Assets
 import classes from './EditCourseScreen.module.css'
@@ -49,7 +50,7 @@ const EditCourseScreen = (props) => {
       config: { type: 'text', placeholder: 'Course Description' },
     },
     markDown: {
-      type: 'input',
+      type: 'textarea',
       config: { type: 'text', placeholder: 'Course MarkDown' },
     },
     videos: {
@@ -151,7 +152,22 @@ const EditCourseScreen = (props) => {
       />
 
       <CenterContainer>
-        <MyButton content='Go Back' to='/admin' dir='left' />
+        <MyButton
+          content='Go Back'
+          to='/admin'
+          outMargin='15px'
+          direction='left'
+        />
+        {course && (
+          <div>
+            <MyButton
+              content='View Post'
+              to={`/course/${course._id}`}
+              outMargin='15px'
+              direction='left'
+            />
+          </div>
+        )}
         <h2>Edit Course</h2>
         <form onSubmit={submitHandler}>
           {formElements.map((formElement) => (
@@ -163,19 +179,26 @@ const EditCourseScreen = (props) => {
               changed={(event) => inputChangedHandler(event, formElement.id)}
             />
           ))}
-          {image.map((item, index) => (
-            <div className={classes.imageBox_container} key={index}>
-              <img src={item} style={{ width: '100px' }} alt={item} />
-              <MyButton
-                content='del'
-                variant='func'
-                to={() => imageDeleteHandler(item)}
-              />
-            </div>
-          ))}
+          <div className={classes.section_container}>
+            {image.map((item, index) => (
+              <div className={classes.imageBox_container} key={index}>
+                <img src={item} style={{ width: '100px' }} alt={item} />
+                <MyButton
+                  content='del'
+                  variant='func'
+                  to={() => imageDeleteHandler(item)}
+                />
+              </div>
+            ))}
+          </div>
           <input type='file' onChange={uploadFileHandler} name={image} />
-          {uploading && <div>...loading...</div>}
-          <MyButton content='Submit' variant='submit' />
+          {uploading && <Loader />}
+          <MyButton
+            content='Submit'
+            variant='submit'
+            outMargin='15px'
+            direction='right'
+          />
         </form>
       </CenterContainer>
     </div>

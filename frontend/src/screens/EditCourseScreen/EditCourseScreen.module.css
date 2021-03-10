@@ -1,0 +1,14 @@
+.section_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+.imageBox_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 200px;
+  height: 250px;
+  padding: 20px;
+  margin: auto;
+}

@@ -13,6 +13,7 @@ import ImageBanner from '../../components/utils/ImageBanner'
 import CenterContainer from '../../components/utils/CenterContainer'
 import ArticleContainer from '../../components/utils/ArticleContainer'
 import Loader from '../../components/utils/Loader'
+import classes from './BlogScreen.module.css'
 
 const BlogScreen = () => {
   const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const BlogScreen = () => {
     dispatch(getBlogs())
   }, [dispatch])
   return (
-    <>
+    <div className={classes.screen_container}>
       <ImageBanner
         imageLOC={blog_page}
         label='All Things Digital'
@@ -47,7 +48,7 @@ const BlogScreen = () => {
           <Loader />
         )}
       </CenterContainer>
-    </>
+    </div>
   )
 }
 

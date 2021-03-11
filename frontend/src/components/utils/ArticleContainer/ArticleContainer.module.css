@@ -1,0 +1,21 @@
+.article_container {
+  width: 300px;
+  padding: 20px;
+}
+
+.article_container p {
+  width: 95%;
+  padding: 0;
+  margin: 0;
+  max-height: '60px';
+}
+.article_container a {
+  text-decoration: none;
+  color: #3d5aaf;
+  float: right;
+  max-width: 100%;
+  padding: 5px 0 0 0;
+}
+.preview_image {
+  width: 100%;
+}
